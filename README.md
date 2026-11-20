@@ -211,21 +211,6 @@ For design changes, also follow the review loop in [`AGENTS.md`](AGENTS.md). In 
 > [!CAUTION]
 > Never commit `.env`; it holds the Gemini key. `.env`, `node_modules/`, and `dist/` are already gitignored. Don't paste keys into chats or issues.
 
-## Troubleshooting
-
-| Symptom | Fix |
-|---|---|
-| A different site opens, or "Port 5180 is already in use" | Another program holds port 5180. Stop it, or change `port` in `vite.config.ts`. Fix Please stays off 5173 because other projects use it. |
-| "Port … is already used by another program" | Set `PORT` in `.env` to a free port and restart `npm run dev`. |
-| "Report lookup is offline right now." | `GEMINI_API_KEY` is missing or invalid. Set it in `.env` and restart. |
-| "We've hit our lookup limit for now." | The key's project is out of Gemini or Search grounding quota. Check billing and limits in [AI Studio](https://aistudio.google.com/usage). |
-| "That's a lot of reports in a short time." | Raise `RESEARCH_RATE_LIMIT` in `.env` and restart, or wait 15 minutes. |
-| "I'm standing here" or the bot check fails on a phone | They need HTTPS. Use the [tunnel setup](#try-it-on-your-phone). |
-| "We couldn’t open that HEIC photo." | The HEIC file is damaged or uses a variant the decoder can't read. Export it as JPEG, or set the iPhone camera to Formats → "Most Compatible". |
-| A HEIC photo takes a few seconds on Chrome or Firefox | Expected the first time: those browsers can't read HEIC, so the page downloads the decoder (about 0.8 MB) and converts the photo on the device. Safari reads HEIC itself. |
-| Map facts show the city but no road, campus, or streetlights | The public Overpass server is overloaded or down; the server skips it for 60 s after a failure. Point `OVERPASS_URL` in `.env` at another instance and restart. |
-| `npm` fails in WSL with `node: not found` | Node is only installed on Windows. Run npm from PowerShell or Git Bash. |
-
 ## Deploy
 
 Any host that runs one long-lived Node process works (Render, Railway, Fly.io, a small VM):
