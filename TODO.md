@@ -13,7 +13,14 @@ The original plan (a public report database with tracking codes, a browse map, a
 - Domain: `fixplease.work`, registered at Porkbun on 2026-11-07 (renews 2027-11-07).
 - Only `main` is left. The merged feature branches were deleted locally and on GitHub on Nov 9.
 - No CI (no `.github/`).
-- **Greenbelt Station pilot** (`gbs.fixplease.work`) is on `main` since Nov 20 but not reachable yet: `gbs.fixplease.work` has no DNS record (NXDOMAIN on Nov 20) and isn't a custom domain on Render. Steps are in the README under [Deploy → Pilot subdomain](README.md#pilot-subdomain).
+- **Greenbelt Station pilot** is live at https://gbs.fixplease.work since Nov 20. Porkbun has a `CNAME` from `gbs` to `fixplease.onrender.com`, and it's a custom domain on the same Render service, with a Google Trust Services certificate valid to Feb 18, 2027 (Render renews it). Setup steps are in the README under [Deploy → Pilot subdomain](README.md#pilot-subdomain).
+
+Live on https://gbs.fixplease.work on Nov 20, right after the domain was added:
+- A report inside the circle (sidewalk photo on Davis Point Lane) → "Greenbelt Station pilot", Greenbelt Station Master Association, To `greenhoa@ciramail.com` in 4.9 s. The server loaded the association's community-information page from Render and found the inbox on it. No warnings, no console errors.
+- A pin outside the circle: the page shows the outside notice and disables "Yes, it’s here", and the API answers 400 `OUTSIDE_PILOT_AREA` (77 ms, before any Gemini call) even with a valid bot-check token.
+- Address search on the pilot host: "Davis Point Lane" → 1 result inside the circle; "Baltimore Avenue, College Park" → 0 (3 on fixplease.work).
+- Link previews get the pilot's title, description, canonical URL, and `og-gbs.png`; `http://` redirects to `https://`.
+- Lighthouse mobile on `/`, `/tech`, `/privacy`: 100 in all four categories; LCP 1.3 s, CLS ≤ 0.035. axe: no violations on those pages at 375 and 1440 px, or with a pin outside the circle.
 
 Last measured on Nov 20, on the pilot host (`gbs.localhost`) with a local production build:
 - 198/198 tests pass; `tsc --noEmit` and `vite build` are clean. First-load JS is 98.9 kB gzip.
@@ -43,8 +50,6 @@ The P0 list (needed for judging and the demo) is finished or no longer needed; s
 
 ## Open — P1
 
-- [ ] **Point `gbs.fixplease.work` at Render.** Add it as a custom domain on the Render service and add a `CNAME` for `gbs` at Porkbun (README, Deploy → Pilot subdomain). Needs the Render and Porkbun accounts.
-- [ ] **Smoke test the pilot on the live site.** After the DNS change, run one report inside the circle on https://gbs.fixplease.work. The To line must show `greenhoa@ciramail.com`, which proves the server can load greenbeltstation.net from Render (princegeorgescountymd.gov answers the same loader with 403). Also share the link once to check the preview shows `og-gbs.png` and the pilot title.
 - [ ] **Confirm the pilot with the association.** Every report inside the circle is addressed to `greenhoa@ciramail.com`, including the five roads its own page lists as City of Greenbelt public roads (Rock Quarry, Greenbelt Station Parkway, North and South Center Drive, Stream Bank Lane), which it says go to the city's Public Works Department. If the association wants those sent to the city instead, the pilot needs a road-by-road split, and the city's inbox would have to come from a page the server loads.
 - [ ] **Rate limits aren't per visitor on Render.** On Nov 20, five requests in a row from one client got five different rate-limit keys, and none was the client's IP (the `pk` in `RateLimit-Policy` is the first 12 hex characters of sha256(key), base64-encoded). So `RESEARCH_RATE_LIMIT`, the cost guard on the Gemini key, is spread over a rotating pool of proxy addresses instead of one bucket per visitor. A spoofed `X-Forwarded-For` didn't change the key. Behind Render's proxy and Cloudflare, `TRUST_PROXY` stops one hop short: if it's `1`, set `2`; if it's empty, set `1`. Then check from outside that the key is stable, equals the hash of the client's IP, and ignores a spoofed header.
 - [ ] **Nominatim failed from Render for a few minutes on Nov 20.** From about 14:03 to 14:05 UTC every search and reverse lookup on the live site got `GEOCODER_UNAVAILABLE` within 2 s, while the same request from another network answered in 0.5 s. It recovered on its own. The server now logs why (`[geo] address lookup failed: <host> answered HTTP <status>`), so read Render's logs the next time it happens. If it's 403 or 429 on Render's shared outbound IPs, move search to a geocoder with its own quota, or add a fallback such as Photon (komoot), which would be a new recipient on the Privacy page.
@@ -95,6 +100,7 @@ The P0 list (needed for judging and the demo) is finished or no longer needed; s
 - [x] The pilot host gets its own app shell (title, description, canonical, share image `og-gbs.png`), footer host, and a `/tech` note on what it skips.
 - [x] Client: the map opens on the dashed circle; copy throughout names the HOA; spot clues replace owner guesses; the result shows a "Greenbelt Station pilot" stamp.
 - [x] Two browser review passes at 375, 768, 1440, and 1920 px; tests for the host routing, the circle, bounded search, the pilot pipeline, and the shell.
+- [x] Pointed `gbs.fixplease.work` at Render (custom domain, Porkbun `CNAME`) and smoke-tested it live on Nov 20; results are in the Status block.
 
 ## Done (hackathon)
 
