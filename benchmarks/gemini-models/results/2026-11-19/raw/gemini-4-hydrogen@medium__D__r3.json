@@ -1,0 +1,532 @@
+{
+  "row": {
+    "variant": "gemini-4-hydrogen@medium",
+    "model": "gemini-4-hydrogen",
+    "case": "D",
+    "repeat": 3,
+    "startedAt": "2026-11-20T04:42:43.595Z",
+    "ms": 55654,
+    "phases": {
+      "context": 0,
+      "research": 49525,
+      "format+pages": 6128
+    },
+    "error": null,
+    "calls": [
+      {
+        "kind": "research",
+        "ms": 49522,
+        "status": 200,
+        "thinkingLevel": "medium",
+        "servedModel": "gemini-4-hydrogen",
+        "usage": {
+          "total_tokens": 7892,
+          "total_input_tokens": 2427,
+          "input_tokens_by_modality": [
+            {
+              "modality": "text",
+              "tokens": 1347
+            },
+            {
+              "modality": "image",
+              "tokens": 1080
+            }
+          ],
+          "total_cached_tokens": 0,
+          "total_output_tokens": 1916,
+          "output_tokens_by_modality": [
+            {
+              "modality": "text",
+              "tokens": 1916
+            }
+          ],
+          "total_tool_use_tokens": 0,
+          "total_thought_tokens": 3549,
+          "grounding_tool_count": [
+            {
+              "type": "google_search",
+              "count": 23
+            }
+          ],
+          "initial_input_tokens": 2427
+        },
+        "searches": 23,
+        "error": null
+      },
+      {
+        "kind": "format",
+        "ms": 6127,
+        "status": 200,
+        "thinkingLevel": "low",
+        "servedModel": "gemini-4-hydrogen",
+        "usage": {
+          "total_tokens": 5119,
+          "total_input_tokens": 3692,
+          "input_tokens_by_modality": [
+            {
+              "modality": "text",
+              "tokens": 3692
+            }
+          ],
+          "total_cached_tokens": 0,
+          "total_output_tokens": 577,
+          "output_tokens_by_modality": [
+            {
+              "modality": "text",
+              "tokens": 577
+            }
+          ],
+          "total_tool_use_tokens": 0,
+          "total_thought_tokens": 850,
+          "initial_input_tokens": 3692
+        },
+        "searches": 0,
+        "error": null
+      }
+    ],
+    "report": {
+      "verdict": "unidentified",
+      "organization": null,
+      "department": null,
+      "kind": "road_damage",
+      "summary": "The concrete roadway has caved in, forming a deep sinkhole about 4 feet across. A wooden barricade, caution tape, and a tilted sign post are inside the hole.",
+      "spot": "next to the storm drain",
+      "warnings": [],
+      "email": {
+        "subject": "Large sinkhole and road cave-in near Tecumseh Street, Adelphi",
+        "body": "Hello,\n\nI'm writing to report a problem that needs repair: Large sinkhole and road cave-in.\n\nThe concrete roadway has caved in, forming a deep sinkhole about 4 feet across. A wooden barricade, caution tape, and a tilted sign post are inside the hole.\n\nLocation: Tecumseh Street, Adelphi\nExact spot: Next to the storm drain\n\nI've attached a photo (photo.jpg).\n\nCould you please arrange a repair, or let me know if this should go to a different office?\n\nThank you,"
+      },
+      "evidence": false,
+      "contact": false,
+      "sources": 2,
+      "officialSources": 0
+    },
+    "named": {
+      "organization": "Prince George's County Department of Public Works and Transportation",
+      "department": "Office of Highway Maintenance (Road Maintenance Division)"
+    }
+  },
+  "investigation": {
+    "issue": {
+      "kind": "road_damage",
+      "title": "Large sinkhole and road cave-in",
+      "summary": "The concrete roadway has caved in, forming a deep sinkhole about 4 feet across. A wooden barricade, caution tape, and a tilted sign post are inside the hole.",
+      "spot": "next to the storm drain",
+      "observations": [
+        "Large, deep sinkhole in the concrete roadway",
+        "About 4 feet across",
+        "Wooden barricade and caution tape at the hole",
+        "Tilted sign post inside the hole"
+      ]
+    },
+    "responsibility": {
+      "verdict": "unidentified",
+      "organization": null,
+      "department": null,
+      "reason": "We couldn't identify the office that maintains this exact spot, so we're not naming one. The map facts show the municipality, county, and road we found.",
+      "evidence": null,
+      "reportingUrl": null,
+      "email": null,
+      "phone": null
+    },
+    "sources": [
+      {
+        "title": "Next Step Realty",
+        "url": "https://nextsteprealtymd.com/property/2313-tecumseh-street-hyattsville-md-20783/MDPG2224614",
+        "note": null,
+        "official": false
+      },
+      {
+        "title": "2313 Tecumseh St, Hyattsville, MD 20783 - MLS MDPG2224614 - Coldwell Banker",
+        "url": "https://www.coldwellbankerhomes.com/md/hyattsville/2313-tecumseh-st/pid_74707507/",
+        "note": null,
+        "official": false
+      }
+    ],
+    "warnings": [],
+    "searchSuggestionsHtml": "<style>\n.container {\n  align-items: center;\n  border-radius: 8px;\n  display: flex;\n  font-family: Google Sans, Roboto, sans-serif;\n  font-size: 14px;\n  line-height: 20px;\n  padding: 8px 12px;\n}\n.chip {\n  display: inline-block;\n  border: solid 1px;\n  border-radius: 16px;\n  min-width: 14px;\n  padding: 5px 16px;\n  text-align: center;\n  user-select: none;\n  margin: 0 8px;\n  -webkit-tap-highlight-color: transparent;\n}\n.carousel {\n  overflow: auto;\n  scrollbar-width: none;\n  white-space: nowrap;\n  margin-right: -12px;\n}\n.headline {\n  display: flex;\n  margin-right: 4px;\n}\n.gradient-container {\n  position: relative;\n}\n.gradient {\n  position: absolute;\n  transform: translate(3px, -9px);\n  height: 36px;\n  width: 9px;\n}\n@media (prefers-color-scheme: light) {\n  .container {\n    background-color: #fafafa;\n    box-shadow: 0 0 0 1px #0000000f;\n  }\n  .headline-label {\n    color: #1f1f1f;\n  }\n  .chip {\n    background-color: #ffffff;\n    border-color: #d2d2d2;\n    color: #5e5e5e;\n    text-decoration: none;\n  }\n  .chip:hover {\n    background-color: #f2f2f2;\n  }\n  .chip:focus {\n    background-color: #f2f2f2;\n  }\n  .chip:active {\n    background-color: #d8d8d8;\n    border-color: #b6b6b6;\n  }\n  .logo-dark {\n    display: none;\n  }\n  .gradient {\n    background: linear-gradient(90deg, #fafafa 15%, #fafafa00 100%);\n  }\n}\n@media (prefers-color-scheme: dark) {\n  .container {\n    background-color: #1f1f1f;\n    box-shadow: 0 0 0 1px #ffffff26;\n  }\n  .headline-label {\n    color: #fff;\n  }\n  .chip {\n    background-color: #2c2c2c;\n    border-color: #3c4043;\n    color: #fff;\n    text-decoration: none;\n  }\n  .chip:hover {\n    background-color: #353536;\n  }\n  .chip:focus {\n    background-color: #353536;\n  }\n  .chip:active {\n    background-color: #464849;\n    border-color: #53575b;\n  }\n  .logo-light {\n    display: none;\n  }\n  .gradient {\n    background: linear-gradient(90deg, #1f1f1f 15%, #1f1f1f00 100%);\n  }\n}\n</style>\n<div class=\"container\">\n  <div class=\"headline\">\n    <svg class=\"logo-light\" width=\"18\" height=\"18\" viewBox=\"9 9 35 35\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n      <path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M42.8622 27.0064C42.8622 25.7839 42.7525 24.6084 42.5487 23.4799H26.3109V30.1568H35.5897C35.1821 32.3041 33.9596 34.1222 32.1258 35.3448V39.6864H37.7213C40.9814 36.677 42.8622 32.2571 42.8622 27.0064V27.0064Z\" fill=\"#4285F4\"/>\n      <path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M26.3109 43.8555C30.9659 43.8555 34.8687 42.3195 37.7213 39.6863L32.1258 35.3447C30.5898 36.3792 28.6306 37.0061 26.3109 37.0061C21.8282 37.0061 18.0195 33.9811 16.6559 29.906H10.9194V34.3573C13.7563 39.9841 19.5712 43.8555 26.3109 43.8555V43.8555Z\" fill=\"#34A853\"/>\n      <path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M16.6559 29.8904C16.3111 28.8559 16.1074 27.7588 16.1074 26.6146C16.1074 25.4704 16.3111 24.3733 16.6559 23.3388V18.8875H10.9194C9.74388 21.2072 9.06992 23.8247 9.06992 26.6146C9.06992 29.4045 9.74388 32.022 10.9194 34.3417L15.3864 30.8621L16.6559 29.8904V29.8904Z\" fill=\"#FBBC05\"/>\n      <path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M26.3109 16.2386C28.85 16.2386 31.107 17.1164 32.9095 18.8091L37.8466 13.8719C34.853 11.082 30.9659 9.3736 26.3109 9.3736C19.5712 9.3736 13.7563 13.245 10.9194 18.8875L16.6559 23.3388C18.0195 19.2636 21.8282 16.2386 26.3109 16.2386V16.2386Z\" fill=\"#EA4335\"/>\n    </svg>\n    <svg class=\"logo-dark\" width=\"18\" height=\"18\" viewBox=\"0 0 48 48\" xmlns=\"http://www.w3.org/2000/svg\">\n      <circle cx=\"24\" cy=\"23\" fill=\"#FFF\" r=\"22\"/>\n      <path d=\"M33.76 34.26c2.75-2.56 4.49-6.37 4.49-11.26 0-.89-.08-1.84-.29-3H24.01v5.99h8.03c-.4 2.02-1.5 3.56-3.07 4.56v.75l3.91 2.97h.88z\" fill=\"#4285F4\"/>\n      <path d=\"M15.58 25.77A8.845 8.845 0 0 0 24 31.86c1.92 0 3.62-.46 4.97-1.31l4.79 3.71C31.14 36.7 27.65 38 24 38c-5.93 0-11.01-3.4-13.45-8.36l.17-1.01 4.06-2.85h.8z\" fill=\"#34A853\"/>\n      <path d=\"M15.59 20.21a8.864 8.864 0 0 0 0 5.58l-5.03 3.86c-.98-2-1.53-4.25-1.53-6.64 0-2.39.55-4.64 1.53-6.64l1-.22 3.81 2.98.22 1.08z\" fill=\"#FBBC05\"/>\n      <path d=\"M24 14.14c2.11 0 4.02.75 5.52 1.98l4.36-4.36C31.22 9.43 27.81 8 24 8c-5.93 0-11.01 3.4-13.45 8.36l5.03 3.85A8.86 8.86 0 0 1 24 14.14z\" fill=\"#EA4335\"/>\n    </svg>\n    <div class=\"gradient-container\"><div class=\"gradient\"></div></div>\n  </div>\n  <div class=\"carousel\">\n<a class=\"chip\" href=\"https://www.google.com/search?q=%22Tecumseh+Street%22+Adelphi+MD&client=app-vertex-grounding&safesearch=active\">&quot;Tecumseh Street&quot; Adelphi MD</a>\n<a class=\"chip\" href=\"https://www.google.com/search?q=%22Adelphi+Woods+Homeowners+Association%22&client=app-vertex-grounding&safesearch=active\">&quot;Adelphi Woods Homeowners Association&quot;</a>\n<a class=\"chip\" href=\"https://www.google.com/search?q=%22Tecumseh+St%22+%22Prince+George%27s+County%22+road+maintenance&client=app-vertex-grounding&safesearch=active\">&quot;Tecumseh St&quot; &quot;Prince George&#39;s County&quot; road maintenance</a>\n<a class=\"chip\" href=\"https://www.google.com/search?q=Prince+George%27s+County+%22Department+of+Public+Works+and+Transportation%22+road+maintenance&client=app-vertex-grounding&safesearch=active\">Prince George&#39;s County &quot;Department of Public Works and Transportation&quot; road maintenance</a>\n  </div>\n</div>\n<style>\n.container {\n  align-items: center;\n  border-radius: 8px;\n  display: flex;\n  font-family: Google Sans, Roboto, sans-serif;\n  font-size: 14px;\n  line-height: 20px;\n  padding: 8px 12px;\n}\n.chip {\n  display: inline-block;\n  border: solid 1px;\n  border-radius: 16px;\n  min-width: 14px;\n  padding: 5px 16px;\n  text-align: center;\n  user-select: none;\n  margin: 0 8px;\n  -webkit-tap-highlight-color: transparent;\n}\n.carousel {\n  overflow: auto;\n  scrollbar-width: none;\n  white-space: nowrap;\n  margin-right: -12px;\n}\n.headline {\n  display: flex;\n  margin-right: 4px;\n}\n.gradient-container {\n  position: relative;\n}\n.gradient {\n  position: absolute;\n  transform: translate(3px, -9px);\n  height: 36px;\n  width: 9px;\n}\n@media (prefers-color-scheme: light) {\n  .container {\n    background-color: #fafafa;\n    box-shadow: 0 0 0 1px #0000000f;\n  }\n  .headline-label {\n    color: #1f1f1f;\n  }\n  .chip {\n    background-color: #ffffff;\n    border-color: #d2d2d2;\n    color: #5e5e5e;\n    text-decoration: none;\n  }\n  .chip:hover {\n    background-color: #f2f2f2;\n  }\n  .chip:focus {\n    background-color: #f2f2f2;\n  }\n  .chip:active {\n    background-color: #d8d8d8;\n    border-color: #b6b6b6;\n  }\n  .logo-dark {\n    display: none;\n  }\n  .gradient {\n    background: linear-gradient(90deg, #fafafa 15%, #fafafa00 100%);\n  }\n}\n@media (prefers-color-scheme: dark) {\n  .container {\n    background-color: #1f1f1f;\n    box-shadow: 0 0 0 1px #ffffff26;\n  }\n  .headline-label {\n    color: #fff;\n  }\n  .chip {\n    background-color: #2c2c2c;\n    border-color: #3c4043;\n    color: #fff;\n    text-decoration: none;\n  }\n  .chip:hover {\n    background-color: #353536;\n  }\n  .chip:focus {\n    background-color: #353536;\n  }\n  .chip:active {\n    background-color: #464849;\n    border-color: #53575b;\n  }\n  .logo-light {\n    display: none;\n  }\n  .gradient {\n    background: linear-gradient(90deg, #1f1f1f 15%, #1f1f1f00 100%);\n  }\n}\n</style>\n<div class=\"container\">\n  <div class=\"headline\">\n    <svg class=\"logo-light\" width=\"18\" height=\"18\" viewBox=\"9 9 35 35\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n      <path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M42.8622 27.0064C42.8622 25.7839 42.7525 24.6084 42.5487 23.4799H26.3109V30.1568H35.5897C35.1821 32.3041 33.9596 34.1222 32.1258 35.3448V39.6864H37.7213C40.9814 36.677 42.8622 32.2571 42.8622 27.0064V27.0064Z\" fill=\"#4285F4\"/>\n      <path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M26.3109 43.8555C30.9659 43.8555 34.8687 42.3195 37.7213 39.6863L32.1258 35.3447C30.5898 36.3792 28.6306 37.0061 26.3109 37.0061C21.8282 37.0061 18.0195 33.9811 16.6559 29.906H10.9194V34.3573C13.7563 39.9841 19.5712 43.8555 26.3109 43.8555V43.8555Z\" fill=\"#34A853\"/>\n      <path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M16.6559 29.8904C16.3111 28.8559 16.1074 27.7588 16.1074 26.6146C16.1074 25.4704 16.3111 24.3733 16.6559 23.3388V18.8875H10.9194C9.74388 21.2072 9.06992 23.8247 9.06992 26.6146C9.06992 29.4045 9.74388 32.022 10.9194 34.3417L15.3864 30.8621L16.6559 29.8904V29.8904Z\" fill=\"#FBBC05\"/>\n      <path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M26.3109 16.2386C28.85 16.2386 31.107 17.1164 32.9095 18.8091L37.8466 13.8719C34.853 11.082 30.9659 9.3736 26.3109 9.3736C19.5712 9.3736 13.7563 13.245 10.9194 18.8875L16.6559 23.3388C18.0195 19.2636 21.8282 16.2386 26.3109 16.2386V16.2386Z\" fill=\"#EA4335\"/>\n    </svg>\n    <svg class=\"logo-dark\" width=\"18\" height=\"18\" viewBox=\"0 0 48 48\" xmlns=\"http://www.w3.org/2000/svg\">\n      <circle cx=\"24\" cy=\"23\" fill=\"#FFF\" r=\"22\"/>\n      <path d=\"M33.76 34.26c2.75-2.56 4.49-6.37 4.49-11.26 0-.89-.08-1.84-.29-3H24.01v5.99h8.03c-.4 2.02-1.5 3.56-3.07 4.56v.75l3.91 2.97h.88z\" fill=\"#4285F4\"/>\n      <path d=\"M15.58 25.77A8.845 8.845 0 0 0 24 31.86c1.92 0 3.62-.46 4.97-1.31l4.79 3.71C31.14 36.7 27.65 38 24 38c-5.93 0-11.01-3.4-13.45-8.36l.17-1.01 4.06-2.85h.8z\" fill=\"#34A853\"/>\n      <path d=\"M15.59 20.21a8.864 8.864 0 0 0 0 5.58l-5.03 3.86c-.98-2-1.53-4.25-1.53-6.64 0-2.39.55-4.64 1.53-6.64l1-.22 3.81 2.98.22 1.08z\" fill=\"#FBBC05\"/>\n      <path d=\"M24 14.14c2.11 0 4.02.75 5.52 1.98l4.36-4.36C31.22 9.43 27.81 8 24 8c-5.93 0-11.01 3.4-13.45 8.36l5.03 3.85A8.86 8.86 0 0 1 24 14.14z\" fill=\"#EA4335\"/>\n    </svg>\n    <div class=\"gradient-container\"><div class=\"gradient\"></div></div>\n  </div>\n  <div class=\"carousel\">\n<a class=\"chip\" href=\"https://www.google.com/search?q=%22Adelphi+Woods%22+Maryland&client=app-vertex-grounding&safesearch=active\">&quot;Adelphi Woods&quot; Maryland</a>\n<a class=\"chip\" href=\"https://www.google.com/search?q=%22Tecumseh%22+%22Prince+George%27s+County%22+%22DPW%26T%22+OR+%22maintained%22&client=app-vertex-grounding&safesearch=active\">&quot;Tecumseh&quot; &quot;Prince George&#39;s County&quot; &quot;DPW&amp;T&quot; OR &quot;maintained&quot;</a>\n<a class=\"chip\" href=\"https://www.google.com/search?q=site:princegeorgescountymd.gov+%22Tecumseh%22&client=app-vertex-grounding&safesearch=active\">site:princegeorgescountymd.gov &quot;Tecumseh&quot;</a>\n<a class=\"chip\" href=\"https://www.google.com/search?q=site:princegeorgescountymd.gov+%22Report+a+Public+Works+Problem%22&client=app-vertex-grounding&safesearch=active\">site:princegeorgescountymd.gov &quot;Report a Public Works Problem&quot;</a>\n  </div>\n</div>\n<style>\n.container {\n  align-items: center;\n  border-radius: 8px;\n  display: flex;\n  font-family: Google Sans, Roboto, sans-serif;\n  font-size: 14px;\n  line-height: 20px;\n  padding: 8px 12px;\n}\n.chip {\n  display: inline-block;\n  border: solid 1px;\n  border-radius: 16px;\n  min-width: 14px;\n  padding: 5px 16px;\n  text-align: center;\n  user-select: none;\n  margin: 0 8px;\n  -webkit-tap-highlight-color: transparent;\n}\n.carousel {\n  overflow: auto;\n  scrollbar-width: none;\n  white-space: nowrap;\n  margin-right: -12px;\n}\n.headline {\n  display: flex;\n  margin-right: 4px;\n}\n.gradient-container {\n  position: relative;\n}\n.gradient {\n  position: absolute;\n  transform: translate(3px, -9px);\n  height: 36px;\n  width: 9px;\n}\n@media (prefers-color-scheme: light) {\n  .container {\n    background-color: #fafafa;\n    box-shadow: 0 0 0 1px #0000000f;\n  }\n  .headline-label {\n    color: #1f1f1f;\n  }\n  .chip {\n    background-color: #ffffff;\n    border-color: #d2d2d2;\n    color: #5e5e5e;\n    text-decoration: none;\n  }\n  .chip:hover {\n    background-color: #f2f2f2;\n  }\n  .chip:focus {\n    background-color: #f2f2f2;\n  }\n  .chip:active {\n    background-color: #d8d8d8;\n    border-color: #b6b6b6;\n  }\n  .logo-dark {\n    display: none;\n  }\n  .gradient {\n    background: linear-gradient(90deg, #fafafa 15%, #fafafa00 100%);\n  }\n}\n@media (prefers-color-scheme: dark) {\n  .container {\n    background-color: #1f1f1f;\n    box-shadow: 0 0 0 1px #ffffff26;\n  }\n  .headline-label {\n    color: #fff;\n  }\n  .chip {\n    background-color: #2c2c2c;\n    border-color: #3c4043;\n    color: #fff;\n    text-decoration: none;\n  }\n  .chip:hover {\n    background-color: #353536;\n  }\n  .chip:focus {\n    background-color: #353536;\n  }\n  .chip:active {\n    background-color: #464849;\n    border-color: #53575b;\n  }\n  .logo-light {\n    display: none;\n  }\n  .gradient {\n    background: linear-gradient(90deg, #1f1f1f 15%, #1f1f1f00 100%);\n  }\n}\n</style>\n<div class=\"container\">\n  <div class=\"headline\">\n    <svg class=\"logo-light\" width=\"18\" height=\"18\" viewBox=\"9 9 35 35\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n      <path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M42.8622 27.0064C42.8622 25.7839 42.7525 24.6084 42.5487 23.4799H26.3109V30.1568H35.5897C35.1821 32.3041 33.9596 34.1222 32.1258 35.3448V39.6864H37.7213C40.9814 36.677 42.8622 32.2571 42.8622 27.0064V27.0064Z\" fill=\"#4285F4\"/>\n      <path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M26.3109 43.8555C30.9659 43.8555 34.8687 42.3195 37.7213 39.6863L32.1258 35.3447C30.5898 36.3792 28.6306 37.0061 26.3109 37.0061C21.8282 37.0061 18.0195 33.9811 16.6559 29.906H10.9194V34.3573C13.7563 39.9841 19.5712 43.8555 26.3109 43.8555V43.8555Z\" fill=\"#34A853\"/>\n      <path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M16.6559 29.8904C16.3111 28.8559 16.1074 27.7588 16.1074 26.6146C16.1074 25.4704 16.3111 24.3733 16.6559 23.3388V18.8875H10.9194C9.74388 21.2072 9.06992 23.8247 9.06992 26.6146C9.06992 29.4045 9.74388 32.022 10.9194 34.3417L15.3864 30.8621L16.6559 29.8904V29.8904Z\" fill=\"#FBBC05\"/>\n      <path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M26.3109 16.2386C28.85 16.2386 31.107 17.1164 32.9095 18.8091L37.8466 13.8719C34.853 11.082 30.9659 9.3736 26.3109 9.3736C19.5712 9.3736 13.7563 13.245 10.9194 18.8875L16.6559 23.3388C18.0195 19.2636 21.8282 16.2386 26.3109 16.2386V16.2386Z\" fill=\"#EA4335\"/>\n    </svg>\n    <svg class=\"logo-dark\" width=\"18\" height=\"18\" viewBox=\"0 0 48 48\" xmlns=\"http://www.w3.org/2000/svg\">\n      <circle cx=\"24\" cy=\"23\" fill=\"#FFF\" r=\"22\"/>\n      <path d=\"M33.76 34.26c2.75-2.56 4.49-6.37 4.49-11.26 0-.89-.08-1.84-.29-3H24.01v5.99h8.03c-.4 2.02-1.5 3.56-3.07 4.56v.75l3.91 2.97h.88z\" fill=\"#4285F4\"/>\n      <path d=\"M15.58 25.77A8.845 8.845 0 0 0 24 31.86c1.92 0 3.62-.46 4.97-1.31l4.79 3.71C31.14 36.7 27.65 38 24 38c-5.93 0-11.01-3.4-13.45-8.36l.17-1.01 4.06-2.85h.8z\" fill=\"#34A853\"/>\n      <path d=\"M15.59 20.21a8.864 8.864 0 0 0 0 5.58l-5.03 3.86c-.98-2-1.53-4.25-1.53-6.64 0-2.39.55-4.64 1.53-6.64l1-.22 3.81 2.98.22 1.08z\" fill=\"#FBBC05\"/>\n      <path d=\"M24 14.14c2.11 0 4.02.75 5.52 1.98l4.36-4.36C31.22 9.43 27.81 8 24 8c-5.93 0-11.01 3.4-13.45 8.36l5.03 3.85A8.86 8.86 0 0 1 24 14.14z\" fill=\"#EA4335\"/>\n    </svg>\n    <div class=\"gradient-container\"><div class=\"gradient\"></div></div>\n  </div>\n  <div class=\"carousel\">\n<a class=\"chip\" href=\"https://www.google.com/search?q=%222405+Tecumseh+Street%22+Adelphi&client=app-vertex-grounding&safesearch=active\">&quot;2405 Tecumseh Street&quot; Adelphi</a>\n<a class=\"chip\" href=\"https://www.google.com/search?q=%222305+Tecumseh%22+OR+%222304+Tecumseh%22+OR+%222313+Tecumseh%22+Adelphi+subdivision+OR+HOA&client=app-vertex-grounding&safesearch=active\">&quot;2305 Tecumseh&quot; OR &quot;2304 Tecumseh&quot; OR &quot;2313 Tecumseh&quot; Adelphi subdivision OR HOA</a>\n<a class=\"chip\" href=\"https://www.google.com/search?q=site:princegeorgescountymd.gov+%22Office+of+Highway+Maintenance%22&client=app-vertex-grounding&safesearch=active\">site:princegeorgescountymd.gov &quot;Office of Highway Maintenance&quot;</a>\n<a class=\"chip\" href=\"https://www.google.com/search?q=site:princegeorgescountymd.gov+%22PGC311%22+OR+%22301-883-4748%22&client=app-vertex-grounding&safesearch=active\">site:princegeorgescountymd.gov &quot;PGC311&quot; OR &quot;301-883-4748&quot;</a>\n  </div>\n</div>\n<style>\n.container {\n  align-items: center;\n  border-radius: 8px;\n  display: flex;\n  font-family: Google Sans, Roboto, sans-serif;\n  font-size: 14px;\n  line-height: 20px;\n  padding: 8px 12px;\n}\n.chip {\n  display: inline-block;\n  border: solid 1px;\n  border-radius: 16px;\n  min-width: 14px;\n  padding: 5px 16px;\n  text-align: center;\n  user-select: none;\n  margin: 0 8px;\n  -webkit-tap-highlight-color: transparent;\n}\n.carousel {\n  overflow: auto;\n  scrollbar-width: none;\n  white-space: nowrap;\n  margin-right: -12px;\n}\n.headline {\n  display: flex;\n  margin-right: 4px;\n}\n.gradient-container {\n  position: relative;\n}\n.gradient {\n  position: absolute;\n  transform: translate(3px, -9px);\n  height: 36px;\n  width: 9px;\n}\n@media (prefers-color-scheme: light) {\n  .container {\n    background-color: #fafafa;\n    box-shadow: 0 0 0 1px #0000000f;\n  }\n  .headline-label {\n    color: #1f1f1f;\n  }\n  .chip {\n    background-color: #ffffff;\n    border-color: #d2d2d2;\n    color: #5e5e5e;\n    text-decoration: none;\n  }\n  .chip:hover {\n    background-color: #f2f2f2;\n  }\n  .chip:focus {\n    background-color: #f2f2f2;\n  }\n  .chip:active {\n    background-color: #d8d8d8;\n    border-color: #b6b6b6;\n  }\n  .logo-dark {\n    display: none;\n  }\n  .gradient {\n    background: linear-gradient(90deg, #fafafa 15%, #fafafa00 100%);\n  }\n}\n@media (prefers-color-scheme: dark) {\n  .container {\n    background-color: #1f1f1f;\n    box-shadow: 0 0 0 1px #ffffff26;\n  }\n  .headline-label {\n    color: #fff;\n  }\n  .chip {\n    background-color: #2c2c2c;\n    border-color: #3c4043;\n    color: #fff;\n    text-decoration: none;\n  }\n  .chip:hover {\n    background-color: #353536;\n  }\n  .chip:focus {\n    background-color: #353536;\n  }\n  .chip:active {\n    background-color: #464849;\n    border-color: #53575b;\n  }\n  .logo-light {\n    display: none;\n  }\n  .gradient {\n    background: linear-gradient(90deg, #1f1f1f 15%, #1f1f1f00 100%);\n  }\n}\n</style>\n<div class=\"container\">\n  <div class=\"headline\">\n    <svg class=\"logo-light\" width=\"18\" height=\"18\" viewBox=\"9 9 35 35\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n      <path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M42.8622 27.0064C42.8622 25.7839 42.7525 24.6084 42.5487 23.4799H26.3109V30.1568H35.5897C35.1821 32.3041 33.9596 34.1222 32.1258 35.3448V39.6864H37.7213C40.9814 36.677 42.8622 32.2571 42.8622 27.0064V27.0064Z\" fill=\"#4285F4\"/>\n      <path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M26.3109 43.8555C30.9659 43.8555 34.8687 42.3195 37.7213 39.6863L32.1258 35.3447C30.5898 36.3792 28.6306 37.0061 26.3109 37.0061C21.8282 37.0061 18.0195 33.9811 16.6559 29.906H10.9194V34.3573C13.7563 39.9841 19.5712 43.8555 26.3109 43.8555V43.8555Z\" fill=\"#34A853\"/>\n      <path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M16.6559 29.8904C16.3111 28.8559 16.1074 27.7588 16.1074 26.6146C16.1074 25.4704 16.3111 24.3733 16.6559 23.3388V18.8875H10.9194C9.74388 21.2072 9.06992 23.8247 9.06992 26.6146C9.06992 29.4045 9.74388 32.022 10.9194 34.3417L15.3864 30.8621L16.6559 29.8904V29.8904Z\" fill=\"#FBBC05\"/>\n      <path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M26.3109 16.2386C28.85 16.2386 31.107 17.1164 32.9095 18.8091L37.8466 13.8719C34.853 11.082 30.9659 9.3736 26.3109 9.3736C19.5712 9.3736 13.7563 13.245 10.9194 18.8875L16.6559 23.3388C18.0195 19.2636 21.8282 16.2386 26.3109 16.2386V16.2386Z\" fill=\"#EA4335\"/>\n    </svg>\n    <svg class=\"logo-dark\" width=\"18\" height=\"18\" viewBox=\"0 0 48 48\" xmlns=\"http://www.w3.org/2000/svg\">\n      <circle cx=\"24\" cy=\"23\" fill=\"#FFF\" r=\"22\"/>\n      <path d=\"M33.76 34.26c2.75-2.56 4.49-6.37 4.49-11.26 0-.89-.08-1.84-.29-3H24.01v5.99h8.03c-.4 2.02-1.5 3.56-3.07 4.56v.75l3.91 2.97h.88z\" fill=\"#4285F4\"/>\n      <path d=\"M15.58 25.77A8.845 8.845 0 0 0 24 31.86c1.92 0 3.62-.46 4.97-1.31l4.79 3.71C31.14 36.7 27.65 38 24 38c-5.93 0-11.01-3.4-13.45-8.36l.17-1.01 4.06-2.85h.8z\" fill=\"#34A853\"/>\n      <path d=\"M15.59 20.21a8.864 8.864 0 0 0 0 5.58l-5.03 3.86c-.98-2-1.53-4.25-1.53-6.64 0-2.39.55-4.64 1.53-6.64l1-.22 3.81 2.98.22 1.08z\" fill=\"#FBBC05\"/>\n      <path d=\"M24 14.14c2.11 0 4.02.75 5.52 1.98l4.36-4.36C31.22 9.43 27.81 8 24 8c-5.93 0-11.01 3.4-13.45 8.36l5.03 3.85A8.86 8.86 0 0 1 24 14.14z\" fill=\"#EA4335\"/>\n    </svg>\n    <div class=\"gradient-container\"><div class=\"gradient\"></div></div>\n  </div>\n  <div class=\"carousel\">\n<a class=\"chip\" href=\"https://www.google.com/search?q=%22https://www.princegeorgescountymd.gov/departments-offices/public-works-transportation%22&client=app-vertex-grounding&safesearch=active\">&quot;https://www.princegeorgescountymd.gov/departments-offices/public-works-transportation&quot;</a>\n<a class=\"chip\" href=\"https://www.google.com/search?q=%22https://www.princegeorgescountymd.gov%22+%22Office+of+Highway+Maintenance%22+%22Road+Maintenance+Division%22&client=app-vertex-grounding&safesearch=active\">&quot;https://www.princegeorgescountymd.gov&quot; &quot;Office of Highway Maintenance&quot; &quot;Road Maintenance Division&quot;</a>\n<a class=\"chip\" href=\"https://www.google.com/search?q=%22https://www.princegeorgescountymd.gov%22+%22Roadway+Hazards%22+%22Reporting+Road+Hazards%22&client=app-vertex-grounding&safesearch=active\">&quot;https://www.princegeorgescountymd.gov&quot; &quot;Roadway Hazards&quot; &quot;Reporting Road Hazards&quot;</a>\n<a class=\"chip\" href=\"https://www.google.com/search?q=%22https://www.princegeorgescountymd.gov%22+%22DPW%26T%22+email+OR+phone+%22301-883-5600%22&client=app-vertex-grounding&safesearch=active\">&quot;https://www.princegeorgescountymd.gov&quot; &quot;DPW&amp;T&quot; email OR phone &quot;301-883-5600&quot;</a>\n  </div>\n</div>\n<style>\n.container {\n  align-items: center;\n  border-radius: 8px;\n  display: flex;\n  font-family: Google Sans, Roboto, sans-serif;\n  font-size: 14px;\n  line-height: 20px;\n  padding: 8px 12px;\n}\n.chip {\n  display: inline-block;\n  border: solid 1px;\n  border-radius: 16px;\n  min-width: 14px;\n  padding: 5px 16px;\n  text-align: center;\n  user-select: none;\n  margin: 0 8px;\n  -webkit-tap-highlight-color: transparent;\n}\n.carousel {\n  overflow: auto;\n  scrollbar-width: none;\n  white-space: nowrap;\n  margin-right: -12px;\n}\n.headline {\n  display: flex;\n  margin-right: 4px;\n}\n.gradient-container {\n  position: relative;\n}\n.gradient {\n  position: absolute;\n  transform: translate(3px, -9px);\n  height: 36px;\n  width: 9px;\n}\n@media (prefers-color-scheme: light) {\n  .container {\n    background-color: #fafafa;\n    box-shadow: 0 0 0 1px #0000000f;\n  }\n  .headline-label {\n    color: #1f1f1f;\n  }\n  .chip {\n    background-color: #ffffff;\n    border-color: #d2d2d2;\n    color: #5e5e5e;\n    text-decoration: none;\n  }\n  .chip:hover {\n    background-color: #f2f2f2;\n  }\n  .chip:focus {\n    background-color: #f2f2f2;\n  }\n  .chip:active {\n    background-color: #d8d8d8;\n    border-color: #b6b6b6;\n  }\n  .logo-dark {\n    display: none;\n  }\n  .gradient {\n    background: linear-gradient(90deg, #fafafa 15%, #fafafa00 100%);\n  }\n}\n@media (prefers-color-scheme: dark) {\n  .container {\n    background-color: #1f1f1f;\n    box-shadow: 0 0 0 1px #ffffff26;\n  }\n  .headline-label {\n    color: #fff;\n  }\n  .chip {\n    background-color: #2c2c2c;\n    border-color: #3c4043;\n    color: #fff;\n    text-decoration: none;\n  }\n  .chip:hover {\n    background-color: #353536;\n  }\n  .chip:focus {\n    background-color: #353536;\n  }\n  .chip:active {\n    background-color: #464849;\n    border-color: #53575b;\n  }\n  .logo-light {\n    display: none;\n  }\n  .gradient {\n    background: linear-gradient(90deg, #1f1f1f 15%, #1f1f1f00 100%);\n  }\n}\n</style>\n<div class=\"container\">\n  <div class=\"headline\">\n    <svg class=\"logo-light\" width=\"18\" height=\"18\" viewBox=\"9 9 35 35\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n      <path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M42.8622 27.0064C42.8622 25.7839 42.7525 24.6084 42.5487 23.4799H26.3109V30.1568H35.5897C35.1821 32.3041 33.9596 34.1222 32.1258 35.3448V39.6864H37.7213C40.9814 36.677 42.8622 32.2571 42.8622 27.0064V27.0064Z\" fill=\"#4285F4\"/>\n      <path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M26.3109 43.8555C30.9659 43.8555 34.8687 42.3195 37.7213 39.6863L32.1258 35.3447C30.5898 36.3792 28.6306 37.0061 26.3109 37.0061C21.8282 37.0061 18.0195 33.9811 16.6559 29.906H10.9194V34.3573C13.7563 39.9841 19.5712 43.8555 26.3109 43.8555V43.8555Z\" fill=\"#34A853\"/>\n      <path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M16.6559 29.8904C16.3111 28.8559 16.1074 27.7588 16.1074 26.6146C16.1074 25.4704 16.3111 24.3733 16.6559 23.3388V18.8875H10.9194C9.74388 21.2072 9.06992 23.8247 9.06992 26.6146C9.06992 29.4045 9.74388 32.022 10.9194 34.3417L15.3864 30.8621L16.6559 29.8904V29.8904Z\" fill=\"#FBBC05\"/>\n      <path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M26.3109 16.2386C28.85 16.2386 31.107 17.1164 32.9095 18.8091L37.8466 13.8719C34.853 11.082 30.9659 9.3736 26.3109 9.3736C19.5712 9.3736 13.7563 13.245 10.9194 18.8875L16.6559 23.3388C18.0195 19.2636 21.8282 16.2386 26.3109 16.2386V16.2386Z\" fill=\"#EA4335\"/>\n    </svg>\n    <svg class=\"logo-dark\" width=\"18\" height=\"18\" viewBox=\"0 0 48 48\" xmlns=\"http://www.w3.org/2000/svg\">\n      <circle cx=\"24\" cy=\"23\" fill=\"#FFF\" r=\"22\"/>\n      <path d=\"M33.76 34.26c2.75-2.56 4.49-6.37 4.49-11.26 0-.89-.08-1.84-.29-3H24.01v5.99h8.03c-.4 2.02-1.5 3.56-3.07 4.56v.75l3.91 2.97h.88z\" fill=\"#4285F4\"/>\n      <path d=\"M15.58 25.77A8.845 8.845 0 0 0 24 31.86c1.92 0 3.62-.46 4.97-1.31l4.79 3.71C31.14 36.7 27.65 38 24 38c-5.93 0-11.01-3.4-13.45-8.36l.17-1.01 4.06-2.85h.8z\" fill=\"#34A853\"/>\n      <path d=\"M15.59 20.21a8.864 8.864 0 0 0 0 5.58l-5.03 3.86c-.98-2-1.53-4.25-1.53-6.64 0-2.39.55-4.64 1.53-6.64l1-.22 3.81 2.98.22 1.08z\" fill=\"#FBBC05\"/>\n      <path d=\"M24 14.14c2.11 0 4.02.75 5.52 1.98l4.36-4.36C31.22 9.43 27.81 8 24 8c-5.93 0-11.01 3.4-13.45 8.36l5.03 3.85A8.86 8.86 0 0 1 24 14.14z\" fill=\"#EA4335\"/>\n    </svg>\n    <div class=\"gradient-container\"><div class=\"gradient\"></div></div>\n  </div>\n  <div class=\"carousel\">\n<a class=\"chip\" href=\"https://www.google.com/search?q=%22princegeorgescountymd.gov/departments-offices/public-works-transportation%22&client=app-vertex-grounding&safesearch=active\">&quot;princegeorgescountymd.gov/departments-offices/public-works-transportation&quot;</a>\n<a class=\"chip\" href=\"https://www.google.com/search?q=%22pgc311.com%22+%22Prince+George%27s+County%22&client=app-vertex-grounding&safesearch=active\">&quot;pgc311.com&quot; &quot;Prince George&#39;s County&quot;</a>\n<a class=\"chip\" href=\"https://www.google.com/search?q=%22dpwt%22+%22princegeorgescountymd.gov%22+%22301-883-5600%22+OR+%22dpwt%22+email&client=app-vertex-grounding&safesearch=active\">&quot;dpwt&quot; &quot;princegeorgescountymd.gov&quot; &quot;301-883-5600&quot; OR &quot;dpwt&quot; email</a>\n<a class=\"chip\" href=\"https://www.google.com/search?q=%22Office+of+Highway+Maintenance%22+%22princegeorgescountymd.gov%22+phone+OR+email&client=app-vertex-grounding&safesearch=active\">&quot;Office of Highway Maintenance&quot; &quot;princegeorgescountymd.gov&quot; phone OR email</a>\n  </div>\n</div>\n<style>\n.container {\n  align-items: center;\n  border-radius: 8px;\n  display: flex;\n  font-family: Google Sans, Roboto, sans-serif;\n  font-size: 14px;\n  line-height: 20px;\n  padding: 8px 12px;\n}\n.chip {\n  display: inline-block;\n  border: solid 1px;\n  border-radius: 16px;\n  min-width: 14px;\n  padding: 5px 16px;\n  text-align: center;\n  user-select: none;\n  margin: 0 8px;\n  -webkit-tap-highlight-color: transparent;\n}\n.carousel {\n  overflow: auto;\n  scrollbar-width: none;\n  white-space: nowrap;\n  margin-right: -12px;\n}\n.headline {\n  display: flex;\n  margin-right: 4px;\n}\n.gradient-container {\n  position: relative;\n}\n.gradient {\n  position: absolute;\n  transform: translate(3px, -9px);\n  height: 36px;\n  width: 9px;\n}\n@media (prefers-color-scheme: light) {\n  .container {\n    background-color: #fafafa;\n    box-shadow: 0 0 0 1px #0000000f;\n  }\n  .headline-label {\n    color: #1f1f1f;\n  }\n  .chip {\n    background-color: #ffffff;\n    border-color: #d2d2d2;\n    color: #5e5e5e;\n    text-decoration: none;\n  }\n  .chip:hover {\n    background-color: #f2f2f2;\n  }\n  .chip:focus {\n    background-color: #f2f2f2;\n  }\n  .chip:active {\n    background-color: #d8d8d8;\n    border-color: #b6b6b6;\n  }\n  .logo-dark {\n    display: none;\n  }\n  .gradient {\n    background: linear-gradient(90deg, #fafafa 15%, #fafafa00 100%);\n  }\n}\n@media (prefers-color-scheme: dark) {\n  .container {\n    background-color: #1f1f1f;\n    box-shadow: 0 0 0 1px #ffffff26;\n  }\n  .headline-label {\n    color: #fff;\n  }\n  .chip {\n    background-color: #2c2c2c;\n    border-color: #3c4043;\n    color: #fff;\n    text-decoration: none;\n  }\n  .chip:hover {\n    background-color: #353536;\n  }\n  .chip:focus {\n    background-color: #353536;\n  }\n  .chip:active {\n    background-color: #464849;\n    border-color: #53575b;\n  }\n  .logo-light {\n    display: none;\n  }\n  .gradient {\n    background: linear-gradient(90deg, #1f1f1f 15%, #1f1f1f00 100%);\n  }\n}\n</style>\n<div class=\"container\">\n  <div class=\"headline\">\n    <svg class=\"logo-light\" width=\"18\" height=\"18\" viewBox=\"9 9 35 35\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n      <path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M42.8622 27.0064C42.8622 25.7839 42.7525 24.6084 42.5487 23.4799H26.3109V30.1568H35.5897C35.1821 32.3041 33.9596 34.1222 32.1258 35.3448V39.6864H37.7213C40.9814 36.677 42.8622 32.2571 42.8622 27.0064V27.0064Z\" fill=\"#4285F4\"/>\n      <path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M26.3109 43.8555C30.9659 43.8555 34.8687 42.3195 37.7213 39.6863L32.1258 35.3447C30.5898 36.3792 28.6306 37.0061 26.3109 37.0061C21.8282 37.0061 18.0195 33.9811 16.6559 29.906H10.9194V34.3573C13.7563 39.9841 19.5712 43.8555 26.3109 43.8555V43.8555Z\" fill=\"#34A853\"/>\n      <path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M16.6559 29.8904C16.3111 28.8559 16.1074 27.7588 16.1074 26.6146C16.1074 25.4704 16.3111 24.3733 16.6559 23.3388V18.8875H10.9194C9.74388 21.2072 9.06992 23.8247 9.06992 26.6146C9.06992 29.4045 9.74388 32.022 10.9194 34.3417L15.3864 30.8621L16.6559 29.8904V29.8904Z\" fill=\"#FBBC05\"/>\n      <path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M26.3109 16.2386C28.85 16.2386 31.107 17.1164 32.9095 18.8091L37.8466 13.8719C34.853 11.082 30.9659 9.3736 26.3109 9.3736C19.5712 9.3736 13.7563 13.245 10.9194 18.8875L16.6559 23.3388C18.0195 19.2636 21.8282 16.2386 26.3109 16.2386V16.2386Z\" fill=\"#EA4335\"/>\n    </svg>\n    <svg class=\"logo-dark\" width=\"18\" height=\"18\" viewBox=\"0 0 48 48\" xmlns=\"http://www.w3.org/2000/svg\">\n      <circle cx=\"24\" cy=\"23\" fill=\"#FFF\" r=\"22\"/>\n      <path d=\"M33.76 34.26c2.75-2.56 4.49-6.37 4.49-11.26 0-.89-.08-1.84-.29-3H24.01v5.99h8.03c-.4 2.02-1.5 3.56-3.07 4.56v.75l3.91 2.97h.88z\" fill=\"#4285F4\"/>\n      <path d=\"M15.58 25.77A8.845 8.845 0 0 0 24 31.86c1.92 0 3.62-.46 4.97-1.31l4.79 3.71C31.14 36.7 27.65 38 24 38c-5.93 0-11.01-3.4-13.45-8.36l.17-1.01 4.06-2.85h.8z\" fill=\"#34A853\"/>\n      <path d=\"M15.59 20.21a8.864 8.864 0 0 0 0 5.58l-5.03 3.86c-.98-2-1.53-4.25-1.53-6.64 0-2.39.55-4.64 1.53-6.64l1-.22 3.81 2.98.22 1.08z\" fill=\"#FBBC05\"/>\n      <path d=\"M24 14.14c2.11 0 4.02.75 5.52 1.98l4.36-4.36C31.22 9.43 27.81 8 24 8c-5.93 0-11.01 3.4-13.45 8.36l5.03 3.85A8.86 8.86 0 0 1 24 14.14z\" fill=\"#EA4335\"/>\n    </svg>\n    <div class=\"gradient-container\"><div class=\"gradient\"></div></div>\n  </div>\n  <div class=\"carousel\">\n<a class=\"chip\" href=\"https://www.google.com/search?q=%22princegeorgescountymd.gov/departments-offices/public-works-transportation/about-dpwt%22&client=app-vertex-grounding&safesearch=active\">&quot;princegeorgescountymd.gov/departments-offices/public-works-transportation/about-dpwt&quot;</a>\n<a class=\"chip\" href=\"https://www.google.com/search?q=%22princegeorgescountymd.gov/departments-offices/public-works-transportation/about-dpwt/office-highway-maintenance%22&client=app-vertex-grounding&safesearch=active\">&quot;princegeorgescountymd.gov/departments-offices/public-works-transportation/about-dpwt/office-highway-maintenance&quot;</a>\n<a class=\"chip\" href=\"https://www.google.com/search?q=%22princegeorgescountymd.gov/departments-offices/public-works-transportation/report-public-works-problem%22&client=app-vertex-grounding&safesearch=active\">&quot;princegeorgescountymd.gov/departments-offices/public-works-transportation/report-public-works-problem&quot;</a>\n  </div>\n</div>",
+    "context": {
+      "road": {
+        "name": "Tecumseh Street",
+        "ref": null,
+        "kind": "residential",
+        "operator": null,
+        "distanceMeters": 0
+      },
+      "campus": null,
+      "streetLights": [],
+      "area": {
+        "municipality": null,
+        "municipalityKind": null,
+        "incorporation": "unincorporated",
+        "county": "Prince George's County",
+        "state": "Maryland",
+        "country": "United States",
+        "countryCode": "us"
+      },
+      "partial": false
+    },
+    "generatedAt": "2026-11-20T04:43:39.248Z"
+  },
+  "responses": [
+    {
+      "kind": "research",
+      "status": 200,
+      "body": {
+        "status": "completed",
+        "usage": {
+          "total_tokens": 7892,
+          "total_input_tokens": 2427,
+          "input_tokens_by_modality": [
+            {
+              "modality": "text",
+              "tokens": 1347
+            },
+            {
+              "modality": "image",
+              "tokens": 1080
+            }
+          ],
+          "total_cached_tokens": 0,
+          "total_output_tokens": 1916,
+          "output_tokens_by_modality": [
+            {
+              "modality": "text",
+              "tokens": 1916
+            }
+          ],
+          "total_tool_use_tokens": 0,
+          "total_thought_tokens": 3549,
+          "grounding_tool_count": [
+            {
+              "type": "google_search",
+              "count": 23
+            }
+          ],
+          "initial_input_tokens": 2427
+        },
+        "created": "2026-11-20T04:43:34Z",
+        "updated": "2026-11-20T04:43:34Z",
+        "service_tier": "standard",
+        "steps": [
+          {
+            "id": "call_8132090650391467775",
+            "type": "google_search_call",
+            "arguments": {
+              "queries": [
+                "\"Adelphi Woods Homeowners Association\"",
+                "\"Tecumseh Street\" Adelphi MD",
+                "\"Tecumseh St\" \"Prince George's County\" road maintenance",
+                "Prince George's County \"Department of Public Works and Transportation\" road maintenance"
+              ]
+            },
+            "search_type": "web_search"
+          },
+          {
+            "call_id": "call_8132090650391467775",
+            "type": "google_search_result",
+            "result": [
+              {
+                "search_suggestions": "<style>\n.container {\n  align-items: center;\n  border-radius: 8px;\n  display: flex;\n  font-family: Google Sans, Roboto, sans-serif;\n  font-size: 14px;\n  line-height: 20px;\n  padding: 8px 12px;\n}\n.chip {\n  display: inline-block;\n  border: solid 1px;\n  border-radius: 16px;\n  min-width: 14px;\n  padding: 5px 16px;\n  text-align: center;\n  user-select: none;\n  margin: 0 8px;\n  -webkit-tap-highlight-color: transparent;\n}\n.carousel {\n  overflow: auto;\n  scrollbar-width: none;\n  white-space: nowrap;\n  margin-right: -12px;\n}\n.headline {\n  display: flex;\n  margin-right: 4px;\n}\n.gradient-container {\n  position: relative;\n}\n.gradient {\n  position: absolute;\n  transform: translate(3px, -9px);\n  height: 36px;\n  width: 9px;\n}\n@media (prefers-color-scheme: light) {\n  .container {\n    background-color: #fafafa;\n    box-shadow: 0 0 0 1px #0000000f;\n  }\n  .headline-label {\n    color: #1f1f1f;\n  }\n  .chip {\n    background-color: #ffffff;\n    border-color: #d2d2d2;\n    color: #5e5e5e;\n    text-decoration: none;\n  }\n  .chip:hover {\n    background-color: #f2f2f2;\n  }\n  .chip:focus {\n    background-color: #f2f2f2;\n  }\n  .chip:active {\n    background-color: #d8d8d8;\n    border-color: #b6b6b6;\n  }\n  .logo-dark {\n    display: none;\n  }\n  .gradient {\n    background: linear-gradient(90deg, #fafafa 15%, #fafafa00 100%);\n  }\n}\n@media (prefers-color-scheme: dark) {\n  .container {\n    background-color: #1f1f1f;\n    box-shadow: 0 0 0 1px #ffffff26;\n  }\n  .headline-label {\n    color: #fff;\n  }\n  .chip {\n    background-color: #2c2c2c;\n    border-color: #3c4043;\n    color: #fff;\n    text-decoration: none;\n  }\n  .chip:hover {\n    background-color: #353536;\n  }\n  .chip:focus {\n    background-color: #353536;\n  }\n  .chip:active {\n    background-color: #464849;\n    border-color: #53575b;\n  }\n  .logo-light {\n    display: none;\n  }\n  .gradient {\n    background: linear-gradient(90deg, #1f1f1f 15%, #1f1f1f00 100%);\n  }\n}\n</style>\n<div class=\"container\">\n  <div class=\"headline\">\n    <svg class=\"logo-light\" width=\"18\" height=\"18\" viewBox=\"9 9 35 35\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n      <path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M42.8622 27.0064C42.8622 25.7839 42.7525 24.6084 42.5487 23.4799H26.3109V30.1568H35.5897C35.1821 32.3041 33.9596 34.1222 32.1258 35.3448V39.6864H37.7213C40.9814 36.677 42.8622 32.2571 42.8622 27.0064V27.0064Z\" fill=\"#4285F4\"/>\n      <path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M26.3109 43.8555C30.9659 43.8555 34.8687 42.3195 37.7213 39.6863L32.1258 35.3447C30.5898 36.3792 28.6306 37.0061 26.3109 37.0061C21.8282 37.0061 18.0195 33.9811 16.6559 29.906H10.9194V34.3573C13.7563 39.9841 19.5712 43.8555 26.3109 43.8555V43.8555Z\" fill=\"#34A853\"/>\n      <path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M16.6559 29.8904C16.3111 28.8559 16.1074 27.7588 16.1074 26.6146C16.1074 25.4704 16.3111 24.3733 16.6559 23.3388V18.8875H10.9194C9.74388 21.2072 9.06992 23.8247 9.06992 26.6146C9.06992 29.4045 9.74388 32.022 10.9194 34.3417L15.3864 30.8621L16.6559 29.8904V29.8904Z\" fill=\"#FBBC05\"/>\n      <path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M26.3109 16.2386C28.85 16.2386 31.107 17.1164 32.9095 18.8091L37.8466 13.8719C34.853 11.082 30.9659 9.3736 26.3109 9.3736C19.5712 9.3736 13.7563 13.245 10.9194 18.8875L16.6559 23.3388C18.0195 19.2636 21.8282 16.2386 26.3109 16.2386V16.2386Z\" fill=\"#EA4335\"/>\n    </svg>\n    <svg class=\"logo-dark\" width=\"18\" height=\"18\" viewBox=\"0 0 48 48\" xmlns=\"http://www.w3.org/2000/svg\">\n      <circle cx=\"24\" cy=\"23\" fill=\"#FFF\" r=\"22\"/>\n      <path d=\"M33.76 34.26c2.75-2.56 4.49-6.37 4.49-11.26 0-.89-.08-1.84-.29-3H24.01v5.99h8.03c-.4 2.02-1.5 3.56-3.07 4.56v.75l3.91 2.97h.88z\" fill=\"#4285F4\"/>\n      <path d=\"M15.58 25.77A8.845 8.845 0 0 0 24 31.86c1.92 0 3.62-.46 4.97-1.31l4.79 3.71C31.14 36.7 27.65 38 24 38c-5.93 0-11.01-3.4-13.45-8.36l.17-1.01 4.06-2.85h.8z\" fill=\"#34A853\"/>\n      <path d=\"M15.59 20.21a8.864 8.864 0 0 0 0 5.58l-5.03 3.86c-.98-2-1.53-4.25-1.53-6.64 0-2.39.55-4.64 1.53-6.64l1-.22 3.81 2.98.22 1.08z\" fill=\"#FBBC05\"/>\n      <path d=\"M24 14.14c2.11 0 4.02.75 5.52 1.98l4.36-4.36C31.22 9.43 27.81 8 24 8c-5.93 0-11.01 3.4-13.45 8.36l5.03 3.85A8.86 8.86 0 0 1 24 14.14z\" fill=\"#EA4335\"/>\n    </svg>\n    <div class=\"gradient-container\"><div class=\"gradient\"></div></div>\n  </div>\n  <div class=\"carousel\">\n<a class=\"chip\" href=\"https://www.google.com/search?q=%22Tecumseh+Street%22+Adelphi+MD&client=app-vertex-grounding&safesearch=active\">&quot;Tecumseh Street&quot; Adelphi MD</a>\n<a class=\"chip\" href=\"https://www.google.com/search?q=%22Adelphi+Woods+Homeowners+Association%22&client=app-vertex-grounding&safesearch=active\">&quot;Adelphi Woods Homeowners Association&quot;</a>\n<a class=\"chip\" href=\"https://www.google.com/search?q=%22Tecumseh+St%22+%22Prince+George%27s+County%22+road+maintenance&client=app-vertex-grounding&safesearch=active\">&quot;Tecumseh St&quot; &quot;Prince George&#39;s County&quot; road maintenance</a>\n<a class=\"chip\" href=\"https://www.google.com/search?q=Prince+George%27s+County+%22Department+of+Public+Works+and+Transportation%22+road+maintenance&client=app-vertex-grounding&safesearch=active\">Prince George&#39;s County &quot;Department of Public Works and Transportation&quot; road maintenance</a>\n  </div>\n</div>"
+              }
+            ],
+            "is_error": false
+          },
+          {
+            "id": "call_10371930652580120686",
+            "type": "google_search_call",
+            "arguments": {
+              "queries": [
+                "\"Tecumseh\" \"Prince George's County\" \"DPW&T\" OR \"maintained\"",
+                "\"Adelphi Woods\" Maryland",
+                "site:princegeorgescountymd.gov \"Tecumseh\"",
+                "site:princegeorgescountymd.gov \"Report a Public Works Problem\""
+              ]
+            },
+            "search_type": "web_search"
+          },
+          {
+            "call_id": "call_10371930652580120686",
+            "type": "google_search_result",
+            "result": [
+              {
+                "search_suggestions": "<style>\n.container {\n  align-items: center;\n  border-radius: 8px;\n  display: flex;\n  font-family: Google Sans, Roboto, sans-serif;\n  font-size: 14px;\n  line-height: 20px;\n  padding: 8px 12px;\n}\n.chip {\n  display: inline-block;\n  border: solid 1px;\n  border-radius: 16px;\n  min-width: 14px;\n  padding: 5px 16px;\n  text-align: center;\n  user-select: none;\n  margin: 0 8px;\n  -webkit-tap-highlight-color: transparent;\n}\n.carousel {\n  overflow: auto;\n  scrollbar-width: none;\n  white-space: nowrap;\n  margin-right: -12px;\n}\n.headline {\n  display: flex;\n  margin-right: 4px;\n}\n.gradient-container {\n  position: relative;\n}\n.gradient {\n  position: absolute;\n  transform: translate(3px, -9px);\n  height: 36px;\n  width: 9px;\n}\n@media (prefers-color-scheme: light) {\n  .container {\n    background-color: #fafafa;\n    box-shadow: 0 0 0 1px #0000000f;\n  }\n  .headline-label {\n    color: #1f1f1f;\n  }\n  .chip {\n    background-color: #ffffff;\n    border-color: #d2d2d2;\n    color: #5e5e5e;\n    text-decoration: none;\n  }\n  .chip:hover {\n    background-color: #f2f2f2;\n  }\n  .chip:focus {\n    background-color: #f2f2f2;\n  }\n  .chip:active {\n    background-color: #d8d8d8;\n    border-color: #b6b6b6;\n  }\n  .logo-dark {\n    display: none;\n  }\n  .gradient {\n    background: linear-gradient(90deg, #fafafa 15%, #fafafa00 100%);\n  }\n}\n@media (prefers-color-scheme: dark) {\n  .container {\n    background-color: #1f1f1f;\n    box-shadow: 0 0 0 1px #ffffff26;\n  }\n  .headline-label {\n    color: #fff;\n  }\n  .chip {\n    background-color: #2c2c2c;\n    border-color: #3c4043;\n    color: #fff;\n    text-decoration: none;\n  }\n  .chip:hover {\n    background-color: #353536;\n  }\n  .chip:focus {\n    background-color: #353536;\n  }\n  .chip:active {\n    background-color: #464849;\n    border-color: #53575b;\n  }\n  .logo-light {\n    display: none;\n  }\n  .gradient {\n    background: linear-gradient(90deg, #1f1f1f 15%, #1f1f1f00 100%);\n  }\n}\n</style>\n<div class=\"container\">\n  <div class=\"headline\">\n    <svg class=\"logo-light\" width=\"18\" height=\"18\" viewBox=\"9 9 35 35\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n      <path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M42.8622 27.0064C42.8622 25.7839 42.7525 24.6084 42.5487 23.4799H26.3109V30.1568H35.5897C35.1821 32.3041 33.9596 34.1222 32.1258 35.3448V39.6864H37.7213C40.9814 36.677 42.8622 32.2571 42.8622 27.0064V27.0064Z\" fill=\"#4285F4\"/>\n      <path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M26.3109 43.8555C30.9659 43.8555 34.8687 42.3195 37.7213 39.6863L32.1258 35.3447C30.5898 36.3792 28.6306 37.0061 26.3109 37.0061C21.8282 37.0061 18.0195 33.9811 16.6559 29.906H10.9194V34.3573C13.7563 39.9841 19.5712 43.8555 26.3109 43.8555V43.8555Z\" fill=\"#34A853\"/>\n      <path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M16.6559 29.8904C16.3111 28.8559 16.1074 27.7588 16.1074 26.6146C16.1074 25.4704 16.3111 24.3733 16.6559 23.3388V18.8875H10.9194C9.74388 21.2072 9.06992 23.8247 9.06992 26.6146C9.06992 29.4045 9.74388 32.022 10.9194 34.3417L15.3864 30.8621L16.6559 29.8904V29.8904Z\" fill=\"#FBBC05\"/>\n      <path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M26.3109 16.2386C28.85 16.2386 31.107 17.1164 32.9095 18.8091L37.8466 13.8719C34.853 11.082 30.9659 9.3736 26.3109 9.3736C19.5712 9.3736 13.7563 13.245 10.9194 18.8875L16.6559 23.3388C18.0195 19.2636 21.8282 16.2386 26.3109 16.2386V16.2386Z\" fill=\"#EA4335\"/>\n    </svg>\n    <svg class=\"logo-dark\" width=\"18\" height=\"18\" viewBox=\"0 0 48 48\" xmlns=\"http://www.w3.org/2000/svg\">\n      <circle cx=\"24\" cy=\"23\" fill=\"#FFF\" r=\"22\"/>\n      <path d=\"M33.76 34.26c2.75-2.56 4.49-6.37 4.49-11.26 0-.89-.08-1.84-.29-3H24.01v5.99h8.03c-.4 2.02-1.5 3.56-3.07 4.56v.75l3.91 2.97h.88z\" fill=\"#4285F4\"/>\n      <path d=\"M15.58 25.77A8.845 8.845 0 0 0 24 31.86c1.92 0 3.62-.46 4.97-1.31l4.79 3.71C31.14 36.7 27.65 38 24 38c-5.93 0-11.01-3.4-13.45-8.36l.17-1.01 4.06-2.85h.8z\" fill=\"#34A853\"/>\n      <path d=\"M15.59 20.21a8.864 8.864 0 0 0 0 5.58l-5.03 3.86c-.98-2-1.53-4.25-1.53-6.64 0-2.39.55-4.64 1.53-6.64l1-.22 3.81 2.98.22 1.08z\" fill=\"#FBBC05\"/>\n      <path d=\"M24 14.14c2.11 0 4.02.75 5.52 1.98l4.36-4.36C31.22 9.43 27.81 8 24 8c-5.93 0-11.01 3.4-13.45 8.36l5.03 3.85A8.86 8.86 0 0 1 24 14.14z\" fill=\"#EA4335\"/>\n    </svg>\n    <div class=\"gradient-container\"><div class=\"gradient\"></div></div>\n  </div>\n  <div class=\"carousel\">\n<a class=\"chip\" href=\"https://www.google.com/search?q=%22Adelphi+Woods%22+Maryland&client=app-vertex-grounding&safesearch=active\">&quot;Adelphi Woods&quot; Maryland</a>\n<a class=\"chip\" href=\"https://www.google.com/search?q=%22Tecumseh%22+%22Prince+George%27s+County%22+%22DPW%26T%22+OR+%22maintained%22&client=app-vertex-grounding&safesearch=active\">&quot;Tecumseh&quot; &quot;Prince George&#39;s County&quot; &quot;DPW&amp;T&quot; OR &quot;maintained&quot;</a>\n<a class=\"chip\" href=\"https://www.google.com/search?q=site:princegeorgescountymd.gov+%22Tecumseh%22&client=app-vertex-grounding&safesearch=active\">site:princegeorgescountymd.gov &quot;Tecumseh&quot;</a>\n<a class=\"chip\" href=\"https://www.google.com/search?q=site:princegeorgescountymd.gov+%22Report+a+Public+Works+Problem%22&client=app-vertex-grounding&safesearch=active\">site:princegeorgescountymd.gov &quot;Report a Public Works Problem&quot;</a>\n  </div>\n</div>"
+              }
+            ],
+            "is_error": false
+          },
+          {
+            "id": "call_17887827068500192717",
+            "type": "google_search_call",
+            "arguments": {
+              "queries": [
+                "site:princegeorgescountymd.gov \"PGC311\" OR \"301-883-4748\"",
+                "\"2305 Tecumseh\" OR \"2304 Tecumseh\" OR \"2313 Tecumseh\" Adelphi subdivision OR HOA",
+                "\"2405 Tecumseh Street\" Adelphi",
+                "site:princegeorgescountymd.gov \"Office of Highway Maintenance\""
+              ]
+            },
+            "search_type": "web_search"
+          },
+          {
+            "call_id": "call_17887827068500192717",
+            "type": "google_search_result",
+            "result": [
+              {
+                "search_suggestions": "<style>\n.container {\n  align-items: center;\n  border-radius: 8px;\n  display: flex;\n  font-family: Google Sans, Roboto, sans-serif;\n  font-size: 14px;\n  line-height: 20px;\n  padding: 8px 12px;\n}\n.chip {\n  display: inline-block;\n  border: solid 1px;\n  border-radius: 16px;\n  min-width: 14px;\n  padding: 5px 16px;\n  text-align: center;\n  user-select: none;\n  margin: 0 8px;\n  -webkit-tap-highlight-color: transparent;\n}\n.carousel {\n  overflow: auto;\n  scrollbar-width: none;\n  white-space: nowrap;\n  margin-right: -12px;\n}\n.headline {\n  display: flex;\n  margin-right: 4px;\n}\n.gradient-container {\n  position: relative;\n}\n.gradient {\n  position: absolute;\n  transform: translate(3px, -9px);\n  height: 36px;\n  width: 9px;\n}\n@media (prefers-color-scheme: light) {\n  .container {\n    background-color: #fafafa;\n    box-shadow: 0 0 0 1px #0000000f;\n  }\n  .headline-label {\n    color: #1f1f1f;\n  }\n  .chip {\n    background-color: #ffffff;\n    border-color: #d2d2d2;\n    color: #5e5e5e;\n    text-decoration: none;\n  }\n  .chip:hover {\n    background-color: #f2f2f2;\n  }\n  .chip:focus {\n    background-color: #f2f2f2;\n  }\n  .chip:active {\n    background-color: #d8d8d8;\n    border-color: #b6b6b6;\n  }\n  .logo-dark {\n    display: none;\n  }\n  .gradient {\n    background: linear-gradient(90deg, #fafafa 15%, #fafafa00 100%);\n  }\n}\n@media (prefers-color-scheme: dark) {\n  .container {\n    background-color: #1f1f1f;\n    box-shadow: 0 0 0 1px #ffffff26;\n  }\n  .headline-label {\n    color: #fff;\n  }\n  .chip {\n    background-color: #2c2c2c;\n    border-color: #3c4043;\n    color: #fff;\n    text-decoration: none;\n  }\n  .chip:hover {\n    background-color: #353536;\n  }\n  .chip:focus {\n    background-color: #353536;\n  }\n  .chip:active {\n    background-color: #464849;\n    border-color: #53575b;\n  }\n  .logo-light {\n    display: none;\n  }\n  .gradient {\n    background: linear-gradient(90deg, #1f1f1f 15%, #1f1f1f00 100%);\n  }\n}\n</style>\n<div class=\"container\">\n  <div class=\"headline\">\n    <svg class=\"logo-light\" width=\"18\" height=\"18\" viewBox=\"9 9 35 35\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n      <path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M42.8622 27.0064C42.8622 25.7839 42.7525 24.6084 42.5487 23.4799H26.3109V30.1568H35.5897C35.1821 32.3041 33.9596 34.1222 32.1258 35.3448V39.6864H37.7213C40.9814 36.677 42.8622 32.2571 42.8622 27.0064V27.0064Z\" fill=\"#4285F4\"/>\n      <path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M26.3109 43.8555C30.9659 43.8555 34.8687 42.3195 37.7213 39.6863L32.1258 35.3447C30.5898 36.3792 28.6306 37.0061 26.3109 37.0061C21.8282 37.0061 18.0195 33.9811 16.6559 29.906H10.9194V34.3573C13.7563 39.9841 19.5712 43.8555 26.3109 43.8555V43.8555Z\" fill=\"#34A853\"/>\n      <path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M16.6559 29.8904C16.3111 28.8559 16.1074 27.7588 16.1074 26.6146C16.1074 25.4704 16.3111 24.3733 16.6559 23.3388V18.8875H10.9194C9.74388 21.2072 9.06992 23.8247 9.06992 26.6146C9.06992 29.4045 9.74388 32.022 10.9194 34.3417L15.3864 30.8621L16.6559 29.8904V29.8904Z\" fill=\"#FBBC05\"/>\n      <path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M26.3109 16.2386C28.85 16.2386 31.107 17.1164 32.9095 18.8091L37.8466 13.8719C34.853 11.082 30.9659 9.3736 26.3109 9.3736C19.5712 9.3736 13.7563 13.245 10.9194 18.8875L16.6559 23.3388C18.0195 19.2636 21.8282 16.2386 26.3109 16.2386V16.2386Z\" fill=\"#EA4335\"/>\n    </svg>\n    <svg class=\"logo-dark\" width=\"18\" height=\"18\" viewBox=\"0 0 48 48\" xmlns=\"http://www.w3.org/2000/svg\">\n      <circle cx=\"24\" cy=\"23\" fill=\"#FFF\" r=\"22\"/>\n      <path d=\"M33.76 34.26c2.75-2.56 4.49-6.37 4.49-11.26 0-.89-.08-1.84-.29-3H24.01v5.99h8.03c-.4 2.02-1.5 3.56-3.07 4.56v.75l3.91 2.97h.88z\" fill=\"#4285F4\"/>\n      <path d=\"M15.58 25.77A8.845 8.845 0 0 0 24 31.86c1.92 0 3.62-.46 4.97-1.31l4.79 3.71C31.14 36.7 27.65 38 24 38c-5.93 0-11.01-3.4-13.45-8.36l.17-1.01 4.06-2.85h.8z\" fill=\"#34A853\"/>\n      <path d=\"M15.59 20.21a8.864 8.864 0 0 0 0 5.58l-5.03 3.86c-.98-2-1.53-4.25-1.53-6.64 0-2.39.55-4.64 1.53-6.64l1-.22 3.81 2.98.22 1.08z\" fill=\"#FBBC05\"/>\n      <path d=\"M24 14.14c2.11 0 4.02.75 5.52 1.98l4.36-4.36C31.22 9.43 27.81 8 24 8c-5.93 0-11.01 3.4-13.45 8.36l5.03 3.85A8.86 8.86 0 0 1 24 14.14z\" fill=\"#EA4335\"/>\n    </svg>\n    <div class=\"gradient-container\"><div class=\"gradient\"></div></div>\n  </div>\n  <div class=\"carousel\">\n<a class=\"chip\" href=\"https://www.google.com/search?q=%222405+Tecumseh+Street%22+Adelphi&client=app-vertex-grounding&safesearch=active\">&quot;2405 Tecumseh Street&quot; Adelphi</a>\n<a class=\"chip\" href=\"https://www.google.com/search?q=%222305+Tecumseh%22+OR+%222304+Tecumseh%22+OR+%222313+Tecumseh%22+Adelphi+subdivision+OR+HOA&client=app-vertex-grounding&safesearch=active\">&quot;2305 Tecumseh&quot; OR &quot;2304 Tecumseh&quot; OR &quot;2313 Tecumseh&quot; Adelphi subdivision OR HOA</a>\n<a class=\"chip\" href=\"https://www.google.com/search?q=site:princegeorgescountymd.gov+%22Office+of+Highway+Maintenance%22&client=app-vertex-grounding&safesearch=active\">site:princegeorgescountymd.gov &quot;Office of Highway Maintenance&quot;</a>\n<a class=\"chip\" href=\"https://www.google.com/search?q=site:princegeorgescountymd.gov+%22PGC311%22+OR+%22301-883-4748%22&client=app-vertex-grounding&safesearch=active\">site:princegeorgescountymd.gov &quot;PGC311&quot; OR &quot;301-883-4748&quot;</a>\n  </div>\n</div>"
+              }
+            ],
+            "is_error": false
+          },
+          {
+            "id": "call_1000357316767691089",
+            "type": "url_context_call",
+            "arguments": {
+              "urls": [
+                "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHsy0adAvl-bMv7fME_mWQXapb3ZHQ3LZ7TI29AheH6CmQxBZmLOcB0wJtzTHjOzCtdh1C8Tb9l_t7Lh46g6Op1EgUXfNmZ1UQlNOa9K3XLmn3U2k2Eo3b9b4dsfDjZ0seF9iNlJ_TX3dxhXTFI-sJelQPTtiaVnSxeSIvU01gRqdtg17ETlFk=",
+                "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQG2X3x851rwbmimOSZzdh7so0N_oyxzQEO3kfc31o8nz9O1nvdw3d8RCChqZPO5VbYHDtVr_x2njXJ25ljhea6qhIhUMa94s1023ZL8jiPfHOGh8BQU6wbqwiLOLL1wPGGxp7ckUwITivr9l4MbePSNI6r1vK_VOQCDD9tsKmox01CZlSUZn0z_jmu4pysTe8oGSYyfaWoaFtOVi8y0ny_LjGqQSmSj5kx9X6XuyQsy6X1bqZY1isw=",
+                "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFpJ-6eW7Z4_68gnKQUBndvxaRlWdJLi65h2qWRFbH4v4_gzZO6Mkrs3ve_egqDzkIU5mIO0nPpHzEuQ7l5pCd7-T4Wy07yPfIYc5uxO6dg-E23Hl_ghY6rDUZpT0dtF-vMtZBX7e0ist45VC_PTr0U_J-tmujd1DHnGXx8tu6CKpiPpsAF5Yjpd8Am0BFpM4iLXf5M-QgS5FTa685rdCt425GSV8k0E8lCeQ==",
+                "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGRjhSlXwJ3SEVKK8kBNEd1hdBx9U6E3Hx2OAsCNJo3ba_cvIQ81p7l290HtByMVAGLAM_Qfm5RtDKwdVf2EBJd5XMv3W0aFmmyLAHD85deDbb9skERqmuTN28cliy2ULgv7p6g4H4uR-z2OHHWjTnkk9nYMmyv5T0t83jm444N1GfN_mXPV7Moo4uaNCQaQtoWzUz52Rs="
+              ]
+            }
+          },
+          {
+            "call_id": "call_1000357316767691089",
+            "type": "url_context_result",
+            "result": [
+              {
+                "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFpJ-6eW7Z4_68gnKQUBndvxaRlWdJLi65h2qWRFbH4v4_gzZO6Mkrs3ve_egqDzkIU5mIO0nPpHzEuQ7l5pCd7-T4Wy07yPfIYc5uxO6dg-E23Hl_ghY6rDUZpT0dtF-vMtZBX7e0ist45VC_PTr0U_J-tmujd1DHnGXx8tu6CKpiPpsAF5Yjpd8Am0BFpM4iLXf5M-QgS5FTa685rdCt425GSV8k0E8lCeQ==",
+                "status": "success"
+              },
+              {
+                "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQG2X3x851rwbmimOSZzdh7so0N_oyxzQEO3kfc31o8nz9O1nvdw3d8RCChqZPO5VbYHDtVr_x2njXJ25ljhea6qhIhUMa94s1023ZL8jiPfHOGh8BQU6wbqwiLOLL1wPGGxp7ckUwITivr9l4MbePSNI6r1vK_VOQCDD9tsKmox01CZlSUZn0z_jmu4pysTe8oGSYyfaWoaFtOVi8y0ny_LjGqQSmSj5kx9X6XuyQsy6X1bqZY1isw=",
+                "status": "success"
+              },
+              {
+                "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGRjhSlXwJ3SEVKK8kBNEd1hdBx9U6E3Hx2OAsCNJo3ba_cvIQ81p7l290HtByMVAGLAM_Qfm5RtDKwdVf2EBJd5XMv3W0aFmmyLAHD85deDbb9skERqmuTN28cliy2ULgv7p6g4H4uR-z2OHHWjTnkk9nYMmyv5T0t83jm444N1GfN_mXPV7Moo4uaNCQaQtoWzUz52Rs=",
+                "status": "success"
+              },
+              {
+                "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHsy0adAvl-bMv7fME_mWQXapb3ZHQ3LZ7TI29AheH6CmQxBZmLOcB0wJtzTHjOzCtdh1C8Tb9l_t7Lh46g6Op1EgUXfNmZ1UQlNOa9K3XLmn3U2k2Eo3b9b4dsfDjZ0seF9iNlJ_TX3dxhXTFI-sJelQPTtiaVnSxeSIvU01gRqdtg17ETlFk=",
+                "status": "success"
+              }
+            ],
+            "is_error": false
+          },
+          {
+            "id": "call_18275761645316609005",
+            "type": "google_search_call",
+            "arguments": {
+              "queries": [
+                "\"https://www.princegeorgescountymd.gov\" \"Office of Highway Maintenance\" \"Road Maintenance Division\"",
+                "\"https://www.princegeorgescountymd.gov/departments-offices/public-works-transportation\"",
+                "\"https://www.princegeorgescountymd.gov\" \"Roadway Hazards\" \"Reporting Road Hazards\"",
+                "\"https://www.princegeorgescountymd.gov\" \"DPW&T\" email OR phone \"301-883-5600\""
+              ]
+            },
+            "search_type": "web_search"
+          },
+          {
+            "call_id": "call_18275761645316609005",
+            "type": "google_search_result",
+            "result": [
+              {
+                "search_suggestions": "<style>\n.container {\n  align-items: center;\n  border-radius: 8px;\n  display: flex;\n  font-family: Google Sans, Roboto, sans-serif;\n  font-size: 14px;\n  line-height: 20px;\n  padding: 8px 12px;\n}\n.chip {\n  display: inline-block;\n  border: solid 1px;\n  border-radius: 16px;\n  min-width: 14px;\n  padding: 5px 16px;\n  text-align: center;\n  user-select: none;\n  margin: 0 8px;\n  -webkit-tap-highlight-color: transparent;\n}\n.carousel {\n  overflow: auto;\n  scrollbar-width: none;\n  white-space: nowrap;\n  margin-right: -12px;\n}\n.headline {\n  display: flex;\n  margin-right: 4px;\n}\n.gradient-container {\n  position: relative;\n}\n.gradient {\n  position: absolute;\n  transform: translate(3px, -9px);\n  height: 36px;\n  width: 9px;\n}\n@media (prefers-color-scheme: light) {\n  .container {\n    background-color: #fafafa;\n    box-shadow: 0 0 0 1px #0000000f;\n  }\n  .headline-label {\n    color: #1f1f1f;\n  }\n  .chip {\n    background-color: #ffffff;\n    border-color: #d2d2d2;\n    color: #5e5e5e;\n    text-decoration: none;\n  }\n  .chip:hover {\n    background-color: #f2f2f2;\n  }\n  .chip:focus {\n    background-color: #f2f2f2;\n  }\n  .chip:active {\n    background-color: #d8d8d8;\n    border-color: #b6b6b6;\n  }\n  .logo-dark {\n    display: none;\n  }\n  .gradient {\n    background: linear-gradient(90deg, #fafafa 15%, #fafafa00 100%);\n  }\n}\n@media (prefers-color-scheme: dark) {\n  .container {\n    background-color: #1f1f1f;\n    box-shadow: 0 0 0 1px #ffffff26;\n  }\n  .headline-label {\n    color: #fff;\n  }\n  .chip {\n    background-color: #2c2c2c;\n    border-color: #3c4043;\n    color: #fff;\n    text-decoration: none;\n  }\n  .chip:hover {\n    background-color: #353536;\n  }\n  .chip:focus {\n    background-color: #353536;\n  }\n  .chip:active {\n    background-color: #464849;\n    border-color: #53575b;\n  }\n  .logo-light {\n    display: none;\n  }\n  .gradient {\n    background: linear-gradient(90deg, #1f1f1f 15%, #1f1f1f00 100%);\n  }\n}\n</style>\n<div class=\"container\">\n  <div class=\"headline\">\n    <svg class=\"logo-light\" width=\"18\" height=\"18\" viewBox=\"9 9 35 35\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n      <path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M42.8622 27.0064C42.8622 25.7839 42.7525 24.6084 42.5487 23.4799H26.3109V30.1568H35.5897C35.1821 32.3041 33.9596 34.1222 32.1258 35.3448V39.6864H37.7213C40.9814 36.677 42.8622 32.2571 42.8622 27.0064V27.0064Z\" fill=\"#4285F4\"/>\n      <path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M26.3109 43.8555C30.9659 43.8555 34.8687 42.3195 37.7213 39.6863L32.1258 35.3447C30.5898 36.3792 28.6306 37.0061 26.3109 37.0061C21.8282 37.0061 18.0195 33.9811 16.6559 29.906H10.9194V34.3573C13.7563 39.9841 19.5712 43.8555 26.3109 43.8555V43.8555Z\" fill=\"#34A853\"/>\n      <path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M16.6559 29.8904C16.3111 28.8559 16.1074 27.7588 16.1074 26.6146C16.1074 25.4704 16.3111 24.3733 16.6559 23.3388V18.8875H10.9194C9.74388 21.2072 9.06992 23.8247 9.06992 26.6146C9.06992 29.4045 9.74388 32.022 10.9194 34.3417L15.3864 30.8621L16.6559 29.8904V29.8904Z\" fill=\"#FBBC05\"/>\n      <path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M26.3109 16.2386C28.85 16.2386 31.107 17.1164 32.9095 18.8091L37.8466 13.8719C34.853 11.082 30.9659 9.3736 26.3109 9.3736C19.5712 9.3736 13.7563 13.245 10.9194 18.8875L16.6559 23.3388C18.0195 19.2636 21.8282 16.2386 26.3109 16.2386V16.2386Z\" fill=\"#EA4335\"/>\n    </svg>\n    <svg class=\"logo-dark\" width=\"18\" height=\"18\" viewBox=\"0 0 48 48\" xmlns=\"http://www.w3.org/2000/svg\">\n      <circle cx=\"24\" cy=\"23\" fill=\"#FFF\" r=\"22\"/>\n      <path d=\"M33.76 34.26c2.75-2.56 4.49-6.37 4.49-11.26 0-.89-.08-1.84-.29-3H24.01v5.99h8.03c-.4 2.02-1.5 3.56-3.07 4.56v.75l3.91 2.97h.88z\" fill=\"#4285F4\"/>\n      <path d=\"M15.58 25.77A8.845 8.845 0 0 0 24 31.86c1.92 0 3.62-.46 4.97-1.31l4.79 3.71C31.14 36.7 27.65 38 24 38c-5.93 0-11.01-3.4-13.45-8.36l.17-1.01 4.06-2.85h.8z\" fill=\"#34A853\"/>\n      <path d=\"M15.59 20.21a8.864 8.864 0 0 0 0 5.58l-5.03 3.86c-.98-2-1.53-4.25-1.53-6.64 0-2.39.55-4.64 1.53-6.64l1-.22 3.81 2.98.22 1.08z\" fill=\"#FBBC05\"/>\n      <path d=\"M24 14.14c2.11 0 4.02.75 5.52 1.98l4.36-4.36C31.22 9.43 27.81 8 24 8c-5.93 0-11.01 3.4-13.45 8.36l5.03 3.85A8.86 8.86 0 0 1 24 14.14z\" fill=\"#EA4335\"/>\n    </svg>\n    <div class=\"gradient-container\"><div class=\"gradient\"></div></div>\n  </div>\n  <div class=\"carousel\">\n<a class=\"chip\" href=\"https://www.google.com/search?q=%22https://www.princegeorgescountymd.gov/departments-offices/public-works-transportation%22&client=app-vertex-grounding&safesearch=active\">&quot;https://www.princegeorgescountymd.gov/departments-offices/public-works-transportation&quot;</a>\n<a class=\"chip\" href=\"https://www.google.com/search?q=%22https://www.princegeorgescountymd.gov%22+%22Office+of+Highway+Maintenance%22+%22Road+Maintenance+Division%22&client=app-vertex-grounding&safesearch=active\">&quot;https://www.princegeorgescountymd.gov&quot; &quot;Office of Highway Maintenance&quot; &quot;Road Maintenance Division&quot;</a>\n<a class=\"chip\" href=\"https://www.google.com/search?q=%22https://www.princegeorgescountymd.gov%22+%22Roadway+Hazards%22+%22Reporting+Road+Hazards%22&client=app-vertex-grounding&safesearch=active\">&quot;https://www.princegeorgescountymd.gov&quot; &quot;Roadway Hazards&quot; &quot;Reporting Road Hazards&quot;</a>\n<a class=\"chip\" href=\"https://www.google.com/search?q=%22https://www.princegeorgescountymd.gov%22+%22DPW%26T%22+email+OR+phone+%22301-883-5600%22&client=app-vertex-grounding&safesearch=active\">&quot;https://www.princegeorgescountymd.gov&quot; &quot;DPW&amp;T&quot; email OR phone &quot;301-883-5600&quot;</a>\n  </div>\n</div>"
+              }
+            ],
+            "is_error": false
+          },
+          {
+            "id": "call_10580820861839565595",
+            "type": "url_context_call",
+            "arguments": {
+              "urls": [
+                "https://www.pgc311.com",
+                "https://www.princegeorgescountymd.gov/departments-offices/public-works-transportation"
+              ]
+            }
+          },
+          {
+            "call_id": "call_10580820861839565595",
+            "type": "url_context_result",
+            "result": [
+              {
+                "url": "https://www.princegeorgescountymd.gov/departments-offices/public-works-transportation",
+                "status": "error"
+              },
+              {
+                "url": "https://www.pgc311.com",
+                "status": "error"
+              }
+            ],
+            "is_error": false
+          },
+          {
+            "id": "call_1708487314006298028",
+            "type": "google_search_call",
+            "arguments": {
+              "queries": [
+                "\"pgc311.com\" \"Prince George's County\"",
+                "\"princegeorgescountymd.gov/departments-offices/public-works-transportation\"",
+                "\"dpwt\" \"princegeorgescountymd.gov\" \"301-883-5600\" OR \"dpwt\" email",
+                "\"Office of Highway Maintenance\" \"princegeorgescountymd.gov\" phone OR email"
+              ]
+            },
+            "search_type": "web_search"
+          },
+          {
+            "call_id": "call_1708487314006298028",
+            "type": "google_search_result",
+            "result": [
+              {
+                "search_suggestions": "<style>\n.container {\n  align-items: center;\n  border-radius: 8px;\n  display: flex;\n  font-family: Google Sans, Roboto, sans-serif;\n  font-size: 14px;\n  line-height: 20px;\n  padding: 8px 12px;\n}\n.chip {\n  display: inline-block;\n  border: solid 1px;\n  border-radius: 16px;\n  min-width: 14px;\n  padding: 5px 16px;\n  text-align: center;\n  user-select: none;\n  margin: 0 8px;\n  -webkit-tap-highlight-color: transparent;\n}\n.carousel {\n  overflow: auto;\n  scrollbar-width: none;\n  white-space: nowrap;\n  margin-right: -12px;\n}\n.headline {\n  display: flex;\n  margin-right: 4px;\n}\n.gradient-container {\n  position: relative;\n}\n.gradient {\n  position: absolute;\n  transform: translate(3px, -9px);\n  height: 36px;\n  width: 9px;\n}\n@media (prefers-color-scheme: light) {\n  .container {\n    background-color: #fafafa;\n    box-shadow: 0 0 0 1px #0000000f;\n  }\n  .headline-label {\n    color: #1f1f1f;\n  }\n  .chip {\n    background-color: #ffffff;\n    border-color: #d2d2d2;\n    color: #5e5e5e;\n    text-decoration: none;\n  }\n  .chip:hover {\n    background-color: #f2f2f2;\n  }\n  .chip:focus {\n    background-color: #f2f2f2;\n  }\n  .chip:active {\n    background-color: #d8d8d8;\n    border-color: #b6b6b6;\n  }\n  .logo-dark {\n    display: none;\n  }\n  .gradient {\n    background: linear-gradient(90deg, #fafafa 15%, #fafafa00 100%);\n  }\n}\n@media (prefers-color-scheme: dark) {\n  .container {\n    background-color: #1f1f1f;\n    box-shadow: 0 0 0 1px #ffffff26;\n  }\n  .headline-label {\n    color: #fff;\n  }\n  .chip {\n    background-color: #2c2c2c;\n    border-color: #3c4043;\n    color: #fff;\n    text-decoration: none;\n  }\n  .chip:hover {\n    background-color: #353536;\n  }\n  .chip:focus {\n    background-color: #353536;\n  }\n  .chip:active {\n    background-color: #464849;\n    border-color: #53575b;\n  }\n  .logo-light {\n    display: none;\n  }\n  .gradient {\n    background: linear-gradient(90deg, #1f1f1f 15%, #1f1f1f00 100%);\n  }\n}\n</style>\n<div class=\"container\">\n  <div class=\"headline\">\n    <svg class=\"logo-light\" width=\"18\" height=\"18\" viewBox=\"9 9 35 35\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n      <path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M42.8622 27.0064C42.8622 25.7839 42.7525 24.6084 42.5487 23.4799H26.3109V30.1568H35.5897C35.1821 32.3041 33.9596 34.1222 32.1258 35.3448V39.6864H37.7213C40.9814 36.677 42.8622 32.2571 42.8622 27.0064V27.0064Z\" fill=\"#4285F4\"/>\n      <path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M26.3109 43.8555C30.9659 43.8555 34.8687 42.3195 37.7213 39.6863L32.1258 35.3447C30.5898 36.3792 28.6306 37.0061 26.3109 37.0061C21.8282 37.0061 18.0195 33.9811 16.6559 29.906H10.9194V34.3573C13.7563 39.9841 19.5712 43.8555 26.3109 43.8555V43.8555Z\" fill=\"#34A853\"/>\n      <path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M16.6559 29.8904C16.3111 28.8559 16.1074 27.7588 16.1074 26.6146C16.1074 25.4704 16.3111 24.3733 16.6559 23.3388V18.8875H10.9194C9.74388 21.2072 9.06992 23.8247 9.06992 26.6146C9.06992 29.4045 9.74388 32.022 10.9194 34.3417L15.3864 30.8621L16.6559 29.8904V29.8904Z\" fill=\"#FBBC05\"/>\n      <path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M26.3109 16.2386C28.85 16.2386 31.107 17.1164 32.9095 18.8091L37.8466 13.8719C34.853 11.082 30.9659 9.3736 26.3109 9.3736C19.5712 9.3736 13.7563 13.245 10.9194 18.8875L16.6559 23.3388C18.0195 19.2636 21.8282 16.2386 26.3109 16.2386V16.2386Z\" fill=\"#EA4335\"/>\n    </svg>\n    <svg class=\"logo-dark\" width=\"18\" height=\"18\" viewBox=\"0 0 48 48\" xmlns=\"http://www.w3.org/2000/svg\">\n      <circle cx=\"24\" cy=\"23\" fill=\"#FFF\" r=\"22\"/>\n      <path d=\"M33.76 34.26c2.75-2.56 4.49-6.37 4.49-11.26 0-.89-.08-1.84-.29-3H24.01v5.99h8.03c-.4 2.02-1.5 3.56-3.07 4.56v.75l3.91 2.97h.88z\" fill=\"#4285F4\"/>\n      <path d=\"M15.58 25.77A8.845 8.845 0 0 0 24 31.86c1.92 0 3.62-.46 4.97-1.31l4.79 3.71C31.14 36.7 27.65 38 24 38c-5.93 0-11.01-3.4-13.45-8.36l.17-1.01 4.06-2.85h.8z\" fill=\"#34A853\"/>\n      <path d=\"M15.59 20.21a8.864 8.864 0 0 0 0 5.58l-5.03 3.86c-.98-2-1.53-4.25-1.53-6.64 0-2.39.55-4.64 1.53-6.64l1-.22 3.81 2.98.22 1.08z\" fill=\"#FBBC05\"/>\n      <path d=\"M24 14.14c2.11 0 4.02.75 5.52 1.98l4.36-4.36C31.22 9.43 27.81 8 24 8c-5.93 0-11.01 3.4-13.45 8.36l5.03 3.85A8.86 8.86 0 0 1 24 14.14z\" fill=\"#EA4335\"/>\n    </svg>\n    <div class=\"gradient-container\"><div class=\"gradient\"></div></div>\n  </div>\n  <div class=\"carousel\">\n<a class=\"chip\" href=\"https://www.google.com/search?q=%22princegeorgescountymd.gov/departments-offices/public-works-transportation%22&client=app-vertex-grounding&safesearch=active\">&quot;princegeorgescountymd.gov/departments-offices/public-works-transportation&quot;</a>\n<a class=\"chip\" href=\"https://www.google.com/search?q=%22pgc311.com%22+%22Prince+George%27s+County%22&client=app-vertex-grounding&safesearch=active\">&quot;pgc311.com&quot; &quot;Prince George&#39;s County&quot;</a>\n<a class=\"chip\" href=\"https://www.google.com/search?q=%22dpwt%22+%22princegeorgescountymd.gov%22+%22301-883-5600%22+OR+%22dpwt%22+email&client=app-vertex-grounding&safesearch=active\">&quot;dpwt&quot; &quot;princegeorgescountymd.gov&quot; &quot;301-883-5600&quot; OR &quot;dpwt&quot; email</a>\n<a class=\"chip\" href=\"https://www.google.com/search?q=%22Office+of+Highway+Maintenance%22+%22princegeorgescountymd.gov%22+phone+OR+email&client=app-vertex-grounding&safesearch=active\">&quot;Office of Highway Maintenance&quot; &quot;princegeorgescountymd.gov&quot; phone OR email</a>\n  </div>\n</div>"
+              }
+            ],
+            "is_error": false
+          },
+          {
+            "id": "call_7729788984874671947",
+            "type": "google_search_call",
+            "arguments": {
+              "queries": [
+                "\"princegeorgescountymd.gov/departments-offices/public-works-transportation/about-dpwt/office-highway-maintenance\"",
+                "\"princegeorgescountymd.gov/departments-offices/public-works-transportation/about-dpwt\"",
+                "\"princegeorgescountymd.gov/departments-offices/public-works-transportation/report-public-works-problem\""
+              ]
+            },
+            "search_type": "web_search"
+          },
+          {
+            "call_id": "call_7729788984874671947",
+            "type": "google_search_result",
+            "result": [
+              {
+                "search_suggestions": "<style>\n.container {\n  align-items: center;\n  border-radius: 8px;\n  display: flex;\n  font-family: Google Sans, Roboto, sans-serif;\n  font-size: 14px;\n  line-height: 20px;\n  padding: 8px 12px;\n}\n.chip {\n  display: inline-block;\n  border: solid 1px;\n  border-radius: 16px;\n  min-width: 14px;\n  padding: 5px 16px;\n  text-align: center;\n  user-select: none;\n  margin: 0 8px;\n  -webkit-tap-highlight-color: transparent;\n}\n.carousel {\n  overflow: auto;\n  scrollbar-width: none;\n  white-space: nowrap;\n  margin-right: -12px;\n}\n.headline {\n  display: flex;\n  margin-right: 4px;\n}\n.gradient-container {\n  position: relative;\n}\n.gradient {\n  position: absolute;\n  transform: translate(3px, -9px);\n  height: 36px;\n  width: 9px;\n}\n@media (prefers-color-scheme: light) {\n  .container {\n    background-color: #fafafa;\n    box-shadow: 0 0 0 1px #0000000f;\n  }\n  .headline-label {\n    color: #1f1f1f;\n  }\n  .chip {\n    background-color: #ffffff;\n    border-color: #d2d2d2;\n    color: #5e5e5e;\n    text-decoration: none;\n  }\n  .chip:hover {\n    background-color: #f2f2f2;\n  }\n  .chip:focus {\n    background-color: #f2f2f2;\n  }\n  .chip:active {\n    background-color: #d8d8d8;\n    border-color: #b6b6b6;\n  }\n  .logo-dark {\n    display: none;\n  }\n  .gradient {\n    background: linear-gradient(90deg, #fafafa 15%, #fafafa00 100%);\n  }\n}\n@media (prefers-color-scheme: dark) {\n  .container {\n    background-color: #1f1f1f;\n    box-shadow: 0 0 0 1px #ffffff26;\n  }\n  .headline-label {\n    color: #fff;\n  }\n  .chip {\n    background-color: #2c2c2c;\n    border-color: #3c4043;\n    color: #fff;\n    text-decoration: none;\n  }\n  .chip:hover {\n    background-color: #353536;\n  }\n  .chip:focus {\n    background-color: #353536;\n  }\n  .chip:active {\n    background-color: #464849;\n    border-color: #53575b;\n  }\n  .logo-light {\n    display: none;\n  }\n  .gradient {\n    background: linear-gradient(90deg, #1f1f1f 15%, #1f1f1f00 100%);\n  }\n}\n</style>\n<div class=\"container\">\n  <div class=\"headline\">\n    <svg class=\"logo-light\" width=\"18\" height=\"18\" viewBox=\"9 9 35 35\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n      <path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M42.8622 27.0064C42.8622 25.7839 42.7525 24.6084 42.5487 23.4799H26.3109V30.1568H35.5897C35.1821 32.3041 33.9596 34.1222 32.1258 35.3448V39.6864H37.7213C40.9814 36.677 42.8622 32.2571 42.8622 27.0064V27.0064Z\" fill=\"#4285F4\"/>\n      <path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M26.3109 43.8555C30.9659 43.8555 34.8687 42.3195 37.7213 39.6863L32.1258 35.3447C30.5898 36.3792 28.6306 37.0061 26.3109 37.0061C21.8282 37.0061 18.0195 33.9811 16.6559 29.906H10.9194V34.3573C13.7563 39.9841 19.5712 43.8555 26.3109 43.8555V43.8555Z\" fill=\"#34A853\"/>\n      <path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M16.6559 29.8904C16.3111 28.8559 16.1074 27.7588 16.1074 26.6146C16.1074 25.4704 16.3111 24.3733 16.6559 23.3388V18.8875H10.9194C9.74388 21.2072 9.06992 23.8247 9.06992 26.6146C9.06992 29.4045 9.74388 32.022 10.9194 34.3417L15.3864 30.8621L16.6559 29.8904V29.8904Z\" fill=\"#FBBC05\"/>\n      <path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M26.3109 16.2386C28.85 16.2386 31.107 17.1164 32.9095 18.8091L37.8466 13.8719C34.853 11.082 30.9659 9.3736 26.3109 9.3736C19.5712 9.3736 13.7563 13.245 10.9194 18.8875L16.6559 23.3388C18.0195 19.2636 21.8282 16.2386 26.3109 16.2386V16.2386Z\" fill=\"#EA4335\"/>\n    </svg>\n    <svg class=\"logo-dark\" width=\"18\" height=\"18\" viewBox=\"0 0 48 48\" xmlns=\"http://www.w3.org/2000/svg\">\n      <circle cx=\"24\" cy=\"23\" fill=\"#FFF\" r=\"22\"/>\n      <path d=\"M33.76 34.26c2.75-2.56 4.49-6.37 4.49-11.26 0-.89-.08-1.84-.29-3H24.01v5.99h8.03c-.4 2.02-1.5 3.56-3.07 4.56v.75l3.91 2.97h.88z\" fill=\"#4285F4\"/>\n      <path d=\"M15.58 25.77A8.845 8.845 0 0 0 24 31.86c1.92 0 3.62-.46 4.97-1.31l4.79 3.71C31.14 36.7 27.65 38 24 38c-5.93 0-11.01-3.4-13.45-8.36l.17-1.01 4.06-2.85h.8z\" fill=\"#34A853\"/>\n      <path d=\"M15.59 20.21a8.864 8.864 0 0 0 0 5.58l-5.03 3.86c-.98-2-1.53-4.25-1.53-6.64 0-2.39.55-4.64 1.53-6.64l1-.22 3.81 2.98.22 1.08z\" fill=\"#FBBC05\"/>\n      <path d=\"M24 14.14c2.11 0 4.02.75 5.52 1.98l4.36-4.36C31.22 9.43 27.81 8 24 8c-5.93 0-11.01 3.4-13.45 8.36l5.03 3.85A8.86 8.86 0 0 1 24 14.14z\" fill=\"#EA4335\"/>\n    </svg>\n    <div class=\"gradient-container\"><div class=\"gradient\"></div></div>\n  </div>\n  <div class=\"carousel\">\n<a class=\"chip\" href=\"https://www.google.com/search?q=%22princegeorgescountymd.gov/departments-offices/public-works-transportation/about-dpwt%22&client=app-vertex-grounding&safesearch=active\">&quot;princegeorgescountymd.gov/departments-offices/public-works-transportation/about-dpwt&quot;</a>\n<a class=\"chip\" href=\"https://www.google.com/search?q=%22princegeorgescountymd.gov/departments-offices/public-works-transportation/about-dpwt/office-highway-maintenance%22&client=app-vertex-grounding&safesearch=active\">&quot;princegeorgescountymd.gov/departments-offices/public-works-transportation/about-dpwt/office-highway-maintenance&quot;</a>\n<a class=\"chip\" href=\"https://www.google.com/search?q=%22princegeorgescountymd.gov/departments-offices/public-works-transportation/report-public-works-problem%22&client=app-vertex-grounding&safesearch=active\">&quot;princegeorgescountymd.gov/departments-offices/public-works-transportation/report-public-works-problem&quot;</a>\n  </div>\n</div>"
+              }
+            ],
+            "is_error": false
+          },
+          {
+            "type": "thought"
+          },
+          {
+            "content": [
+              {
+                "text": "ISSUE_KIND: road_damage\nISSUE: Large sinkhole and road cave-in next to a storm drain\nDETAILS: The photo shows a large, deep sinkhole where the concrete roadway has caved in next to a manhole/storm drain, with a wooden barricade, caution tape, and a tilted sign post inside the hole. The note states the road caved in next to the storm drain, about 4 feet across, and mentions \"Adelphi Woods Homeowners Association\".\nORGANIZATION: Prince George's County Department of Public Works and Transportation\nDEPARTMENT: Office of Highway Maintenance (Road Maintenance Division)\nWHY: Tecumseh Street in Adelphi is a local residential street in unincorporated Prince George's County, not a numbered state highway and not inside an incorporated municipality. Property listings on this block of Tecumseh Street show it is in Heitmuller Estates with no HOA, so the Prince George's County Department of Public Works and Transportation maintains the roadway and repairs sinkholes and roadway hazards.\nCOVERAGE_QUOTE: \"The Department responds to requests concerning potentially hazardous locations as reported by citizens.\"\nCOVERAGE_URL: https://www.princegeorgescountymd.gov/departments-offices/public-works-transportation/report-public-works-problem\nREPORTING_URL: https://www.pgc311.com\nOFFICIAL_WEBSITE: https://www.princegeorgescountymd.gov/departments-offices/public-works-transportation\nEMAIL: DPWT-OD@co.pg.md.us | https://www.princegeorgescountymd.gov/departments-offices/public-works-transportation\nPHONE: 301-883-5600 | https://www.princegeorgescountymd.gov/departments-offices/public-works-transportation\nPHOTO_LOOKS_DAYTIME: yes\nNOTE_SAYS_LIGHT_OUT: no\nSOURCES: https://www.princegeorgescountymd.gov/departments-offices/public-works-transportation\nhttps://www.princegeorgescountymd.gov/departments-offices/public-works-transportation/report-public-works-problem\nhttps://www.pgc311.com",
+                "annotations": [
+                  {
+                    "start_index": 569,
+                    "end_index": 745,
+                    "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEd4fBAIuPvC_M21rgyNi3BuT9S9sqpfNdNKMp14vWxK0U5D0pWgLhYydxO4Kl2NHsN0ESoIHRNoEemwXrgZckNUVUIl_J8N5VR2AhMCd-R_r_ZRNLPJgrEa6bxtpIZdDRKi1VpidPXzFmkMzSiyb696DUNeYcWVIngkppTD6p0",
+                    "title": "maryland.gov",
+                    "type": "url_citation"
+                  },
+                  {
+                    "start_index": 569,
+                    "end_index": 745,
+                    "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQESGSOS3BNpCnZf_u-3vDkgrWFzBHqfYVeE9aVHiykcrOnps4mt5zRsIPLA7g6RcmhD4Af_W5o2lCz3MORLqEKpGvThQ9yxeRKzcm2oxB86XtPrTFJNuzPDqfevdd5WGWkXgR8WqChheQfTnw8O1l2YC6fn",
+                    "title": "maryland.gov",
+                    "type": "url_citation"
+                  },
+                  {
+                    "start_index": 747,
+                    "end_index": 842,
+                    "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFPnx7UvYGHJvuULkc8PeFa9Z4sDxf2dlqarqzVR7FInImJNzxRR2uCCN0VsLTEBDTZ5-eY6KjtdXz5wrAbaz3deLR1befqF5aKuMqeLYIZkS09e5OAvHfT0I1yt6Mv3nNQwJohRVd3Fm6QXiPMhQSm3oF59mDEeElY4qsTnzIv-QSaea0dpdAOTJ_RC83cn4_L",
+                    "title": "nextsteprealtymd.com",
+                    "type": "url_citation"
+                  },
+                  {
+                    "start_index": 747,
+                    "end_index": 842,
+                    "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFRaWb0JdeGMu4T9EwIpKLZDY6zf3TTJZrSb_tXYmpFac0E2naXeb8N2zU_-cHIHL89TuPfPDPuu4OUliBuakHOkF38UEmnuJQV6kYUa7Ljz1WLB_2FBiPk47QwsQLiEfEjdJtie5ZNTnHIrwOmUnl8n-IVdiSpLDaQAQ4phPszcqSW28TvpB8=",
+                    "title": "coldwellbankerhomes.com",
+                    "type": "url_citation"
+                  },
+                  {
+                    "start_index": 747,
+                    "end_index": 842,
+                    "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEifkjuKQBSm5BtmCc2hH07KvEu6J2YLhV_85hI0wHrWCHiUKLcdpxvQlKUTZvh61LPrOjkEeNV2S4M60Rri2Bs0bW0iXg_M-WI_muQFwY3JpFC7v1T5oMDA_L9ejiUDYV1yNfdb_iwmqOvQ6-zC6SbgS7zYe-qr7Mxu1NYw0rJg0mYIg==",
+                    "title": "homes.com",
+                    "type": "url_citation"
+                  },
+                  {
+                    "start_index": 747,
+                    "end_index": 983,
+                    "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQG8zLFcCMedOOz7n91tsJK0TTZvdHdWOpxLW-T3nFHLcVLBehYwR7TIAIhkXV8l4kjryAdgxLhrZ7zteN3NDNxdylFaV4XGfFSV-F-HNEOzivVL08j7EkqdrST2MOnIZAfbV2T3jESqlzHryCCPcdijoPeqZMFtAklULpfkSBSE42TC0TVHGpbJ9EYWdW2rw89Vq57X8gXm90pd3zC_9Z6HF93wVHW4M8HI2Q==",
+                    "title": "princegeorgescountymd.gov",
+                    "type": "url_citation"
+                  },
+                  {
+                    "start_index": 747,
+                    "end_index": 983,
+                    "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFpJ-6eW7Z4_68gnKQUBndvxaRlWdJLi65h2qWRFbH4v4_gzZO6Mkrs3ve_egqDzkIU5mIO0nPpHzEuQ7l5pCd7-T4Wy07yPfIYc5uxO6dg-E23Hl_ghY6rDUZpT0dtF-vMtZBX7e0ist45VC_PTr0U_J-tmujd1DHnGXx8tu6CKpiPpsAF5Yjpd8Am0BFpM4iLXf5M-QgS5FTa685rdCt425GSV8k0E8lCeQ==",
+                    "title": "Office of Highway Maintenance | Prince George's County",
+                    "type": "url_citation"
+                  },
+                  {
+                    "start_index": 747,
+                    "end_index": 983,
+                    "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQG2X3x851rwbmimOSZzdh7so0N_oyxzQEO3kfc31o8nz9O1nvdw3d8RCChqZPO5VbYHDtVr_x2njXJ25ljhea6qhIhUMa94s1023ZL8jiPfHOGh8BQU6wbqwiLOLL1wPGGxp7ckUwITivr9l4MbePSNI6r1vK_VOQCDD9tsKmox01CZlSUZn0z_jmu4pysTe8oGSYyfaWoaFtOVi8y0ny_LjGqQSmSj5kx9X6XuyQsy6X1bqZY1isw=",
+                    "title": "Roadway Hazards | Prince George's County",
+                    "type": "url_citation"
+                  }
+                ],
+                "type": "text"
+              }
+            ],
+            "type": "model_output"
+          }
+        ],
+        "object": "interaction",
+        "model": "gemini-4-hydrogen"
+      }
+    },
+    {
+      "kind": "format",
+      "status": 200,
+      "body": {
+        "status": "completed",
+        "usage": {
+          "total_tokens": 5119,
+          "total_input_tokens": 3692,
+          "input_tokens_by_modality": [
+            {
+              "modality": "text",
+              "tokens": 3692
+            }
+          ],
+          "total_cached_tokens": 0,
+          "total_output_tokens": 577,
+          "output_tokens_by_modality": [
+            {
+              "modality": "text",
+              "tokens": 577
+            }
+          ],
+          "total_tool_use_tokens": 0,
+          "total_thought_tokens": 850,
+          "initial_input_tokens": 3692
+        },
+        "created": "2026-11-20T04:43:40Z",
+        "updated": "2026-11-20T04:43:40Z",
+        "service_tier": "standard",
+        "steps": [
+          {
+            "type": "thought"
+          },
+          {
+            "content": [
+              {
+                "text": "{\n  \"issue\": {\n    \"kind\": \"road_damage\",\n    \"title\": \"Large sinkhole and road cave-in\",\n    \"summary\": \"The concrete roadway has caved in, forming a deep sinkhole about 4 feet across. A wooden barricade, caution tape, and a tilted sign post are inside the hole.\",\n    \"spot\": \"next to the storm drain\",\n    \"observations\": [\n      \"Large, deep sinkhole in the concrete roadway\",\n      \"About 4 feet across\",\n      \"Wooden barricade and caution tape at the hole\",\n      \"Tilted sign post inside the hole\"\n    ]\n  },\n  \"organization\": \"Prince George's County Department of Public Works and Transportation\",\n  \"department\": \"Office of Highway Maintenance (Road Maintenance Division)\",\n  \"reason\": \"Tecumseh Street in Adelphi is a local residential street in unincorporated Prince George's County, not a numbered state highway and not inside an incorporated municipality. Property listings on this block show it is in Heitmuller Estates with no HOA, so the Prince George's County Department of Public Works and Transportation maintains the roadway and repairs sinkholes and roadway hazards.\",\n  \"coverageQuote\": \"The Department responds to requests concerning potentially hazardous locations as reported by citizens.\",\n  \"coverageSource\": \"https://www.princegeorgescountymd.gov/departments-offices/public-works-transportation/report-public-works-problem\",\n  \"reportingPage\": \"https://www.pgc311.com\",\n  \"officialWebsite\": \"https://www.princegeorgescountymd.gov/departments-offices/public-works-transportation\",\n  \"email\": \"DPWT-OD@co.pg.md.us\",\n  \"emailSource\": \"https://www.princegeorgescountymd.gov/departments-offices/public-works-transportation\",\n  \"phone\": \"301-883-5600\",\n  \"phoneSource\": \"https://www.princegeorgescountymd.gov/departments-offices/public-works-transportation\",\n  \"sources\": [\n    \"https://www.princegeorgescountymd.gov/departments-offices/public-works-transportation\",\n    \"https://www.princegeorgescountymd.gov/departments-offices/public-works-transportation/report-public-works-problem\",\n    \"https://www.pgc311.com\"\n  ],\n  \"noteSaysLightIsOut\": null,\n  \"photoLooksDaytime\": null\n}",
+                "type": "text"
+              }
+            ],
+            "type": "model_output"
+          }
+        ],
+        "object": "interaction",
+        "model": "gemini-4-hydrogen"
+      }
+    }
+  ]
+}

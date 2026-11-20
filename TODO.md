@@ -58,6 +58,7 @@ The P0 list (needed for judging and the demo) is finished or no longer needed; s
 - [ ] **Campus fallback is weak.** When Overpass fails, the campus comes from Nominatim's reverse lookup, which finds it only if the mapped object at the pin is the university itself (at the UMD pin it returned a ChargePoint charger).
 - [ ] **"Best match" reasons can sound certain.** In the live test the reason read "Because this segment is designated as a state-maintained roadway…" under a "Best match" stamp, with no page proving it. The stamp and the "Before you send" warning flag it, but the format prompt in `server/research/prompt.ts` should ask for hedged wording ("likely", "appears to") when the verdict isn't confirmed.
 - [ ] **Search markers overlap on phones.** At 375 px, results close together overlap on the map. The highlighted one draws on top and the numbered list still works; consider clustering or offsetting.
+- [ ] **Prince George's County's site blocks the page checks.** `princegeorgescountymd.gov` answers the server's page loader with HTTP 403 (it answered `curl` the same way on Nov 19), so no county page loads and every report the model correctly routes to PG County DPW&T ends "We couldn't identify the office". All three models in the Nov 19 benchmark (case D) named the county correctly and were withheld every time. College Park sits in this county. Find out what the site's bot protection accepts, or confirm through another official source the county publishes.
 
 ## Open — P2
 

@@ -39,7 +39,7 @@ const issueSchema = (hasPhoto: boolean) =>
       .string()
       .nullable()
       .describe(
-        'Where exactly at the pin, only as the user note says it: a lane, a side of the road, a landmark, a pole or sign number. One short phrase. Never who owns or manages it. Null if the note does not say.',
+        "Where exactly at the pin, only as the user note says it, in one short phrase. Keep the note's own names and numbers for the spot exactly as written (a street, building, business, or landmark; a lane; a pole or sign number). Never who owns or manages it. Null if the note does not say.",
       ),
     observations: z
       .array(z.string())

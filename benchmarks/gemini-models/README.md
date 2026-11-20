@@ -3,38 +3,44 @@
 Data and scripts behind [docs/gemini-model-benchmark.md](../../docs/gemini-model-benchmark.md), which explains the results and why the app uses `gemini-3.6-flash`.
 
 ```
-bench.mjs                 Sends the app's research request to each model for each test case
-summarize.mjs             Per-model medians, token breakdown, searches, cost, and accuracy for one run
+bench.ts                  Runs the app's real report pipeline (server/research) per model, case, and repeat
+cases.ts                  The test cases, their expected answers, scoring, and the results.jsonl row shape
+summarize.ts              Per-model quality, speed, tokens, searches, and cost for one run; writes summary.json
 photos/                   The four test photos (caseA–D.jpg), re-encoded the way the app does it
-results/2026-11-07/
-  results.jsonl           One line per call: model, time, tokens, searches, parsed answer, scores
-  summary.json            Output of summarize.mjs for this run
-  raw/                    Full API response for every call, <model>__<case>.json
+results/<date>/
+  results.jsonl           One line per report: time, phases, every Gemini call's tokens and searches, the answer
+  summary.json            Output of summarize.ts for this run
+  raw/                    The investigation and Gemini responses for every report, <variant>__<case>__r<n>.json
+                          (opaque `signature` fields dropped: they were most of the bytes and carry nothing readable)
 ```
+
+`bench.ts` imports the app's own pipeline, prompts, checks, and email builder, so a run always measures what the app does today: the research call (Google Search and URL context), the format call, the server's page checks, and the email draft. Map facts are fixed per case, so every model gets identical input.
 
 ## Running it
 
-**It costs money.** A full run makes about 70 calls to the Gemini API and about 480 Google searches. On 2026-11-07 that was about $0.82 in tokens. The searches come out of the project's 5,000 free searches a month, shared by all Gemini 3+ models, and after that cost $14 per 1,000.
+**It costs money.** Each report is two Gemini calls plus the Google searches the model chooses to run; see the latest run in the write-up for what a full run cost. Searches come out of the project's 5,000 free searches a month, shared by all Gemini 3+ models and by the live site, and after that cost $14 per 1,000.
 
 Run it from the repo root. The key comes from `GEMINI_API_KEY` in the environment, or from the repo's `.env`.
 
 ```bash
-node benchmarks/gemini-models/bench.mjs
-node benchmarks/gemini-models/summarize.mjs > benchmarks/gemini-models/results/<date>/summary.json
+npx tsx benchmarks/gemini-models/bench.ts
+npx tsx benchmarks/gemini-models/summarize.ts benchmarks/gemini-models/results/<date>
 ```
 
 Options, as environment variables:
 
 | Variable | Default | Use |
 |---|---|---|
-| `MODELS` | Every model in the 2026-11-07 run | Comma-separated model names, e.g. `MODELS=gemini-3.6-flash,gemini-3.8-flash` |
-| `CASES` | `A,B,C,D` | Which test cases to run |
-| `CONCURRENCY` | `5` | How many models run at the same time |
+| `MODELS` | `gemini-3.6-flash,gemini-4-hydrogen,gemini-4-hydrogen@medium` | Comma-separated variants. `model@level` overrides only the research call's thinking level, to test a setting the app doesn't use yet; without it, the app's own levels apply. |
+| `CASES` | `A,B,C,D,E,F` | Which test cases to run (see `cases.ts`) |
+| `REPEATS` | `3` | Reports per variant and case |
+| `CONCURRENCY` | `3` | Reports in flight at once. Variants interleave, so each model sees the same network and search conditions. |
+| `BUDGET_MS` | `120000` | Per-report limit. Higher than the app's 45 s so slow runs still finish; `summarize.ts` counts anything over 45 s as a report the app would have failed. |
 | `OUT` | `results/<today>` | Where results go. Runs append to `results.jsonl`, so give each new run its own folder. |
 
-`bench.mjs` copies the research prompt from the rebuild's `server/research/prompt.ts` as it was on 2026-11-07. If the app's prompt changes, update the copy before re-running, or the numbers won't reflect the app. `summarize.mjs` re-scores every call, so its accuracy columns are the ones to trust.
+`summarize.ts` re-scores every row with `cases.ts`, so an expectation can be fixed without re-running. Token prices are in `summarize.ts`; update them when Google's pricing page changes.
 
-The `orgOk` field in the 2026-11-07 `results.jsonl` was scored by an earlier version that checked only the organization field. It marks some correct answers as wrong, for example "City of New York" with the department "Department of Transportation". The current scoring, which both scripts now use, is in `summary.json` and in the write-up.
+The 2026-11-07 run in `results/2026-11-07/` came from an earlier script that sent only the research call, with a copy of that day's prompt and no note. That script is in the git history (`benchmarks/gemini-models/bench.mjs` before 2026-11-19); its rows have a different shape, and its `summary.json` is final.
 
 ## Photo credits
 

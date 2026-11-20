@@ -1,0 +1,456 @@
+{
+  "row": {
+    "variant": "gemini-4-hydrogen@medium",
+    "model": "gemini-4-hydrogen",
+    "case": "A",
+    "repeat": 3,
+    "startedAt": "2026-11-20T04:40:24.802Z",
+    "ms": 53478,
+    "phases": {
+      "context": 0,
+      "research": 46809,
+      "format+pages": 6669
+    },
+    "error": null,
+    "calls": [
+      {
+        "kind": "research",
+        "ms": 46806,
+        "status": 200,
+        "thinkingLevel": "medium",
+        "servedModel": "gemini-4-hydrogen",
+        "usage": {
+          "total_tokens": 6431,
+          "total_input_tokens": 2423,
+          "input_tokens_by_modality": [
+            {
+              "modality": "text",
+              "tokens": 1343
+            },
+            {
+              "modality": "image",
+              "tokens": 1080
+            }
+          ],
+          "total_cached_tokens": 0,
+          "total_output_tokens": 1433,
+          "output_tokens_by_modality": [
+            {
+              "modality": "text",
+              "tokens": 1433
+            }
+          ],
+          "total_tool_use_tokens": 0,
+          "total_thought_tokens": 2575,
+          "grounding_tool_count": [
+            {
+              "type": "google_search",
+              "count": 13
+            }
+          ],
+          "initial_input_tokens": 2423
+        },
+        "searches": 13,
+        "error": null
+      },
+      {
+        "kind": "format",
+        "ms": 6668,
+        "status": 200,
+        "thinkingLevel": "low",
+        "servedModel": "gemini-4-hydrogen",
+        "usage": {
+          "total_tokens": 4198,
+          "total_input_tokens": 2682,
+          "input_tokens_by_modality": [
+            {
+              "modality": "text",
+              "tokens": 2682
+            }
+          ],
+          "total_cached_tokens": 0,
+          "total_output_tokens": 653,
+          "output_tokens_by_modality": [
+            {
+              "modality": "text",
+              "tokens": 653
+            }
+          ],
+          "total_tool_use_tokens": 0,
+          "total_thought_tokens": 863,
+          "initial_input_tokens": 2682
+        },
+        "searches": 0,
+        "error": null
+      }
+    ],
+    "report": {
+      "verdict": "confirmed",
+      "organization": "Maryland Department of Transportation State Highway Administration (MDOT SHA)",
+      "department": "District 3",
+      "kind": "pothole",
+      "summary": "A large, deep, water-filled pothole with cracked and deteriorating asphalt around its edges. It has been growing for two weeks and popped a tire the previous day.",
+      "spot": "northbound right lane in front of the 7-Eleven",
+      "warnings": [],
+      "email": {
+        "subject": "Deep, water-filled pothole in the travel lane near Baltimore Avenue, College Park",
+        "body": "Hello District 3,\n\nI'm writing to report a problem that needs repair: Deep, water-filled pothole in the travel lane.\n\nA large, deep, water-filled pothole with cracked and deteriorating asphalt around its edges. It has been growing for two weeks and popped a tire the previous day.\n\nLocation: Baltimore Avenue, College Park\nExact spot: Northbound right lane in front of the 7-Eleven\n\nI've attached a photo (photo.jpg).\n\nCould you please arrange a repair, or let me know if this should go to a different office?\n\nThank you,"
+      },
+      "evidence": true,
+      "contact": true,
+      "sources": 5,
+      "officialSources": 5
+    },
+    "named": {
+      "organization": "Maryland Department of Transportation State Highway Administration (MDOT SHA)",
+      "department": "District 3"
+    }
+  },
+  "investigation": {
+    "issue": {
+      "kind": "pothole",
+      "title": "Deep, water-filled pothole in the travel lane",
+      "summary": "A large, deep, water-filled pothole with cracked and deteriorating asphalt around its edges. It has been growing for two weeks and popped a tire the previous day.",
+      "spot": "northbound right lane in front of the 7-Eleven",
+      "observations": [
+        "Large, deep, water-filled pothole",
+        "Cracked and deteriorating asphalt around the edges",
+        "Growing for two weeks",
+        "Popped a tire the previous day"
+      ]
+    },
+    "responsibility": {
+      "verdict": "confirmed",
+      "organization": "Maryland Department of Transportation State Highway Administration (MDOT SHA)",
+      "department": "District 3",
+      "reason": "Although your spot is inside the City of College Park, Baltimore Avenue is US Route 1. MDOT SHA maintains non-toll U.S. and state-numbered routes in Maryland's 23 counties, and the City of College Park lists Baltimore Avenue/Route 1 as a street maintained by the State Highway Administration rather than the city.",
+      "evidence": {
+        "url": "https://roads.maryland.gov/mdotsha/pages/pressreleasedetails.aspx?PageId=818&newsId=4183",
+        "quote": "MDOT SHA maintains more than 2,500 bridges and 17,000 miles of non-toll state roads – the interstate, US and state numbered routes in Maryland's 23 counties."
+      },
+      "reportingUrl": "https://roads.maryland.gov/mdotsha/pages/index.aspx?pageid=519",
+      "email": null,
+      "phone": {
+        "value": "(301) 513-7300",
+        "sourceUrl": "https://roads.maryland.gov/mdotsha/pages/districts.aspx?did=d3"
+      }
+    },
+    "sources": [
+      {
+        "title": "<span>MDOT SHA ACTIVATES NEW TRAFFIC SIGNAL ON US 1 (BALTIMORE AVENUE) AT CAMPUS DRIVE IN COLLEGE PARK - MDOT SHA</span> <span><meta property=\"og:url\" content=\"",
+        "url": "https://roads.maryland.gov/mdotsha/pages/pressreleasedetails.aspx?PageId=818&newsId=4183",
+        "note": "Has the sentence that shows who covers this spot.",
+        "official": true
+      },
+      {
+        "title": "<span>Customer Service - MDOT SHA</span> <span><meta property=\"og:url\" content=\"https://roads.maryland.gov/mdotsha/pages/index.aspx?pageid=519\"><meta property=\"",
+        "url": "https://roads.maryland.gov/mdotsha/pages/index.aspx?pageid=519",
+        "note": "Official page for reporting this.",
+        "official": true
+      },
+      {
+        "title": "<span>Contact SHA - MDOT SHA</span> <span><meta property=\"og:url\" content=\"https://roads.maryland.gov/mdotsha/pages/Index.aspx?PageId=579\"><meta property=\"og:ty",
+        "url": "https://roads.maryland.gov/mdotsha/pages/Index.aspx?PageId=579",
+        "note": "The office's own website.",
+        "official": true
+      },
+      {
+        "title": "<span>District 3 - MDOT SHA</span> <span><meta property=\"og:url\" content=\"https://roads.maryland.gov/mdotsha/pages/districts.aspx?did=d3\"><meta property=\"og:typ",
+        "url": "https://roads.maryland.gov/mdotsha/pages/districts.aspx?did=d3",
+        "note": "Lists the phone number.",
+        "official": true
+      },
+      {
+        "title": "How to Report An Issue to All Agencies | City of College Park, Maryland",
+        "url": "https://www.collegeparkmd.gov/report",
+        "note": null,
+        "official": true
+      }
+    ],
+    "warnings": [],
+    "searchSuggestionsHtml": "<style>\n.container {\n  align-items: center;\n  border-radius: 8px;\n  display: flex;\n  font-family: Google Sans, Roboto, sans-serif;\n  font-size: 14px;\n  line-height: 20px;\n  padding: 8px 12px;\n}\n.chip {\n  display: inline-block;\n  border: solid 1px;\n  border-radius: 16px;\n  min-width: 14px;\n  padding: 5px 16px;\n  text-align: center;\n  user-select: none;\n  margin: 0 8px;\n  -webkit-tap-highlight-color: transparent;\n}\n.carousel {\n  overflow: auto;\n  scrollbar-width: none;\n  white-space: nowrap;\n  margin-right: -12px;\n}\n.headline {\n  display: flex;\n  margin-right: 4px;\n}\n.gradient-container {\n  position: relative;\n}\n.gradient {\n  position: absolute;\n  transform: translate(3px, -9px);\n  height: 36px;\n  width: 9px;\n}\n@media (prefers-color-scheme: light) {\n  .container {\n    background-color: #fafafa;\n    box-shadow: 0 0 0 1px #0000000f;\n  }\n  .headline-label {\n    color: #1f1f1f;\n  }\n  .chip {\n    background-color: #ffffff;\n    border-color: #d2d2d2;\n    color: #5e5e5e;\n    text-decoration: none;\n  }\n  .chip:hover {\n    background-color: #f2f2f2;\n  }\n  .chip:focus {\n    background-color: #f2f2f2;\n  }\n  .chip:active {\n    background-color: #d8d8d8;\n    border-color: #b6b6b6;\n  }\n  .logo-dark {\n    display: none;\n  }\n  .gradient {\n    background: linear-gradient(90deg, #fafafa 15%, #fafafa00 100%);\n  }\n}\n@media (prefers-color-scheme: dark) {\n  .container {\n    background-color: #1f1f1f;\n    box-shadow: 0 0 0 1px #ffffff26;\n  }\n  .headline-label {\n    color: #fff;\n  }\n  .chip {\n    background-color: #2c2c2c;\n    border-color: #3c4043;\n    color: #fff;\n    text-decoration: none;\n  }\n  .chip:hover {\n    background-color: #353536;\n  }\n  .chip:focus {\n    background-color: #353536;\n  }\n  .chip:active {\n    background-color: #464849;\n    border-color: #53575b;\n  }\n  .logo-light {\n    display: none;\n  }\n  .gradient {\n    background: linear-gradient(90deg, #1f1f1f 15%, #1f1f1f00 100%);\n  }\n}\n</style>\n<div class=\"container\">\n  <div class=\"headline\">\n    <svg class=\"logo-light\" width=\"18\" height=\"18\" viewBox=\"9 9 35 35\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n      <path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M42.8622 27.0064C42.8622 25.7839 42.7525 24.6084 42.5487 23.4799H26.3109V30.1568H35.5897C35.1821 32.3041 33.9596 34.1222 32.1258 35.3448V39.6864H37.7213C40.9814 36.677 42.8622 32.2571 42.8622 27.0064V27.0064Z\" fill=\"#4285F4\"/>\n      <path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M26.3109 43.8555C30.9659 43.8555 34.8687 42.3195 37.7213 39.6863L32.1258 35.3447C30.5898 36.3792 28.6306 37.0061 26.3109 37.0061C21.8282 37.0061 18.0195 33.9811 16.6559 29.906H10.9194V34.3573C13.7563 39.9841 19.5712 43.8555 26.3109 43.8555V43.8555Z\" fill=\"#34A853\"/>\n      <path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M16.6559 29.8904C16.3111 28.8559 16.1074 27.7588 16.1074 26.6146C16.1074 25.4704 16.3111 24.3733 16.6559 23.3388V18.8875H10.9194C9.74388 21.2072 9.06992 23.8247 9.06992 26.6146C9.06992 29.4045 9.74388 32.022 10.9194 34.3417L15.3864 30.8621L16.6559 29.8904V29.8904Z\" fill=\"#FBBC05\"/>\n      <path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M26.3109 16.2386C28.85 16.2386 31.107 17.1164 32.9095 18.8091L37.8466 13.8719C34.853 11.082 30.9659 9.3736 26.3109 9.3736C19.5712 9.3736 13.7563 13.245 10.9194 18.8875L16.6559 23.3388C18.0195 19.2636 21.8282 16.2386 26.3109 16.2386V16.2386Z\" fill=\"#EA4335\"/>\n    </svg>\n    <svg class=\"logo-dark\" width=\"18\" height=\"18\" viewBox=\"0 0 48 48\" xmlns=\"http://www.w3.org/2000/svg\">\n      <circle cx=\"24\" cy=\"23\" fill=\"#FFF\" r=\"22\"/>\n      <path d=\"M33.76 34.26c2.75-2.56 4.49-6.37 4.49-11.26 0-.89-.08-1.84-.29-3H24.01v5.99h8.03c-.4 2.02-1.5 3.56-3.07 4.56v.75l3.91 2.97h.88z\" fill=\"#4285F4\"/>\n      <path d=\"M15.58 25.77A8.845 8.845 0 0 0 24 31.86c1.92 0 3.62-.46 4.97-1.31l4.79 3.71C31.14 36.7 27.65 38 24 38c-5.93 0-11.01-3.4-13.45-8.36l.17-1.01 4.06-2.85h.8z\" fill=\"#34A853\"/>\n      <path d=\"M15.59 20.21a8.864 8.864 0 0 0 0 5.58l-5.03 3.86c-.98-2-1.53-4.25-1.53-6.64 0-2.39.55-4.64 1.53-6.64l1-.22 3.81 2.98.22 1.08z\" fill=\"#FBBC05\"/>\n      <path d=\"M24 14.14c2.11 0 4.02.75 5.52 1.98l4.36-4.36C31.22 9.43 27.81 8 24 8c-5.93 0-11.01 3.4-13.45 8.36l5.03 3.85A8.86 8.86 0 0 1 24 14.14z\" fill=\"#EA4335\"/>\n    </svg>\n    <div class=\"gradient-container\"><div class=\"gradient\"></div></div>\n  </div>\n  <div class=\"carousel\">\n<a class=\"chip\" href=\"https://www.google.com/search?q=%22Baltimore+Avenue%22+%22College+Park%22+%22State+Highway+Administration%22+OR+%22SHA%22+%22US+1%22&client=app-vertex-grounding&safesearch=active\">&quot;Baltimore Avenue&quot; &quot;College Park&quot; &quot;State Highway Administration&quot; OR &quot;SHA&quot; &quot;US 1&quot;</a>\n<a class=\"chip\" href=\"https://www.google.com/search?q=%22College+Park%22+pothole+report+%22US+1%22+OR+%22Baltimore+Avenue%22&client=app-vertex-grounding&safesearch=active\">&quot;College Park&quot; pothole report &quot;US 1&quot; OR &quot;Baltimore Avenue&quot;</a>\n<a class=\"chip\" href=\"https://www.google.com/search?q=site:collegeparkmd.gov+%22Baltimore+Avenue%22+OR+%22state+roads%22+OR+%22pothole%22&client=app-vertex-grounding&safesearch=active\">site:collegeparkmd.gov &quot;Baltimore Avenue&quot; OR &quot;state roads&quot; OR &quot;pothole&quot;</a>\n<a class=\"chip\" href=\"https://www.google.com/search?q=site:roads.maryland.gov+pothole+report&client=app-vertex-grounding&safesearch=active\">site:roads.maryland.gov pothole report</a>\n  </div>\n</div>\n<style>\n.container {\n  align-items: center;\n  border-radius: 8px;\n  display: flex;\n  font-family: Google Sans, Roboto, sans-serif;\n  font-size: 14px;\n  line-height: 20px;\n  padding: 8px 12px;\n}\n.chip {\n  display: inline-block;\n  border: solid 1px;\n  border-radius: 16px;\n  min-width: 14px;\n  padding: 5px 16px;\n  text-align: center;\n  user-select: none;\n  margin: 0 8px;\n  -webkit-tap-highlight-color: transparent;\n}\n.carousel {\n  overflow: auto;\n  scrollbar-width: none;\n  white-space: nowrap;\n  margin-right: -12px;\n}\n.headline {\n  display: flex;\n  margin-right: 4px;\n}\n.gradient-container {\n  position: relative;\n}\n.gradient {\n  position: absolute;\n  transform: translate(3px, -9px);\n  height: 36px;\n  width: 9px;\n}\n@media (prefers-color-scheme: light) {\n  .container {\n    background-color: #fafafa;\n    box-shadow: 0 0 0 1px #0000000f;\n  }\n  .headline-label {\n    color: #1f1f1f;\n  }\n  .chip {\n    background-color: #ffffff;\n    border-color: #d2d2d2;\n    color: #5e5e5e;\n    text-decoration: none;\n  }\n  .chip:hover {\n    background-color: #f2f2f2;\n  }\n  .chip:focus {\n    background-color: #f2f2f2;\n  }\n  .chip:active {\n    background-color: #d8d8d8;\n    border-color: #b6b6b6;\n  }\n  .logo-dark {\n    display: none;\n  }\n  .gradient {\n    background: linear-gradient(90deg, #fafafa 15%, #fafafa00 100%);\n  }\n}\n@media (prefers-color-scheme: dark) {\n  .container {\n    background-color: #1f1f1f;\n    box-shadow: 0 0 0 1px #ffffff26;\n  }\n  .headline-label {\n    color: #fff;\n  }\n  .chip {\n    background-color: #2c2c2c;\n    border-color: #3c4043;\n    color: #fff;\n    text-decoration: none;\n  }\n  .chip:hover {\n    background-color: #353536;\n  }\n  .chip:focus {\n    background-color: #353536;\n  }\n  .chip:active {\n    background-color: #464849;\n    border-color: #53575b;\n  }\n  .logo-light {\n    display: none;\n  }\n  .gradient {\n    background: linear-gradient(90deg, #1f1f1f 15%, #1f1f1f00 100%);\n  }\n}\n</style>\n<div class=\"container\">\n  <div class=\"headline\">\n    <svg class=\"logo-light\" width=\"18\" height=\"18\" viewBox=\"9 9 35 35\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n      <path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M42.8622 27.0064C42.8622 25.7839 42.7525 24.6084 42.5487 23.4799H26.3109V30.1568H35.5897C35.1821 32.3041 33.9596 34.1222 32.1258 35.3448V39.6864H37.7213C40.9814 36.677 42.8622 32.2571 42.8622 27.0064V27.0064Z\" fill=\"#4285F4\"/>\n      <path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M26.3109 43.8555C30.9659 43.8555 34.8687 42.3195 37.7213 39.6863L32.1258 35.3447C30.5898 36.3792 28.6306 37.0061 26.3109 37.0061C21.8282 37.0061 18.0195 33.9811 16.6559 29.906H10.9194V34.3573C13.7563 39.9841 19.5712 43.8555 26.3109 43.8555V43.8555Z\" fill=\"#34A853\"/>\n      <path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M16.6559 29.8904C16.3111 28.8559 16.1074 27.7588 16.1074 26.6146C16.1074 25.4704 16.3111 24.3733 16.6559 23.3388V18.8875H10.9194C9.74388 21.2072 9.06992 23.8247 9.06992 26.6146C9.06992 29.4045 9.74388 32.022 10.9194 34.3417L15.3864 30.8621L16.6559 29.8904V29.8904Z\" fill=\"#FBBC05\"/>\n      <path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M26.3109 16.2386C28.85 16.2386 31.107 17.1164 32.9095 18.8091L37.8466 13.8719C34.853 11.082 30.9659 9.3736 26.3109 9.3736C19.5712 9.3736 13.7563 13.245 10.9194 18.8875L16.6559 23.3388C18.0195 19.2636 21.8282 16.2386 26.3109 16.2386V16.2386Z\" fill=\"#EA4335\"/>\n    </svg>\n    <svg class=\"logo-dark\" width=\"18\" height=\"18\" viewBox=\"0 0 48 48\" xmlns=\"http://www.w3.org/2000/svg\">\n      <circle cx=\"24\" cy=\"23\" fill=\"#FFF\" r=\"22\"/>\n      <path d=\"M33.76 34.26c2.75-2.56 4.49-6.37 4.49-11.26 0-.89-.08-1.84-.29-3H24.01v5.99h8.03c-.4 2.02-1.5 3.56-3.07 4.56v.75l3.91 2.97h.88z\" fill=\"#4285F4\"/>\n      <path d=\"M15.58 25.77A8.845 8.845 0 0 0 24 31.86c1.92 0 3.62-.46 4.97-1.31l4.79 3.71C31.14 36.7 27.65 38 24 38c-5.93 0-11.01-3.4-13.45-8.36l.17-1.01 4.06-2.85h.8z\" fill=\"#34A853\"/>\n      <path d=\"M15.59 20.21a8.864 8.864 0 0 0 0 5.58l-5.03 3.86c-.98-2-1.53-4.25-1.53-6.64 0-2.39.55-4.64 1.53-6.64l1-.22 3.81 2.98.22 1.08z\" fill=\"#FBBC05\"/>\n      <path d=\"M24 14.14c2.11 0 4.02.75 5.52 1.98l4.36-4.36C31.22 9.43 27.81 8 24 8c-5.93 0-11.01 3.4-13.45 8.36l5.03 3.85A8.86 8.86 0 0 1 24 14.14z\" fill=\"#EA4335\"/>\n    </svg>\n    <div class=\"gradient-container\"><div class=\"gradient\"></div></div>\n  </div>\n  <div class=\"carousel\">\n<a class=\"chip\" href=\"https://www.google.com/search?q=%22How+to+Report+An+Issue+to+All+Agencies%22+site:collegeparkmd.gov&client=app-vertex-grounding&safesearch=active\">&quot;How to Report An Issue to All Agencies&quot; site:collegeparkmd.gov</a>\n<a class=\"chip\" href=\"https://www.google.com/search?q=%22Submit+a+service+request%22+site:roads.maryland.gov&client=app-vertex-grounding&safesearch=active\">&quot;Submit a service request&quot; site:roads.maryland.gov</a>\n<a class=\"chip\" href=\"https://www.google.com/search?q=%22District+3%22+%22Prince+George%22+site:roads.maryland.gov&client=app-vertex-grounding&safesearch=active\">&quot;District 3&quot; &quot;Prince George&quot; site:roads.maryland.gov</a>\n<a class=\"chip\" href=\"https://www.google.com/search?q=%22roads.maryland.gov%22+%22mdotsha%22+%22Service+Request%22+OR+%22Customer+Care%22&client=app-vertex-grounding&safesearch=active\">&quot;roads.maryland.gov&quot; &quot;mdotsha&quot; &quot;Service Request&quot; OR &quot;Customer Care&quot;</a>\n  </div>\n</div>\n<style>\n.container {\n  align-items: center;\n  border-radius: 8px;\n  display: flex;\n  font-family: Google Sans, Roboto, sans-serif;\n  font-size: 14px;\n  line-height: 20px;\n  padding: 8px 12px;\n}\n.chip {\n  display: inline-block;\n  border: solid 1px;\n  border-radius: 16px;\n  min-width: 14px;\n  padding: 5px 16px;\n  text-align: center;\n  user-select: none;\n  margin: 0 8px;\n  -webkit-tap-highlight-color: transparent;\n}\n.carousel {\n  overflow: auto;\n  scrollbar-width: none;\n  white-space: nowrap;\n  margin-right: -12px;\n}\n.headline {\n  display: flex;\n  margin-right: 4px;\n}\n.gradient-container {\n  position: relative;\n}\n.gradient {\n  position: absolute;\n  transform: translate(3px, -9px);\n  height: 36px;\n  width: 9px;\n}\n@media (prefers-color-scheme: light) {\n  .container {\n    background-color: #fafafa;\n    box-shadow: 0 0 0 1px #0000000f;\n  }\n  .headline-label {\n    color: #1f1f1f;\n  }\n  .chip {\n    background-color: #ffffff;\n    border-color: #d2d2d2;\n    color: #5e5e5e;\n    text-decoration: none;\n  }\n  .chip:hover {\n    background-color: #f2f2f2;\n  }\n  .chip:focus {\n    background-color: #f2f2f2;\n  }\n  .chip:active {\n    background-color: #d8d8d8;\n    border-color: #b6b6b6;\n  }\n  .logo-dark {\n    display: none;\n  }\n  .gradient {\n    background: linear-gradient(90deg, #fafafa 15%, #fafafa00 100%);\n  }\n}\n@media (prefers-color-scheme: dark) {\n  .container {\n    background-color: #1f1f1f;\n    box-shadow: 0 0 0 1px #ffffff26;\n  }\n  .headline-label {\n    color: #fff;\n  }\n  .chip {\n    background-color: #2c2c2c;\n    border-color: #3c4043;\n    color: #fff;\n    text-decoration: none;\n  }\n  .chip:hover {\n    background-color: #353536;\n  }\n  .chip:focus {\n    background-color: #353536;\n  }\n  .chip:active {\n    background-color: #464849;\n    border-color: #53575b;\n  }\n  .logo-light {\n    display: none;\n  }\n  .gradient {\n    background: linear-gradient(90deg, #1f1f1f 15%, #1f1f1f00 100%);\n  }\n}\n</style>\n<div class=\"container\">\n  <div class=\"headline\">\n    <svg class=\"logo-light\" width=\"18\" height=\"18\" viewBox=\"9 9 35 35\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n      <path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M42.8622 27.0064C42.8622 25.7839 42.7525 24.6084 42.5487 23.4799H26.3109V30.1568H35.5897C35.1821 32.3041 33.9596 34.1222 32.1258 35.3448V39.6864H37.7213C40.9814 36.677 42.8622 32.2571 42.8622 27.0064V27.0064Z\" fill=\"#4285F4\"/>\n      <path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M26.3109 43.8555C30.9659 43.8555 34.8687 42.3195 37.7213 39.6863L32.1258 35.3447C30.5898 36.3792 28.6306 37.0061 26.3109 37.0061C21.8282 37.0061 18.0195 33.9811 16.6559 29.906H10.9194V34.3573C13.7563 39.9841 19.5712 43.8555 26.3109 43.8555V43.8555Z\" fill=\"#34A853\"/>\n      <path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M16.6559 29.8904C16.3111 28.8559 16.1074 27.7588 16.1074 26.6146C16.1074 25.4704 16.3111 24.3733 16.6559 23.3388V18.8875H10.9194C9.74388 21.2072 9.06992 23.8247 9.06992 26.6146C9.06992 29.4045 9.74388 32.022 10.9194 34.3417L15.3864 30.8621L16.6559 29.8904V29.8904Z\" fill=\"#FBBC05\"/>\n      <path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M26.3109 16.2386C28.85 16.2386 31.107 17.1164 32.9095 18.8091L37.8466 13.8719C34.853 11.082 30.9659 9.3736 26.3109 9.3736C19.5712 9.3736 13.7563 13.245 10.9194 18.8875L16.6559 23.3388C18.0195 19.2636 21.8282 16.2386 26.3109 16.2386V16.2386Z\" fill=\"#EA4335\"/>\n    </svg>\n    <svg class=\"logo-dark\" width=\"18\" height=\"18\" viewBox=\"0 0 48 48\" xmlns=\"http://www.w3.org/2000/svg\">\n      <circle cx=\"24\" cy=\"23\" fill=\"#FFF\" r=\"22\"/>\n      <path d=\"M33.76 34.26c2.75-2.56 4.49-6.37 4.49-11.26 0-.89-.08-1.84-.29-3H24.01v5.99h8.03c-.4 2.02-1.5 3.56-3.07 4.56v.75l3.91 2.97h.88z\" fill=\"#4285F4\"/>\n      <path d=\"M15.58 25.77A8.845 8.845 0 0 0 24 31.86c1.92 0 3.62-.46 4.97-1.31l4.79 3.71C31.14 36.7 27.65 38 24 38c-5.93 0-11.01-3.4-13.45-8.36l.17-1.01 4.06-2.85h.8z\" fill=\"#34A853\"/>\n      <path d=\"M15.59 20.21a8.864 8.864 0 0 0 0 5.58l-5.03 3.86c-.98-2-1.53-4.25-1.53-6.64 0-2.39.55-4.64 1.53-6.64l1-.22 3.81 2.98.22 1.08z\" fill=\"#FBBC05\"/>\n      <path d=\"M24 14.14c2.11 0 4.02.75 5.52 1.98l4.36-4.36C31.22 9.43 27.81 8 24 8c-5.93 0-11.01 3.4-13.45 8.36l5.03 3.85A8.86 8.86 0 0 1 24 14.14z\" fill=\"#EA4335\"/>\n    </svg>\n    <div class=\"gradient-container\"><div class=\"gradient\"></div></div>\n  </div>\n  <div class=\"carousel\">\n<a class=\"chip\" href=\"https://www.google.com/search?q=%22collegeparkmd.gov%22+%22How+to+Report+An+Issue+to+All+Agencies%22+url&client=app-vertex-grounding&safesearch=active\">&quot;collegeparkmd.gov&quot; &quot;How to Report An Issue to All Agencies&quot; url</a>\n<a class=\"chip\" href=\"https://www.google.com/search?q=%22mdotsha%22+%22Service+Request%22+%22force.com%22+OR+%22dynamics%22+OR+%22roads.maryland.gov%22&client=app-vertex-grounding&safesearch=active\">&quot;mdotsha&quot; &quot;Service Request&quot; &quot;force.com&quot; OR &quot;dynamics&quot; OR &quot;roads.maryland.gov&quot;</a>\n  </div>\n</div>\n<style>\n.container {\n  align-items: center;\n  border-radius: 8px;\n  display: flex;\n  font-family: Google Sans, Roboto, sans-serif;\n  font-size: 14px;\n  line-height: 20px;\n  padding: 8px 12px;\n}\n.chip {\n  display: inline-block;\n  border: solid 1px;\n  border-radius: 16px;\n  min-width: 14px;\n  padding: 5px 16px;\n  text-align: center;\n  user-select: none;\n  margin: 0 8px;\n  -webkit-tap-highlight-color: transparent;\n}\n.carousel {\n  overflow: auto;\n  scrollbar-width: none;\n  white-space: nowrap;\n  margin-right: -12px;\n}\n.headline {\n  display: flex;\n  margin-right: 4px;\n}\n.gradient-container {\n  position: relative;\n}\n.gradient {\n  position: absolute;\n  transform: translate(3px, -9px);\n  height: 36px;\n  width: 9px;\n}\n@media (prefers-color-scheme: light) {\n  .container {\n    background-color: #fafafa;\n    box-shadow: 0 0 0 1px #0000000f;\n  }\n  .headline-label {\n    color: #1f1f1f;\n  }\n  .chip {\n    background-color: #ffffff;\n    border-color: #d2d2d2;\n    color: #5e5e5e;\n    text-decoration: none;\n  }\n  .chip:hover {\n    background-color: #f2f2f2;\n  }\n  .chip:focus {\n    background-color: #f2f2f2;\n  }\n  .chip:active {\n    background-color: #d8d8d8;\n    border-color: #b6b6b6;\n  }\n  .logo-dark {\n    display: none;\n  }\n  .gradient {\n    background: linear-gradient(90deg, #fafafa 15%, #fafafa00 100%);\n  }\n}\n@media (prefers-color-scheme: dark) {\n  .container {\n    background-color: #1f1f1f;\n    box-shadow: 0 0 0 1px #ffffff26;\n  }\n  .headline-label {\n    color: #fff;\n  }\n  .chip {\n    background-color: #2c2c2c;\n    border-color: #3c4043;\n    color: #fff;\n    text-decoration: none;\n  }\n  .chip:hover {\n    background-color: #353536;\n  }\n  .chip:focus {\n    background-color: #353536;\n  }\n  .chip:active {\n    background-color: #464849;\n    border-color: #53575b;\n  }\n  .logo-light {\n    display: none;\n  }\n  .gradient {\n    background: linear-gradient(90deg, #1f1f1f 15%, #1f1f1f00 100%);\n  }\n}\n</style>\n<div class=\"container\">\n  <div class=\"headline\">\n    <svg class=\"logo-light\" width=\"18\" height=\"18\" viewBox=\"9 9 35 35\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n      <path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M42.8622 27.0064C42.8622 25.7839 42.7525 24.6084 42.5487 23.4799H26.3109V30.1568H35.5897C35.1821 32.3041 33.9596 34.1222 32.1258 35.3448V39.6864H37.7213C40.9814 36.677 42.8622 32.2571 42.8622 27.0064V27.0064Z\" fill=\"#4285F4\"/>\n      <path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M26.3109 43.8555C30.9659 43.8555 34.8687 42.3195 37.7213 39.6863L32.1258 35.3447C30.5898 36.3792 28.6306 37.0061 26.3109 37.0061C21.8282 37.0061 18.0195 33.9811 16.6559 29.906H10.9194V34.3573C13.7563 39.9841 19.5712 43.8555 26.3109 43.8555V43.8555Z\" fill=\"#34A853\"/>\n      <path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M16.6559 29.8904C16.3111 28.8559 16.1074 27.7588 16.1074 26.6146C16.1074 25.4704 16.3111 24.3733 16.6559 23.3388V18.8875H10.9194C9.74388 21.2072 9.06992 23.8247 9.06992 26.6146C9.06992 29.4045 9.74388 32.022 10.9194 34.3417L15.3864 30.8621L16.6559 29.8904V29.8904Z\" fill=\"#FBBC05\"/>\n      <path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M26.3109 16.2386C28.85 16.2386 31.107 17.1164 32.9095 18.8091L37.8466 13.8719C34.853 11.082 30.9659 9.3736 26.3109 9.3736C19.5712 9.3736 13.7563 13.245 10.9194 18.8875L16.6559 23.3388C18.0195 19.2636 21.8282 16.2386 26.3109 16.2386V16.2386Z\" fill=\"#EA4335\"/>\n    </svg>\n    <svg class=\"logo-dark\" width=\"18\" height=\"18\" viewBox=\"0 0 48 48\" xmlns=\"http://www.w3.org/2000/svg\">\n      <circle cx=\"24\" cy=\"23\" fill=\"#FFF\" r=\"22\"/>\n      <path d=\"M33.76 34.26c2.75-2.56 4.49-6.37 4.49-11.26 0-.89-.08-1.84-.29-3H24.01v5.99h8.03c-.4 2.02-1.5 3.56-3.07 4.56v.75l3.91 2.97h.88z\" fill=\"#4285F4\"/>\n      <path d=\"M15.58 25.77A8.845 8.845 0 0 0 24 31.86c1.92 0 3.62-.46 4.97-1.31l4.79 3.71C31.14 36.7 27.65 38 24 38c-5.93 0-11.01-3.4-13.45-8.36l.17-1.01 4.06-2.85h.8z\" fill=\"#34A853\"/>\n      <path d=\"M15.59 20.21a8.864 8.864 0 0 0 0 5.58l-5.03 3.86c-.98-2-1.53-4.25-1.53-6.64 0-2.39.55-4.64 1.53-6.64l1-.22 3.81 2.98.22 1.08z\" fill=\"#FBBC05\"/>\n      <path d=\"M24 14.14c2.11 0 4.02.75 5.52 1.98l4.36-4.36C31.22 9.43 27.81 8 24 8c-5.93 0-11.01 3.4-13.45 8.36l5.03 3.85A8.86 8.86 0 0 1 24 14.14z\" fill=\"#EA4335\"/>\n    </svg>\n    <div class=\"gradient-container\"><div class=\"gradient\"></div></div>\n  </div>\n  <div class=\"carousel\">\n<a class=\"chip\" href=\"https://www.google.com/search?q=%22mdotsha%22+%22salesforce%22+OR+%22service%22+%22roads.maryland.gov%22&client=app-vertex-grounding&safesearch=active\">&quot;mdotsha&quot; &quot;salesforce&quot; OR &quot;service&quot; &quot;roads.maryland.gov&quot;</a>\n<a class=\"chip\" href=\"https://www.google.com/search?q=%22%40mdot.maryland.gov%22+site:roads.maryland.gov+%22District+3%22+OR+%22Customer%22+OR+%22pothole%22&client=app-vertex-grounding&safesearch=active\">&quot;@mdot.maryland.gov&quot; site:roads.maryland.gov &quot;District 3&quot; OR &quot;Customer&quot; OR &quot;pothole&quot;</a>\n<a class=\"chip\" href=\"https://www.google.com/search?q=%22collegeparkmd.gov/DocumentCenter%22+OR+%22collegeparkmd.gov/%22+%22How+to+Report+An+Issue+to+All+Agencies%22&client=app-vertex-grounding&safesearch=active\">&quot;collegeparkmd.gov/DocumentCenter&quot; OR &quot;collegeparkmd.gov/&quot; &quot;How to Report An Issue to All Agencies&quot;</a>\n  </div>\n</div>",
+    "context": {
+      "road": {
+        "name": "Baltimore Avenue",
+        "ref": "US 1",
+        "kind": "primary",
+        "operator": null,
+        "distanceMeters": 0
+      },
+      "campus": null,
+      "streetLights": [],
+      "area": {
+        "municipality": "College Park",
+        "municipalityKind": "city",
+        "incorporation": "incorporated",
+        "county": "Prince George's County",
+        "state": "Maryland",
+        "country": "United States",
+        "countryCode": "us"
+      },
+      "partial": false
+    },
+    "generatedAt": "2026-11-20T04:41:18.280Z"
+  },
+  "responses": [
+    {
+      "kind": "research",
+      "status": 200,
+      "body": {
+        "status": "completed",
+        "usage": {
+          "total_tokens": 6431,
+          "total_input_tokens": 2423,
+          "input_tokens_by_modality": [
+            {
+              "modality": "text",
+              "tokens": 1343
+            },
+            {
+              "modality": "image",
+              "tokens": 1080
+            }
+          ],
+          "total_cached_tokens": 0,
+          "total_output_tokens": 1433,
+          "output_tokens_by_modality": [
+            {
+              "modality": "text",
+              "tokens": 1433
+            }
+          ],
+          "total_tool_use_tokens": 0,
+          "total_thought_tokens": 2575,
+          "grounding_tool_count": [
+            {
+              "type": "google_search",
+              "count": 13
+            }
+          ],
+          "initial_input_tokens": 2423
+        },
+        "created": "2026-11-20T04:41:12Z",
+        "updated": "2026-11-20T04:41:12Z",
+        "service_tier": "standard",
+        "steps": [
+          {
+            "id": "call_14301302144086902901",
+            "type": "google_search_call",
+            "arguments": {
+              "queries": [
+                "site:collegeparkmd.gov \"Baltimore Avenue\" OR \"state roads\" OR \"pothole\"",
+                "\"Baltimore Avenue\" \"College Park\" \"State Highway Administration\" OR \"SHA\" \"US 1\"",
+                "\"College Park\" pothole report \"US 1\" OR \"Baltimore Avenue\"",
+                "site:roads.maryland.gov pothole report"
+              ]
+            },
+            "search_type": "web_search"
+          },
+          {
+            "call_id": "call_14301302144086902901",
+            "type": "google_search_result",
+            "result": [
+              {
+                "search_suggestions": "<style>\n.container {\n  align-items: center;\n  border-radius: 8px;\n  display: flex;\n  font-family: Google Sans, Roboto, sans-serif;\n  font-size: 14px;\n  line-height: 20px;\n  padding: 8px 12px;\n}\n.chip {\n  display: inline-block;\n  border: solid 1px;\n  border-radius: 16px;\n  min-width: 14px;\n  padding: 5px 16px;\n  text-align: center;\n  user-select: none;\n  margin: 0 8px;\n  -webkit-tap-highlight-color: transparent;\n}\n.carousel {\n  overflow: auto;\n  scrollbar-width: none;\n  white-space: nowrap;\n  margin-right: -12px;\n}\n.headline {\n  display: flex;\n  margin-right: 4px;\n}\n.gradient-container {\n  position: relative;\n}\n.gradient {\n  position: absolute;\n  transform: translate(3px, -9px);\n  height: 36px;\n  width: 9px;\n}\n@media (prefers-color-scheme: light) {\n  .container {\n    background-color: #fafafa;\n    box-shadow: 0 0 0 1px #0000000f;\n  }\n  .headline-label {\n    color: #1f1f1f;\n  }\n  .chip {\n    background-color: #ffffff;\n    border-color: #d2d2d2;\n    color: #5e5e5e;\n    text-decoration: none;\n  }\n  .chip:hover {\n    background-color: #f2f2f2;\n  }\n  .chip:focus {\n    background-color: #f2f2f2;\n  }\n  .chip:active {\n    background-color: #d8d8d8;\n    border-color: #b6b6b6;\n  }\n  .logo-dark {\n    display: none;\n  }\n  .gradient {\n    background: linear-gradient(90deg, #fafafa 15%, #fafafa00 100%);\n  }\n}\n@media (prefers-color-scheme: dark) {\n  .container {\n    background-color: #1f1f1f;\n    box-shadow: 0 0 0 1px #ffffff26;\n  }\n  .headline-label {\n    color: #fff;\n  }\n  .chip {\n    background-color: #2c2c2c;\n    border-color: #3c4043;\n    color: #fff;\n    text-decoration: none;\n  }\n  .chip:hover {\n    background-color: #353536;\n  }\n  .chip:focus {\n    background-color: #353536;\n  }\n  .chip:active {\n    background-color: #464849;\n    border-color: #53575b;\n  }\n  .logo-light {\n    display: none;\n  }\n  .gradient {\n    background: linear-gradient(90deg, #1f1f1f 15%, #1f1f1f00 100%);\n  }\n}\n</style>\n<div class=\"container\">\n  <div class=\"headline\">\n    <svg class=\"logo-light\" width=\"18\" height=\"18\" viewBox=\"9 9 35 35\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n      <path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M42.8622 27.0064C42.8622 25.7839 42.7525 24.6084 42.5487 23.4799H26.3109V30.1568H35.5897C35.1821 32.3041 33.9596 34.1222 32.1258 35.3448V39.6864H37.7213C40.9814 36.677 42.8622 32.2571 42.8622 27.0064V27.0064Z\" fill=\"#4285F4\"/>\n      <path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M26.3109 43.8555C30.9659 43.8555 34.8687 42.3195 37.7213 39.6863L32.1258 35.3447C30.5898 36.3792 28.6306 37.0061 26.3109 37.0061C21.8282 37.0061 18.0195 33.9811 16.6559 29.906H10.9194V34.3573C13.7563 39.9841 19.5712 43.8555 26.3109 43.8555V43.8555Z\" fill=\"#34A853\"/>\n      <path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M16.6559 29.8904C16.3111 28.8559 16.1074 27.7588 16.1074 26.6146C16.1074 25.4704 16.3111 24.3733 16.6559 23.3388V18.8875H10.9194C9.74388 21.2072 9.06992 23.8247 9.06992 26.6146C9.06992 29.4045 9.74388 32.022 10.9194 34.3417L15.3864 30.8621L16.6559 29.8904V29.8904Z\" fill=\"#FBBC05\"/>\n      <path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M26.3109 16.2386C28.85 16.2386 31.107 17.1164 32.9095 18.8091L37.8466 13.8719C34.853 11.082 30.9659 9.3736 26.3109 9.3736C19.5712 9.3736 13.7563 13.245 10.9194 18.8875L16.6559 23.3388C18.0195 19.2636 21.8282 16.2386 26.3109 16.2386V16.2386Z\" fill=\"#EA4335\"/>\n    </svg>\n    <svg class=\"logo-dark\" width=\"18\" height=\"18\" viewBox=\"0 0 48 48\" xmlns=\"http://www.w3.org/2000/svg\">\n      <circle cx=\"24\" cy=\"23\" fill=\"#FFF\" r=\"22\"/>\n      <path d=\"M33.76 34.26c2.75-2.56 4.49-6.37 4.49-11.26 0-.89-.08-1.84-.29-3H24.01v5.99h8.03c-.4 2.02-1.5 3.56-3.07 4.56v.75l3.91 2.97h.88z\" fill=\"#4285F4\"/>\n      <path d=\"M15.58 25.77A8.845 8.845 0 0 0 24 31.86c1.92 0 3.62-.46 4.97-1.31l4.79 3.71C31.14 36.7 27.65 38 24 38c-5.93 0-11.01-3.4-13.45-8.36l.17-1.01 4.06-2.85h.8z\" fill=\"#34A853\"/>\n      <path d=\"M15.59 20.21a8.864 8.864 0 0 0 0 5.58l-5.03 3.86c-.98-2-1.53-4.25-1.53-6.64 0-2.39.55-4.64 1.53-6.64l1-.22 3.81 2.98.22 1.08z\" fill=\"#FBBC05\"/>\n      <path d=\"M24 14.14c2.11 0 4.02.75 5.52 1.98l4.36-4.36C31.22 9.43 27.81 8 24 8c-5.93 0-11.01 3.4-13.45 8.36l5.03 3.85A8.86 8.86 0 0 1 24 14.14z\" fill=\"#EA4335\"/>\n    </svg>\n    <div class=\"gradient-container\"><div class=\"gradient\"></div></div>\n  </div>\n  <div class=\"carousel\">\n<a class=\"chip\" href=\"https://www.google.com/search?q=%22Baltimore+Avenue%22+%22College+Park%22+%22State+Highway+Administration%22+OR+%22SHA%22+%22US+1%22&client=app-vertex-grounding&safesearch=active\">&quot;Baltimore Avenue&quot; &quot;College Park&quot; &quot;State Highway Administration&quot; OR &quot;SHA&quot; &quot;US 1&quot;</a>\n<a class=\"chip\" href=\"https://www.google.com/search?q=%22College+Park%22+pothole+report+%22US+1%22+OR+%22Baltimore+Avenue%22&client=app-vertex-grounding&safesearch=active\">&quot;College Park&quot; pothole report &quot;US 1&quot; OR &quot;Baltimore Avenue&quot;</a>\n<a class=\"chip\" href=\"https://www.google.com/search?q=site:collegeparkmd.gov+%22Baltimore+Avenue%22+OR+%22state+roads%22+OR+%22pothole%22&client=app-vertex-grounding&safesearch=active\">site:collegeparkmd.gov &quot;Baltimore Avenue&quot; OR &quot;state roads&quot; OR &quot;pothole&quot;</a>\n<a class=\"chip\" href=\"https://www.google.com/search?q=site:roads.maryland.gov+pothole+report&client=app-vertex-grounding&safesearch=active\">site:roads.maryland.gov pothole report</a>\n  </div>\n</div>"
+              }
+            ],
+            "is_error": false
+          },
+          {
+            "id": "call_9288257391036794989",
+            "type": "url_context_call",
+            "arguments": {
+              "urls": [
+                "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFSZFduhuQnSH9q9ZWO1rDw-jOJHm6upPOu1GxaTtTYtIfBomMCRalRUWQqu_hWt1NP1oFctoDxOklabYLpLq5O8nHNJGb8lLbEP7gjLVZA5mmr1E5Ip3WK_sB0txiKjmwfVW6_FK_zHStIytg4OYsQGJfoOA==",
+                "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGXHK-S3tuOGxpwD_OCZV7IVjBaTJmo9CRP9dGZnaPcTiVi2zoEMopj04olb1CxedtO2xoiw2613t4YXr6gz4BkfGwOXF7jPfH76cJhwUny8bcz8eeIs1CX6Eg=",
+                "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEwCCWlbqasm_8eWcWR7UpRow30CJKdFuJg_PZtja7933oNx2R8DuCGWq-sIXAnK0XmKn8rZ5B610zU97AorB7dT5QcEGjAvcWUvPXr5Rb_nftaV8JC_m5GlksavVYFEYY1mOZcBIxQkIfMuOvuQ1nOerIaaA=="
+              ]
+            }
+          },
+          {
+            "call_id": "call_9288257391036794989",
+            "type": "url_context_result",
+            "result": [
+              {
+                "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGXHK-S3tuOGxpwD_OCZV7IVjBaTJmo9CRP9dGZnaPcTiVi2zoEMopj04olb1CxedtO2xoiw2613t4YXr6gz4BkfGwOXF7jPfH76cJhwUny8bcz8eeIs1CX6Eg=",
+                "status": "success"
+              },
+              {
+                "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFSZFduhuQnSH9q9ZWO1rDw-jOJHm6upPOu1GxaTtTYtIfBomMCRalRUWQqu_hWt1NP1oFctoDxOklabYLpLq5O8nHNJGb8lLbEP7gjLVZA5mmr1E5Ip3WK_sB0txiKjmwfVW6_FK_zHStIytg4OYsQGJfoOA==",
+                "status": "success"
+              },
+              {
+                "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEwCCWlbqasm_8eWcWR7UpRow30CJKdFuJg_PZtja7933oNx2R8DuCGWq-sIXAnK0XmKn8rZ5B610zU97AorB7dT5QcEGjAvcWUvPXr5Rb_nftaV8JC_m5GlksavVYFEYY1mOZcBIxQkIfMuOvuQ1nOerIaaA==",
+                "status": "success"
+              }
+            ],
+            "is_error": false
+          },
+          {
+            "id": "call_15555580382415530215",
+            "type": "google_search_call",
+            "arguments": {
+              "queries": [
+                "\"Submit a service request\" site:roads.maryland.gov",
+                "\"How to Report An Issue to All Agencies\" site:collegeparkmd.gov",
+                "\"District 3\" \"Prince George\" site:roads.maryland.gov",
+                "\"roads.maryland.gov\" \"mdotsha\" \"Service Request\" OR \"Customer Care\""
+              ]
+            },
+            "search_type": "web_search"
+          },
+          {
+            "call_id": "call_15555580382415530215",
+            "type": "google_search_result",
+            "result": [
+              {
+                "search_suggestions": "<style>\n.container {\n  align-items: center;\n  border-radius: 8px;\n  display: flex;\n  font-family: Google Sans, Roboto, sans-serif;\n  font-size: 14px;\n  line-height: 20px;\n  padding: 8px 12px;\n}\n.chip {\n  display: inline-block;\n  border: solid 1px;\n  border-radius: 16px;\n  min-width: 14px;\n  padding: 5px 16px;\n  text-align: center;\n  user-select: none;\n  margin: 0 8px;\n  -webkit-tap-highlight-color: transparent;\n}\n.carousel {\n  overflow: auto;\n  scrollbar-width: none;\n  white-space: nowrap;\n  margin-right: -12px;\n}\n.headline {\n  display: flex;\n  margin-right: 4px;\n}\n.gradient-container {\n  position: relative;\n}\n.gradient {\n  position: absolute;\n  transform: translate(3px, -9px);\n  height: 36px;\n  width: 9px;\n}\n@media (prefers-color-scheme: light) {\n  .container {\n    background-color: #fafafa;\n    box-shadow: 0 0 0 1px #0000000f;\n  }\n  .headline-label {\n    color: #1f1f1f;\n  }\n  .chip {\n    background-color: #ffffff;\n    border-color: #d2d2d2;\n    color: #5e5e5e;\n    text-decoration: none;\n  }\n  .chip:hover {\n    background-color: #f2f2f2;\n  }\n  .chip:focus {\n    background-color: #f2f2f2;\n  }\n  .chip:active {\n    background-color: #d8d8d8;\n    border-color: #b6b6b6;\n  }\n  .logo-dark {\n    display: none;\n  }\n  .gradient {\n    background: linear-gradient(90deg, #fafafa 15%, #fafafa00 100%);\n  }\n}\n@media (prefers-color-scheme: dark) {\n  .container {\n    background-color: #1f1f1f;\n    box-shadow: 0 0 0 1px #ffffff26;\n  }\n  .headline-label {\n    color: #fff;\n  }\n  .chip {\n    background-color: #2c2c2c;\n    border-color: #3c4043;\n    color: #fff;\n    text-decoration: none;\n  }\n  .chip:hover {\n    background-color: #353536;\n  }\n  .chip:focus {\n    background-color: #353536;\n  }\n  .chip:active {\n    background-color: #464849;\n    border-color: #53575b;\n  }\n  .logo-light {\n    display: none;\n  }\n  .gradient {\n    background: linear-gradient(90deg, #1f1f1f 15%, #1f1f1f00 100%);\n  }\n}\n</style>\n<div class=\"container\">\n  <div class=\"headline\">\n    <svg class=\"logo-light\" width=\"18\" height=\"18\" viewBox=\"9 9 35 35\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n      <path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M42.8622 27.0064C42.8622 25.7839 42.7525 24.6084 42.5487 23.4799H26.3109V30.1568H35.5897C35.1821 32.3041 33.9596 34.1222 32.1258 35.3448V39.6864H37.7213C40.9814 36.677 42.8622 32.2571 42.8622 27.0064V27.0064Z\" fill=\"#4285F4\"/>\n      <path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M26.3109 43.8555C30.9659 43.8555 34.8687 42.3195 37.7213 39.6863L32.1258 35.3447C30.5898 36.3792 28.6306 37.0061 26.3109 37.0061C21.8282 37.0061 18.0195 33.9811 16.6559 29.906H10.9194V34.3573C13.7563 39.9841 19.5712 43.8555 26.3109 43.8555V43.8555Z\" fill=\"#34A853\"/>\n      <path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M16.6559 29.8904C16.3111 28.8559 16.1074 27.7588 16.1074 26.6146C16.1074 25.4704 16.3111 24.3733 16.6559 23.3388V18.8875H10.9194C9.74388 21.2072 9.06992 23.8247 9.06992 26.6146C9.06992 29.4045 9.74388 32.022 10.9194 34.3417L15.3864 30.8621L16.6559 29.8904V29.8904Z\" fill=\"#FBBC05\"/>\n      <path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M26.3109 16.2386C28.85 16.2386 31.107 17.1164 32.9095 18.8091L37.8466 13.8719C34.853 11.082 30.9659 9.3736 26.3109 9.3736C19.5712 9.3736 13.7563 13.245 10.9194 18.8875L16.6559 23.3388C18.0195 19.2636 21.8282 16.2386 26.3109 16.2386V16.2386Z\" fill=\"#EA4335\"/>\n    </svg>\n    <svg class=\"logo-dark\" width=\"18\" height=\"18\" viewBox=\"0 0 48 48\" xmlns=\"http://www.w3.org/2000/svg\">\n      <circle cx=\"24\" cy=\"23\" fill=\"#FFF\" r=\"22\"/>\n      <path d=\"M33.76 34.26c2.75-2.56 4.49-6.37 4.49-11.26 0-.89-.08-1.84-.29-3H24.01v5.99h8.03c-.4 2.02-1.5 3.56-3.07 4.56v.75l3.91 2.97h.88z\" fill=\"#4285F4\"/>\n      <path d=\"M15.58 25.77A8.845 8.845 0 0 0 24 31.86c1.92 0 3.62-.46 4.97-1.31l4.79 3.71C31.14 36.7 27.65 38 24 38c-5.93 0-11.01-3.4-13.45-8.36l.17-1.01 4.06-2.85h.8z\" fill=\"#34A853\"/>\n      <path d=\"M15.59 20.21a8.864 8.864 0 0 0 0 5.58l-5.03 3.86c-.98-2-1.53-4.25-1.53-6.64 0-2.39.55-4.64 1.53-6.64l1-.22 3.81 2.98.22 1.08z\" fill=\"#FBBC05\"/>\n      <path d=\"M24 14.14c2.11 0 4.02.75 5.52 1.98l4.36-4.36C31.22 9.43 27.81 8 24 8c-5.93 0-11.01 3.4-13.45 8.36l5.03 3.85A8.86 8.86 0 0 1 24 14.14z\" fill=\"#EA4335\"/>\n    </svg>\n    <div class=\"gradient-container\"><div class=\"gradient\"></div></div>\n  </div>\n  <div class=\"carousel\">\n<a class=\"chip\" href=\"https://www.google.com/search?q=%22How+to+Report+An+Issue+to+All+Agencies%22+site:collegeparkmd.gov&client=app-vertex-grounding&safesearch=active\">&quot;How to Report An Issue to All Agencies&quot; site:collegeparkmd.gov</a>\n<a class=\"chip\" href=\"https://www.google.com/search?q=%22Submit+a+service+request%22+site:roads.maryland.gov&client=app-vertex-grounding&safesearch=active\">&quot;Submit a service request&quot; site:roads.maryland.gov</a>\n<a class=\"chip\" href=\"https://www.google.com/search?q=%22District+3%22+%22Prince+George%22+site:roads.maryland.gov&client=app-vertex-grounding&safesearch=active\">&quot;District 3&quot; &quot;Prince George&quot; site:roads.maryland.gov</a>\n<a class=\"chip\" href=\"https://www.google.com/search?q=%22roads.maryland.gov%22+%22mdotsha%22+%22Service+Request%22+OR+%22Customer+Care%22&client=app-vertex-grounding&safesearch=active\">&quot;roads.maryland.gov&quot; &quot;mdotsha&quot; &quot;Service Request&quot; OR &quot;Customer Care&quot;</a>\n  </div>\n</div>"
+              }
+            ],
+            "is_error": false
+          },
+          {
+            "id": "call_13610880987007532246",
+            "type": "url_context_call",
+            "arguments": {
+              "urls": [
+                "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFDyOFIEo4TTJedb9sRpqSifs4itr0f6uZeT3xhjcbgLsEIBkllxqwo_3bGBAR6sOoG0NQFsKyOC5Inam00_d3Xq5R_rly_Gejc9bwJQZ8qHRMBZ5GIpm6ymHysskh6OZhd-L4Y_rDGu-GSXsqmvpbPMWn0tA=="
+              ]
+            }
+          },
+          {
+            "id": "call_13610880987007531333",
+            "type": "google_search_call",
+            "arguments": {
+              "queries": [
+                "\"collegeparkmd.gov\" \"How to Report An Issue to All Agencies\" url",
+                "\"mdotsha\" \"Service Request\" \"force.com\" OR \"dynamics\" OR \"roads.maryland.gov\""
+              ]
+            },
+            "search_type": "web_search"
+          },
+          {
+            "call_id": "call_13610880987007532246",
+            "type": "url_context_result",
+            "result": [
+              {
+                "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFDyOFIEo4TTJedb9sRpqSifs4itr0f6uZeT3xhjcbgLsEIBkllxqwo_3bGBAR6sOoG0NQFsKyOC5Inam00_d3Xq5R_rly_Gejc9bwJQZ8qHRMBZ5GIpm6ymHysskh6OZhd-L4Y_rDGu-GSXsqmvpbPMWn0tA==",
+                "status": "success"
+              }
+            ],
+            "is_error": false
+          },
+          {
+            "call_id": "call_13610880987007531333",
+            "type": "google_search_result",
+            "result": [
+              {
+                "search_suggestions": "<style>\n.container {\n  align-items: center;\n  border-radius: 8px;\n  display: flex;\n  font-family: Google Sans, Roboto, sans-serif;\n  font-size: 14px;\n  line-height: 20px;\n  padding: 8px 12px;\n}\n.chip {\n  display: inline-block;\n  border: solid 1px;\n  border-radius: 16px;\n  min-width: 14px;\n  padding: 5px 16px;\n  text-align: center;\n  user-select: none;\n  margin: 0 8px;\n  -webkit-tap-highlight-color: transparent;\n}\n.carousel {\n  overflow: auto;\n  scrollbar-width: none;\n  white-space: nowrap;\n  margin-right: -12px;\n}\n.headline {\n  display: flex;\n  margin-right: 4px;\n}\n.gradient-container {\n  position: relative;\n}\n.gradient {\n  position: absolute;\n  transform: translate(3px, -9px);\n  height: 36px;\n  width: 9px;\n}\n@media (prefers-color-scheme: light) {\n  .container {\n    background-color: #fafafa;\n    box-shadow: 0 0 0 1px #0000000f;\n  }\n  .headline-label {\n    color: #1f1f1f;\n  }\n  .chip {\n    background-color: #ffffff;\n    border-color: #d2d2d2;\n    color: #5e5e5e;\n    text-decoration: none;\n  }\n  .chip:hover {\n    background-color: #f2f2f2;\n  }\n  .chip:focus {\n    background-color: #f2f2f2;\n  }\n  .chip:active {\n    background-color: #d8d8d8;\n    border-color: #b6b6b6;\n  }\n  .logo-dark {\n    display: none;\n  }\n  .gradient {\n    background: linear-gradient(90deg, #fafafa 15%, #fafafa00 100%);\n  }\n}\n@media (prefers-color-scheme: dark) {\n  .container {\n    background-color: #1f1f1f;\n    box-shadow: 0 0 0 1px #ffffff26;\n  }\n  .headline-label {\n    color: #fff;\n  }\n  .chip {\n    background-color: #2c2c2c;\n    border-color: #3c4043;\n    color: #fff;\n    text-decoration: none;\n  }\n  .chip:hover {\n    background-color: #353536;\n  }\n  .chip:focus {\n    background-color: #353536;\n  }\n  .chip:active {\n    background-color: #464849;\n    border-color: #53575b;\n  }\n  .logo-light {\n    display: none;\n  }\n  .gradient {\n    background: linear-gradient(90deg, #1f1f1f 15%, #1f1f1f00 100%);\n  }\n}\n</style>\n<div class=\"container\">\n  <div class=\"headline\">\n    <svg class=\"logo-light\" width=\"18\" height=\"18\" viewBox=\"9 9 35 35\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n      <path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M42.8622 27.0064C42.8622 25.7839 42.7525 24.6084 42.5487 23.4799H26.3109V30.1568H35.5897C35.1821 32.3041 33.9596 34.1222 32.1258 35.3448V39.6864H37.7213C40.9814 36.677 42.8622 32.2571 42.8622 27.0064V27.0064Z\" fill=\"#4285F4\"/>\n      <path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M26.3109 43.8555C30.9659 43.8555 34.8687 42.3195 37.7213 39.6863L32.1258 35.3447C30.5898 36.3792 28.6306 37.0061 26.3109 37.0061C21.8282 37.0061 18.0195 33.9811 16.6559 29.906H10.9194V34.3573C13.7563 39.9841 19.5712 43.8555 26.3109 43.8555V43.8555Z\" fill=\"#34A853\"/>\n      <path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M16.6559 29.8904C16.3111 28.8559 16.1074 27.7588 16.1074 26.6146C16.1074 25.4704 16.3111 24.3733 16.6559 23.3388V18.8875H10.9194C9.74388 21.2072 9.06992 23.8247 9.06992 26.6146C9.06992 29.4045 9.74388 32.022 10.9194 34.3417L15.3864 30.8621L16.6559 29.8904V29.8904Z\" fill=\"#FBBC05\"/>\n      <path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M26.3109 16.2386C28.85 16.2386 31.107 17.1164 32.9095 18.8091L37.8466 13.8719C34.853 11.082 30.9659 9.3736 26.3109 9.3736C19.5712 9.3736 13.7563 13.245 10.9194 18.8875L16.6559 23.3388C18.0195 19.2636 21.8282 16.2386 26.3109 16.2386V16.2386Z\" fill=\"#EA4335\"/>\n    </svg>\n    <svg class=\"logo-dark\" width=\"18\" height=\"18\" viewBox=\"0 0 48 48\" xmlns=\"http://www.w3.org/2000/svg\">\n      <circle cx=\"24\" cy=\"23\" fill=\"#FFF\" r=\"22\"/>\n      <path d=\"M33.76 34.26c2.75-2.56 4.49-6.37 4.49-11.26 0-.89-.08-1.84-.29-3H24.01v5.99h8.03c-.4 2.02-1.5 3.56-3.07 4.56v.75l3.91 2.97h.88z\" fill=\"#4285F4\"/>\n      <path d=\"M15.58 25.77A8.845 8.845 0 0 0 24 31.86c1.92 0 3.62-.46 4.97-1.31l4.79 3.71C31.14 36.7 27.65 38 24 38c-5.93 0-11.01-3.4-13.45-8.36l.17-1.01 4.06-2.85h.8z\" fill=\"#34A853\"/>\n      <path d=\"M15.59 20.21a8.864 8.864 0 0 0 0 5.58l-5.03 3.86c-.98-2-1.53-4.25-1.53-6.64 0-2.39.55-4.64 1.53-6.64l1-.22 3.81 2.98.22 1.08z\" fill=\"#FBBC05\"/>\n      <path d=\"M24 14.14c2.11 0 4.02.75 5.52 1.98l4.36-4.36C31.22 9.43 27.81 8 24 8c-5.93 0-11.01 3.4-13.45 8.36l5.03 3.85A8.86 8.86 0 0 1 24 14.14z\" fill=\"#EA4335\"/>\n    </svg>\n    <div class=\"gradient-container\"><div class=\"gradient\"></div></div>\n  </div>\n  <div class=\"carousel\">\n<a class=\"chip\" href=\"https://www.google.com/search?q=%22collegeparkmd.gov%22+%22How+to+Report+An+Issue+to+All+Agencies%22+url&client=app-vertex-grounding&safesearch=active\">&quot;collegeparkmd.gov&quot; &quot;How to Report An Issue to All Agencies&quot; url</a>\n<a class=\"chip\" href=\"https://www.google.com/search?q=%22mdotsha%22+%22Service+Request%22+%22force.com%22+OR+%22dynamics%22+OR+%22roads.maryland.gov%22&client=app-vertex-grounding&safesearch=active\">&quot;mdotsha&quot; &quot;Service Request&quot; &quot;force.com&quot; OR &quot;dynamics&quot; OR &quot;roads.maryland.gov&quot;</a>\n  </div>\n</div>"
+              }
+            ],
+            "is_error": false
+          },
+          {
+            "id": "call_14594030873440479066",
+            "type": "google_search_call",
+            "arguments": {
+              "queries": [
+                "\"collegeparkmd.gov/DocumentCenter\" OR \"collegeparkmd.gov/\" \"How to Report An Issue to All Agencies\"",
+                "\"mdotsha\" \"salesforce\" OR \"service\" \"roads.maryland.gov\"",
+                "\"@mdot.maryland.gov\" site:roads.maryland.gov \"District 3\" OR \"Customer\" OR \"pothole\""
+              ]
+            },
+            "search_type": "web_search"
+          },
+          {
+            "call_id": "call_14594030873440479066",
+            "type": "google_search_result",
+            "result": [
+              {
+                "search_suggestions": "<style>\n.container {\n  align-items: center;\n  border-radius: 8px;\n  display: flex;\n  font-family: Google Sans, Roboto, sans-serif;\n  font-size: 14px;\n  line-height: 20px;\n  padding: 8px 12px;\n}\n.chip {\n  display: inline-block;\n  border: solid 1px;\n  border-radius: 16px;\n  min-width: 14px;\n  padding: 5px 16px;\n  text-align: center;\n  user-select: none;\n  margin: 0 8px;\n  -webkit-tap-highlight-color: transparent;\n}\n.carousel {\n  overflow: auto;\n  scrollbar-width: none;\n  white-space: nowrap;\n  margin-right: -12px;\n}\n.headline {\n  display: flex;\n  margin-right: 4px;\n}\n.gradient-container {\n  position: relative;\n}\n.gradient {\n  position: absolute;\n  transform: translate(3px, -9px);\n  height: 36px;\n  width: 9px;\n}\n@media (prefers-color-scheme: light) {\n  .container {\n    background-color: #fafafa;\n    box-shadow: 0 0 0 1px #0000000f;\n  }\n  .headline-label {\n    color: #1f1f1f;\n  }\n  .chip {\n    background-color: #ffffff;\n    border-color: #d2d2d2;\n    color: #5e5e5e;\n    text-decoration: none;\n  }\n  .chip:hover {\n    background-color: #f2f2f2;\n  }\n  .chip:focus {\n    background-color: #f2f2f2;\n  }\n  .chip:active {\n    background-color: #d8d8d8;\n    border-color: #b6b6b6;\n  }\n  .logo-dark {\n    display: none;\n  }\n  .gradient {\n    background: linear-gradient(90deg, #fafafa 15%, #fafafa00 100%);\n  }\n}\n@media (prefers-color-scheme: dark) {\n  .container {\n    background-color: #1f1f1f;\n    box-shadow: 0 0 0 1px #ffffff26;\n  }\n  .headline-label {\n    color: #fff;\n  }\n  .chip {\n    background-color: #2c2c2c;\n    border-color: #3c4043;\n    color: #fff;\n    text-decoration: none;\n  }\n  .chip:hover {\n    background-color: #353536;\n  }\n  .chip:focus {\n    background-color: #353536;\n  }\n  .chip:active {\n    background-color: #464849;\n    border-color: #53575b;\n  }\n  .logo-light {\n    display: none;\n  }\n  .gradient {\n    background: linear-gradient(90deg, #1f1f1f 15%, #1f1f1f00 100%);\n  }\n}\n</style>\n<div class=\"container\">\n  <div class=\"headline\">\n    <svg class=\"logo-light\" width=\"18\" height=\"18\" viewBox=\"9 9 35 35\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n      <path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M42.8622 27.0064C42.8622 25.7839 42.7525 24.6084 42.5487 23.4799H26.3109V30.1568H35.5897C35.1821 32.3041 33.9596 34.1222 32.1258 35.3448V39.6864H37.7213C40.9814 36.677 42.8622 32.2571 42.8622 27.0064V27.0064Z\" fill=\"#4285F4\"/>\n      <path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M26.3109 43.8555C30.9659 43.8555 34.8687 42.3195 37.7213 39.6863L32.1258 35.3447C30.5898 36.3792 28.6306 37.0061 26.3109 37.0061C21.8282 37.0061 18.0195 33.9811 16.6559 29.906H10.9194V34.3573C13.7563 39.9841 19.5712 43.8555 26.3109 43.8555V43.8555Z\" fill=\"#34A853\"/>\n      <path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M16.6559 29.8904C16.3111 28.8559 16.1074 27.7588 16.1074 26.6146C16.1074 25.4704 16.3111 24.3733 16.6559 23.3388V18.8875H10.9194C9.74388 21.2072 9.06992 23.8247 9.06992 26.6146C9.06992 29.4045 9.74388 32.022 10.9194 34.3417L15.3864 30.8621L16.6559 29.8904V29.8904Z\" fill=\"#FBBC05\"/>\n      <path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M26.3109 16.2386C28.85 16.2386 31.107 17.1164 32.9095 18.8091L37.8466 13.8719C34.853 11.082 30.9659 9.3736 26.3109 9.3736C19.5712 9.3736 13.7563 13.245 10.9194 18.8875L16.6559 23.3388C18.0195 19.2636 21.8282 16.2386 26.3109 16.2386V16.2386Z\" fill=\"#EA4335\"/>\n    </svg>\n    <svg class=\"logo-dark\" width=\"18\" height=\"18\" viewBox=\"0 0 48 48\" xmlns=\"http://www.w3.org/2000/svg\">\n      <circle cx=\"24\" cy=\"23\" fill=\"#FFF\" r=\"22\"/>\n      <path d=\"M33.76 34.26c2.75-2.56 4.49-6.37 4.49-11.26 0-.89-.08-1.84-.29-3H24.01v5.99h8.03c-.4 2.02-1.5 3.56-3.07 4.56v.75l3.91 2.97h.88z\" fill=\"#4285F4\"/>\n      <path d=\"M15.58 25.77A8.845 8.845 0 0 0 24 31.86c1.92 0 3.62-.46 4.97-1.31l4.79 3.71C31.14 36.7 27.65 38 24 38c-5.93 0-11.01-3.4-13.45-8.36l.17-1.01 4.06-2.85h.8z\" fill=\"#34A853\"/>\n      <path d=\"M15.59 20.21a8.864 8.864 0 0 0 0 5.58l-5.03 3.86c-.98-2-1.53-4.25-1.53-6.64 0-2.39.55-4.64 1.53-6.64l1-.22 3.81 2.98.22 1.08z\" fill=\"#FBBC05\"/>\n      <path d=\"M24 14.14c2.11 0 4.02.75 5.52 1.98l4.36-4.36C31.22 9.43 27.81 8 24 8c-5.93 0-11.01 3.4-13.45 8.36l5.03 3.85A8.86 8.86 0 0 1 24 14.14z\" fill=\"#EA4335\"/>\n    </svg>\n    <div class=\"gradient-container\"><div class=\"gradient\"></div></div>\n  </div>\n  <div class=\"carousel\">\n<a class=\"chip\" href=\"https://www.google.com/search?q=%22mdotsha%22+%22salesforce%22+OR+%22service%22+%22roads.maryland.gov%22&client=app-vertex-grounding&safesearch=active\">&quot;mdotsha&quot; &quot;salesforce&quot; OR &quot;service&quot; &quot;roads.maryland.gov&quot;</a>\n<a class=\"chip\" href=\"https://www.google.com/search?q=%22%40mdot.maryland.gov%22+site:roads.maryland.gov+%22District+3%22+OR+%22Customer%22+OR+%22pothole%22&client=app-vertex-grounding&safesearch=active\">&quot;@mdot.maryland.gov&quot; site:roads.maryland.gov &quot;District 3&quot; OR &quot;Customer&quot; OR &quot;pothole&quot;</a>\n<a class=\"chip\" href=\"https://www.google.com/search?q=%22collegeparkmd.gov/DocumentCenter%22+OR+%22collegeparkmd.gov/%22+%22How+to+Report+An+Issue+to+All+Agencies%22&client=app-vertex-grounding&safesearch=active\">&quot;collegeparkmd.gov/DocumentCenter&quot; OR &quot;collegeparkmd.gov/&quot; &quot;How to Report An Issue to All Agencies&quot;</a>\n  </div>\n</div>"
+              }
+            ],
+            "is_error": false
+          },
+          {
+            "type": "thought"
+          },
+          {
+            "content": [
+              {
+                "text": "ISSUE_KIND: pothole\nISSUE: Deep, water-filled pothole in the northbound right lane of Baltimore Avenue (US 1)\nDETAILS: The photo shows a large, deep, water-filled pothole with cracked and deteriorating asphalt around its edges. The user note states it is in the northbound right lane in front of the 7-Eleven, has been growing for two weeks, and popped a tire the previous day.\nORGANIZATION: Maryland Department of Transportation State Highway Administration (MDOT SHA)\nDEPARTMENT: District 3\nWHY: Although the spot is inside the incorporated City of College Park and the user note guesses the city owns the road, Baltimore Avenue is US Route 1. MDOT SHA maintains non-toll U.S. and state-numbered routes in Maryland's 23 counties, and the City of College Park explicitly lists Baltimore Avenue/Route 1 as a street maintained by the State Highway Administration rather than the city.\nCOVERAGE_QUOTE: \"MDOT SHA maintains more than 2,500 bridges and 17,000 miles of non-toll state roads – the interstate, US and state numbered routes in Maryland's 23 counties.\"\nCOVERAGE_URL: https://roads.maryland.gov/mdotsha/pages/pressreleasedetails.aspx?PageId=818&newsId=4183\nREPORTING_URL: https://roads.maryland.gov/mdotsha/pages/index.aspx?pageid=519\nOFFICIAL_WEBSITE: https://roads.maryland.gov/mdotsha/pages/Index.aspx?PageId=579\nEMAIL: unknown\nPHONE: 301-513-7300 | https://roads.maryland.gov/mdotsha/pages/districts.aspx?did=d3\nPHOTO_LOOKS_DAYTIME: yes\nNOTE_SAYS_LIGHT_OUT: no\nSOURCES:\nhttps://roads.maryland.gov/mdotsha/pages/pressreleasedetails.aspx?PageId=818&newsId=4183\nhttps://roads.maryland.gov/mdotsha/pages/index.aspx?pageid=519\nhttps://roads.maryland.gov/mdotsha/pages/Index.aspx?PageId=579\nhttps://roads.maryland.gov/mdotsha/pages/districts.aspx?did=d3",
+                "annotations": [
+                  {
+                    "start_index": 646,
+                    "end_index": 882,
+                    "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEXwHzh69eL4d20i0w38-WvWOSH0ie8HOEpJR2yRHErbDeeiMyoe3N6wGVqnylHsZR59Lfs4PEcBuJEwZAJJy-INfDrOcKxPKqQMzKIayJHIuGUiWdsRsfJ5wrW7p2CXwC0I5VBMyy9Ns4uxzI1AeULErDbTtZDLrUkX1VkduQhe7uLVFoFaqCaKyLMwT4x",
+                    "title": "maryland.gov",
+                    "type": "url_citation"
+                  },
+                  {
+                    "start_index": 646,
+                    "end_index": 882,
+                    "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGXHK-S3tuOGxpwD_OCZV7IVjBaTJmo9CRP9dGZnaPcTiVi2zoEMopj04olb1CxedtO2xoiw2613t4YXr6gz4BkfGwOXF7jPfH76cJhwUny8bcz8eeIs1CX6Eg=",
+                    "title": "How to Report An Issue to All Agencies | City of College Park ...",
+                    "type": "url_citation"
+                  }
+                ],
+                "type": "text"
+              }
+            ],
+            "type": "model_output"
+          }
+        ],
+        "object": "interaction",
+        "model": "gemini-4-hydrogen"
+      }
+    },
+    {
+      "kind": "format",
+      "status": 200,
+      "body": {
+        "status": "completed",
+        "usage": {
+          "total_tokens": 4198,
+          "total_input_tokens": 2682,
+          "input_tokens_by_modality": [
+            {
+              "modality": "text",
+              "tokens": 2682
+            }
+          ],
+          "total_cached_tokens": 0,
+          "total_output_tokens": 653,
+          "output_tokens_by_modality": [
+            {
+              "modality": "text",
+              "tokens": 653
+            }
+          ],
+          "total_tool_use_tokens": 0,
+          "total_thought_tokens": 863,
+          "initial_input_tokens": 2682
+        },
+        "created": "2026-11-20T04:41:19Z",
+        "updated": "2026-11-20T04:41:19Z",
+        "service_tier": "standard",
+        "steps": [
+          {
+            "type": "thought"
+          },
+          {
+            "content": [
+              {
+                "text": "{\n  \"issue\": {\n    \"kind\": \"pothole\",\n    \"title\": \"Deep, water-filled pothole in the travel lane\",\n    \"summary\": \"A large, deep, water-filled pothole with cracked and deteriorating asphalt around its edges. It has been growing for two weeks and popped a tire the previous day.\",\n    \"spot\": \"northbound right lane in front of the 7-Eleven\",\n    \"observations\": [\n      \"Large, deep, water-filled pothole\",\n      \"Cracked and deteriorating asphalt around the edges\",\n      \"Growing for two weeks\",\n      \"Popped a tire the previous day\"\n    ]\n  },\n  \"organization\": \"Maryland Department of Transportation State Highway Administration (MDOT SHA)\",\n  \"department\": \"District 3\",\n  \"reason\": \"Although your spot is inside the City of College Park, Baltimore Avenue is US Route 1. MDOT SHA maintains non-toll U.S. and state-numbered routes in Maryland's 23 counties, and the City of College Park lists Baltimore Avenue/Route 1 as a street maintained by the State Highway Administration rather than the city.\",\n  \"coverageQuote\": \"MDOT SHA maintains more than 2,500 bridges and 17,000 miles of non-toll state roads – the interstate, US and state numbered routes in Maryland's 23 counties.\",\n  \"coverageSource\": \"https://roads.maryland.gov/mdotsha/pages/pressreleasedetails.aspx?PageId=818&newsId=4183\",\n  \"reportingPage\": \"https://roads.maryland.gov/mdotsha/pages/index.aspx?pageid=519\",\n  \"officialWebsite\": \"https://roads.maryland.gov/mdotsha/pages/Index.aspx?PageId=579\",\n  \"email\": null,\n  \"emailSource\": null,\n  \"phone\": \"301-513-7300\",\n  \"phoneSource\": \"https://roads.maryland.gov/mdotsha/pages/districts.aspx?did=d3\",\n  \"sources\": [\n    \"https://roads.maryland.gov/mdotsha/pages/pressreleasedetails.aspx?PageId=818&newsId=4183\",\n    \"https://roads.maryland.gov/mdotsha/pages/index.aspx?pageid=519\",\n    \"https://roads.maryland.gov/mdotsha/pages/Index.aspx?PageId=579\",\n    \"https://roads.maryland.gov/mdotsha/pages/districts.aspx?did=d3\"\n  ],\n  \"noteSaysLightIsOut\": null,\n  \"photoLooksDaytime\": null\n}",
+                "type": "text"
+              }
+            ],
+            "type": "model_output"
+          }
+        ],
+        "object": "interaction",
+        "model": "gemini-4-hydrogen"
+      }
+    }
+  ]
+}

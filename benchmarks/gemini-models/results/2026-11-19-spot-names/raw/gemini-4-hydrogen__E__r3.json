@@ -1,0 +1,30 @@
+{
+  "row": {
+    "variant": "gemini-4-hydrogen",
+    "model": "gemini-4-hydrogen",
+    "case": "E",
+    "repeat": 3,
+    "startedAt": "2026-11-20T04:49:12.098Z",
+    "ms": 70104,
+    "phases": {
+      "context": 0
+    },
+    "error": "RESEARCH_FAILED",
+    "calls": [
+      {
+        "kind": "research",
+        "ms": 70103,
+        "status": null,
+        "thinkingLevel": "low",
+        "servedModel": null,
+        "usage": null,
+        "searches": 0,
+        "error": "TypeError"
+      }
+    ],
+    "report": null,
+    "named": null
+  },
+  "investigation": null,
+  "responses": []
+}

@@ -1,0 +1,156 @@
+[
+  {
+    "variant": "gemini-3.6-flash",
+    "model": "gemini-3.6-flash",
+    "servedBy": [
+      "gemini-3.6-flash"
+    ],
+    "thinking": [
+      "format:minimal",
+      "research:low"
+    ],
+    "runs": 6,
+    "errors": [],
+    "appOk": 6,
+    "medianMs": 16602,
+    "p90Ms": 26997,
+    "maxMs": 26997,
+    "over45": 0,
+    "finished": 6,
+    "confirmed": 3,
+    "bestMatch": 3,
+    "unidentified": 0,
+    "contact": 6,
+    "namedOk": 6,
+    "officeOk": 6,
+    "kindOk": 6,
+    "spotOk": 6,
+    "factOk": 6,
+    "ownerLeak": "0/3",
+    "photoLeak": "0/3",
+    "tokens": {
+      "research": {
+        "input": 1968,
+        "cached": 1136,
+        "toolUse": 0,
+        "thought": 876,
+        "output": 343
+      },
+      "format": {
+        "input": 955,
+        "thought": 0,
+        "output": 365
+      },
+      "total": 4506
+    },
+    "searchesMean": 14.333333333333334,
+    "searchesMax": 28,
+    "tokenCostNow": {
+      "median": 0.0072762375,
+      "mean": 0.0073629375
+    },
+    "tokenCostFrom2027": 0.014725875,
+    "searchCostMean": 0.2006666666666667,
+    "wrong": [],
+    "perCase": [
+      {
+        "case": "B",
+        "runs": 3,
+        "officeOk": 3,
+        "namedOk": 3,
+        "confirmed": 0,
+        "spotOk": 3,
+        "factOk": 3,
+        "medianMs": 26983
+      },
+      {
+        "case": "E",
+        "runs": 3,
+        "officeOk": 3,
+        "namedOk": 3,
+        "confirmed": 3,
+        "spotOk": 3,
+        "factOk": 3,
+        "medianMs": 13738
+      }
+    ]
+  },
+  {
+    "variant": "gemini-4-hydrogen",
+    "model": "gemini-4-hydrogen",
+    "servedBy": [
+      "gemini-4-hydrogen"
+    ],
+    "thinking": [
+      "format:low",
+      "research:low"
+    ],
+    "runs": 6,
+    "errors": [
+      "E r3: RESEARCH_FAILED"
+    ],
+    "appOk": 5,
+    "medianMs": 20474,
+    "p90Ms": 26493,
+    "maxMs": 26493,
+    "over45": 0,
+    "finished": 5,
+    "confirmed": 2,
+    "bestMatch": 3,
+    "unidentified": 0,
+    "contact": 2,
+    "namedOk": 5,
+    "officeOk": 5,
+    "kindOk": 5,
+    "spotOk": 5,
+    "factOk": 5,
+    "ownerLeak": "0/2",
+    "photoLeak": "0/2",
+    "tokens": {
+      "research": {
+        "input": 2001,
+        "cached": 0,
+        "toolUse": 0,
+        "thought": 1032,
+        "output": 535
+      },
+      "format": {
+        "input": 2561,
+        "thought": 728,
+        "output": 438
+      },
+      "total": 7295
+    },
+    "searchesMean": 7,
+    "searchesMax": 13,
+    "tokenCostNow": {
+      "median": 0.0286605,
+      "mean": 0.027342900000000003
+    },
+    "tokenCostFrom2027": 0.027342900000000003,
+    "searchCostMean": 0.098,
+    "wrong": [],
+    "perCase": [
+      {
+        "case": "B",
+        "runs": 3,
+        "officeOk": 3,
+        "namedOk": 3,
+        "confirmed": 0,
+        "spotOk": 3,
+        "factOk": 3,
+        "medianMs": 23578
+      },
+      {
+        "case": "E",
+        "runs": 3,
+        "officeOk": 2,
+        "namedOk": 2,
+        "confirmed": 2,
+        "spotOk": 2,
+        "factOk": 2,
+        "medianMs": 18132.5
+      }
+    ]
+  }
+]

@@ -219,6 +219,16 @@ describe('investigate pipeline', () => {
     assert.equal(result.issue.spot, spot);
   });
 
+  it('asks each model for a format-call thinking level it accepts (Gemini 4 rejects "minimal")', async () => {
+    for (const [model, level] of [['gemini-3.6-flash', 'minimal'], ['gemini-4-hydrogen', 'low']] as const) {
+      const h = harness({});
+      await runInvestigation(request, withContext, { ...h.deps, env: { ...h.deps.env, GEMINI_MODEL: model } });
+      const formatBody = h.geminiBodies.find((body) => body.response_format)!;
+      assert.equal(formatBody.model, model);
+      assert.deepEqual(formatBody.generation_config, { thinking_level: level });
+    }
+  });
+
   it('downgrades to best match when the quote is not on the page', async () => {
     const h = harness({
       format: [() => json(formatInteraction(draft({ coverageQuote: 'The county maintains every road in this area of town.' })))],

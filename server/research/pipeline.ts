@@ -15,6 +15,7 @@ import {
   RecitationBlockedError,
   researchFailed,
   researchUnavailable,
+  lowestThinkingLevel,
   type CallOptions,
   type GroundedOutput,
 } from './gemini.js';
@@ -245,7 +246,7 @@ async function investigateWithin(
         system_instruction: formatInstruction(hasPhoto),
         input: formatInput(grounded.text, sourceIds, request.details, noQuote),
         response_format: { type: 'text', mime_type: 'application/json', schema: draftJsonSchema(hasPhoto) },
-        generation_config: { thinking_level: 'minimal' },
+        generation_config: { thinking_level: lowestThinkingLevel(model) },
       },
       call,
     );

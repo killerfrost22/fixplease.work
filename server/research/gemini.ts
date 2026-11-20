@@ -12,6 +12,22 @@ export const GEMINI_API_REVISION = '2026-05-20';
 /** Chosen by the model benchmark in docs/gemini-model-benchmark.md. */
 export const DEFAULT_GEMINI_MODEL = 'gemini-3.6-flash';
 
+/**
+ * Models that accept `thinking_level: 'minimal'`, from https://ai.google.dev/gemini-api/docs/thinking#thinking-levels
+ * (read 2026-11-19). Gemini 4 models and `gemini-3.8-flash` reject it with a 400.
+ */
+const MINIMAL_THINKING_MODELS: Record<string, true> = {
+  'gemini-3.6-flash': true,
+  'gemini-3.5-flash-lite': true,
+  'gemini-3.1-flash-lite': true,
+  'gemini-3-flash-preview': true,
+};
+
+/** The lowest thinking level `model` accepts. Unlisted models get `low`, which every thinking model accepts. */
+export function lowestThinkingLevel(model: string): 'minimal' | 'low' {
+  return MINIMAL_THINKING_MODELS[model] === true ? 'minimal' : 'low';
+}
+
 export const researchUnavailable = () => new ApiError(503, 'Report lookup is offline right now.', 'RESEARCH_UNAVAILABLE');
 export const researchQuota = () =>
   new ApiError(503, "We've hit our lookup limit for now. Please try again later.", 'RESEARCH_QUOTA');

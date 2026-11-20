@@ -1,0 +1,362 @@
+[
+  {
+    "variant": "gemini-3.6-flash",
+    "model": "gemini-3.6-flash",
+    "servedBy": [
+      "gemini-3.6-flash"
+    ],
+    "thinking": [
+      "format:minimal",
+      "research:low"
+    ],
+    "runs": 18,
+    "errors": [],
+    "appOk": 18,
+    "medianMs": 14548.5,
+    "p90Ms": 24325,
+    "maxMs": 24902,
+    "over45": 0,
+    "finished": 18,
+    "confirmed": 9,
+    "bestMatch": 6,
+    "unidentified": 3,
+    "contact": 15,
+    "namedOk": 18,
+    "officeOk": 15,
+    "kindOk": 18,
+    "spotOk": 13,
+    "factOk": 18,
+    "ownerLeak": "0/9",
+    "photoLeak": "0/6",
+    "tokens": {
+      "research": {
+        "input": 2112,
+        "cached": 1021,
+        "toolUse": 0,
+        "thought": 755,
+        "output": 430
+      },
+      "format": {
+        "input": 1076,
+        "thought": 0,
+        "output": 454
+      },
+      "total": 4826
+    },
+    "searchesMean": 12.222222222222221,
+    "searchesMax": 27,
+    "tokenCostNow": {
+      "median": 0.007906875,
+      "mean": 0.007845095833333334
+    },
+    "tokenCostFrom2027": 0.01569019166666667,
+    "searchCostMean": 0.1711111111111111,
+    "wrong": [
+      "D r1: road_damage / unidentified / null / null",
+      "D r2: road_damage / unidentified / null / null",
+      "D r3: road_damage / unidentified / null / null"
+    ],
+    "perCase": [
+      {
+        "case": "A",
+        "runs": 3,
+        "officeOk": 3,
+        "namedOk": 3,
+        "confirmed": 3,
+        "spotOk": 3,
+        "factOk": 3,
+        "medianMs": 14922
+      },
+      {
+        "case": "B",
+        "runs": 3,
+        "officeOk": 3,
+        "namedOk": 3,
+        "confirmed": 0,
+        "spotOk": 1,
+        "factOk": 3,
+        "medianMs": 24183
+      },
+      {
+        "case": "C",
+        "runs": 3,
+        "officeOk": 3,
+        "namedOk": 3,
+        "confirmed": 3,
+        "spotOk": 3,
+        "factOk": 3,
+        "medianMs": 11640
+      },
+      {
+        "case": "D",
+        "runs": 3,
+        "officeOk": 0,
+        "namedOk": 3,
+        "confirmed": 0,
+        "spotOk": 3,
+        "factOk": 3,
+        "medianMs": 11756
+      },
+      {
+        "case": "E",
+        "runs": 3,
+        "officeOk": 3,
+        "namedOk": 3,
+        "confirmed": 3,
+        "spotOk": 0,
+        "factOk": 3,
+        "medianMs": 10281
+      },
+      {
+        "case": "F",
+        "runs": 3,
+        "officeOk": 3,
+        "namedOk": 3,
+        "confirmed": 0,
+        "spotOk": 3,
+        "factOk": 3,
+        "medianMs": 21751
+      }
+    ]
+  },
+  {
+    "variant": "gemini-4-hydrogen",
+    "model": "gemini-4-hydrogen",
+    "servedBy": [
+      "gemini-4-hydrogen"
+    ],
+    "thinking": [
+      "format:low",
+      "research:low"
+    ],
+    "runs": 18,
+    "errors": [],
+    "appOk": 16,
+    "medianMs": 24701,
+    "p90Ms": 51546,
+    "maxMs": 53832,
+    "over45": 2,
+    "finished": 18,
+    "confirmed": 9,
+    "bestMatch": 6,
+    "unidentified": 3,
+    "contact": 11,
+    "namedOk": 18,
+    "officeOk": 15,
+    "kindOk": 18,
+    "spotOk": 18,
+    "factOk": 18,
+    "ownerLeak": "0/9",
+    "photoLeak": "0/6",
+    "tokens": {
+      "research": {
+        "input": 2072,
+        "cached": 0,
+        "toolUse": 0,
+        "thought": 927,
+        "output": 670
+      },
+      "format": {
+        "input": 2477,
+        "thought": 727,
+        "output": 482
+      },
+      "total": 7356
+    },
+    "searchesMean": 5.777777777777778,
+    "searchesMax": 15,
+    "tokenCostNow": {
+      "median": 0.026607,
+      "mean": 0.027874333333333334
+    },
+    "tokenCostFrom2027": 0.027874333333333334,
+    "searchCostMean": 0.08088888888888889,
+    "wrong": [
+      "D r1: road_damage / unidentified / null / null",
+      "D r2: road_damage / unidentified / null / null",
+      "D r3: road_damage / unidentified / null / null"
+    ],
+    "perCase": [
+      {
+        "case": "A",
+        "runs": 3,
+        "officeOk": 3,
+        "namedOk": 3,
+        "confirmed": 3,
+        "spotOk": 3,
+        "factOk": 3,
+        "medianMs": 23071
+      },
+      {
+        "case": "B",
+        "runs": 3,
+        "officeOk": 3,
+        "namedOk": 3,
+        "confirmed": 0,
+        "spotOk": 3,
+        "factOk": 3,
+        "medianMs": 33794
+      },
+      {
+        "case": "C",
+        "runs": 3,
+        "officeOk": 3,
+        "namedOk": 3,
+        "confirmed": 3,
+        "spotOk": 3,
+        "factOk": 3,
+        "medianMs": 20680
+      },
+      {
+        "case": "D",
+        "runs": 3,
+        "officeOk": 0,
+        "namedOk": 3,
+        "confirmed": 0,
+        "spotOk": 3,
+        "factOk": 3,
+        "medianMs": 27112
+      },
+      {
+        "case": "E",
+        "runs": 3,
+        "officeOk": 3,
+        "namedOk": 3,
+        "confirmed": 3,
+        "spotOk": 3,
+        "factOk": 3,
+        "medianMs": 18638
+      },
+      {
+        "case": "F",
+        "runs": 3,
+        "officeOk": 3,
+        "namedOk": 3,
+        "confirmed": 0,
+        "spotOk": 3,
+        "factOk": 3,
+        "medianMs": 24827
+      }
+    ]
+  },
+  {
+    "variant": "gemini-4-hydrogen@medium",
+    "model": "gemini-4-hydrogen",
+    "servedBy": [
+      "gemini-4-hydrogen"
+    ],
+    "thinking": [
+      "format:low",
+      "research:medium"
+    ],
+    "runs": 18,
+    "errors": [],
+    "appOk": 4,
+    "medianMs": 56129.5,
+    "p90Ms": 109474,
+    "maxMs": 114346,
+    "over45": 14,
+    "finished": 18,
+    "confirmed": 9,
+    "bestMatch": 6,
+    "unidentified": 3,
+    "contact": 11,
+    "namedOk": 18,
+    "officeOk": 15,
+    "kindOk": 18,
+    "spotOk": 18,
+    "factOk": 18,
+    "ownerLeak": "0/9",
+    "photoLeak": "0/6",
+    "tokens": {
+      "research": {
+        "input": 2072,
+        "cached": 0,
+        "toolUse": 0,
+        "thought": 4250,
+        "output": 1782
+      },
+      "format": {
+        "input": 2995,
+        "thought": 788,
+        "output": 509
+      },
+      "total": 12396
+    },
+    "searchesMean": 23.27777777777778,
+    "searchesMax": 55,
+    "tokenCostNow": {
+      "median": 0.0588525,
+      "mean": 0.06257108333333333
+    },
+    "tokenCostFrom2027": 0.06257108333333333,
+    "searchCostMean": 0.3258888888888889,
+    "wrong": [
+      "D r1: road_damage / unidentified / null / null",
+      "D r2: road_damage / unidentified / null / null",
+      "D r3: road_damage / unidentified / null / null"
+    ],
+    "perCase": [
+      {
+        "case": "A",
+        "runs": 3,
+        "officeOk": 3,
+        "namedOk": 3,
+        "confirmed": 3,
+        "spotOk": 3,
+        "factOk": 3,
+        "medianMs": 53478
+      },
+      {
+        "case": "B",
+        "runs": 3,
+        "officeOk": 3,
+        "namedOk": 3,
+        "confirmed": 0,
+        "spotOk": 3,
+        "factOk": 3,
+        "medianMs": 96159
+      },
+      {
+        "case": "C",
+        "runs": 3,
+        "officeOk": 3,
+        "namedOk": 3,
+        "confirmed": 3,
+        "spotOk": 3,
+        "factOk": 3,
+        "medianMs": 52692
+      },
+      {
+        "case": "D",
+        "runs": 3,
+        "officeOk": 0,
+        "namedOk": 3,
+        "confirmed": 0,
+        "spotOk": 3,
+        "factOk": 3,
+        "medianMs": 55654
+      },
+      {
+        "case": "E",
+        "runs": 3,
+        "officeOk": 3,
+        "namedOk": 3,
+        "confirmed": 3,
+        "spotOk": 3,
+        "factOk": 3,
+        "medianMs": 37829
+      },
+      {
+        "case": "F",
+        "runs": 3,
+        "officeOk": 3,
+        "namedOk": 3,
+        "confirmed": 0,
+        "spotOk": 3,
+        "factOk": 3,
+        "medianMs": 106318
+      }
+    ]
+  }
+]
