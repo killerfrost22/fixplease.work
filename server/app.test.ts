@@ -369,6 +369,20 @@ test('the SPA fallback and other text files are compressed; HEAD has headers but
   assert.equal(head.body.length, 0);
 });
 
+test('a pilot host gets its own app shell on every client route, and the main host keeps its own', async () => {
+  const base = await start(fakeDeps());
+  const host = `gbs.localhost:${new URL(base).port}`;
+  for (const path of ['/', '/tech', '/index.html']) {
+    const pilot = await raw(`${base}${path}`, { Host: host, 'Accept-Encoding': 'br' });
+    assert.equal(pilot.status, 200, path);
+    assert.equal(pilot.headers['cache-control'], 'no-cache', path);
+    assert.match(brotliDecompressSync(pilot.body).toString(), /<title>Fix Please · Greenbelt Station pilot<\/title>/, path);
+  }
+  // Asked after the pilot's shell is cached, so a shared cache entry would show up here.
+  const main = await raw(`${base}/`, { 'Accept-Encoding': 'br' });
+  assert.deepEqual(brotliDecompressSync(main.body), INDEX_HTML);
+});
+
 test('images are not recompressed, revalidation gets 304, and dotfiles or traversal never leak files', async () => {
   const base = await start(fakeDeps());
   const png = await raw(`${base}/icon.png`, { 'Accept-Encoding': 'br, gzip' });

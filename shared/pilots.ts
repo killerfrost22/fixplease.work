@@ -47,6 +47,16 @@ export function pilotForHost(host: string | null | undefined): Pilot | null {
   return PILOTS.find((pilot) => pilot.id === labels[0]) ?? null;
 }
 
+/** The host a page is served on: `gbs.fixplease.work` for a pilot, `fixplease.work` otherwise. */
+export function siteHost(pilot: Pilot | null): string {
+  return pilot ? `${pilot.id}.fixplease.work` : 'fixplease.work';
+}
+
+/** The pilot's page title, in the tab and in link previews. */
+export function pilotTitle(pilot: Pilot): string {
+  return `Fix Please · ${pilot.area} pilot`;
+}
+
 const EARTH_RADIUS_M = 6_371_008.8;
 
 /** Great-circle distance in meters. */

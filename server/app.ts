@@ -1,7 +1,7 @@
 import { createHash } from 'node:crypto';
 import { existsSync } from 'node:fs';
 import { readFile, stat } from 'node:fs/promises';
-import { basename, extname, isAbsolute, join, relative } from 'node:path';
+import { extname, isAbsolute, join, relative } from 'node:path';
 import { promisify } from 'node:util';
 import { brotliCompress, constants as zlibConstants, gzip } from 'node:zlib';
 import express, { type ErrorRequestHandler, type Express, type Request, type Response } from 'express';
@@ -20,6 +20,7 @@ import { insideCircle, pilotForHost, type Circle, type Pilot } from '../shared/p
 import type { Captcha } from './captcha.js';
 import type { ServerConfig } from './config.js';
 import { ApiError } from './errors.js';
+import { pilotShell } from './pilot-shell.js';
 import { parseCoordinatesQuery, parseInvestigationRequest, parseSearchQuery } from './validation.js';
 
 export interface GeoDeps {
@@ -116,6 +117,12 @@ interface EncodedFile {
   etag: string;
 }
 
+/** A host's own version of a text file: `id` keys the cache, `apply` rewrites the file's text. */
+interface Rewrite {
+  id: string;
+  apply: (text: string) => string;
+}
+
 const brotliAsync = promisify(brotliCompress);
 const gzipAsync = promisify(gzip);
 
@@ -136,13 +143,13 @@ function resolveInside(root: string, urlPath: string): string | null {
 
 /**
  * Serves text files from the build compressed with Brotli or gzip. Each file is read and compressed once per
- * encoding, off the main thread, then kept in memory: `dist/` does not change while the process runs.
+ * encoding and rewrite, off the main thread, then kept in memory: `dist/` does not change while the process runs.
  */
 function createTextFileServer() {
   const cache = new Map<string, Promise<EncodedFile>>();
 
-  async function encodeFile(file: string, encoding: ContentEncoding): Promise<EncodedFile> {
-    const raw = await readFile(file);
+  async function encodeFile(file: string, encoding: ContentEncoding, rewrite?: Rewrite): Promise<EncodedFile> {
+    const raw = rewrite ? Buffer.from(rewrite.apply(await readFile(file, 'utf8'))) : await readFile(file);
     const body =
       encoding === 'br'
         ? await brotliAsync(raw, {
@@ -159,19 +166,25 @@ function createTextFileServer() {
     return { body, etag: `"${hash}-${encoding}"` };
   }
 
-  /** Sends `file` and returns true, or returns false if it isn't a text file that exists. */
-  return async function send(req: Request, res: Response, file: string, cacheControl: string): Promise<boolean> {
+  /** Sends `file`, rewritten by `rewrite` if given, and returns true; false if it isn't a text file that exists. */
+  return async function send(
+    req: Request,
+    res: Response,
+    file: string,
+    cacheControl: string,
+    rewrite?: Rewrite,
+  ): Promise<boolean> {
     const type = TEXT_TYPES[extname(file).toLowerCase()];
     if (!type) return false;
     const encoding: ContentEncoding =
       req.acceptsEncodings('br') === 'br' ? 'br' : req.acceptsEncodings('gzip') === 'gzip' ? 'gzip' : 'identity';
-    const key = `${file}\0${encoding}`;
+    const key = `${file}\0${encoding}\0${rewrite?.id ?? ''}`;
     let encoded = cache.get(key);
     if (!encoded) {
       // Misses are not cached, so requests for made-up paths can't grow the cache.
       const info = await stat(file).catch(() => null);
       if (!info?.isFile()) return false;
-      encoded = encodeFile(file, encoding);
+      encoded = encodeFile(file, encoding, rewrite);
       cache.set(key, encoded);
       encoded.catch(() => cache.delete(key));
     }
@@ -304,17 +317,24 @@ export function createApp(deps: AppDeps): Express {
       res.status(404).type('text/plain').send('Not found');
     });
 
+    // The app shell, uncached. A pilot host gets its own title, description, and address for link previews.
+    const sendShell = (req: Request, res: Response) => {
+      const pilot = pilotForHost(req.get('host'));
+      const rewrite = pilot ? { id: pilot.id, apply: (html: string) => pilotShell(html, pilot) } : undefined;
+      return sendTextFile(req, res, indexFile, 'no-cache', rewrite);
+    };
+
     app.use(async (req, res, next) => {
       const file = req.method === 'GET' || req.method === 'HEAD' ? resolveInside(config.distDir, req.path) : null;
-      const cacheControl = file && basename(file) === 'index.html' ? 'no-cache' : 'public, max-age=0';
-      if (file && (await sendTextFile(req, res, file, cacheControl))) return;
-      next();
+      if (file === null) return next();
+      const sent = file === indexFile ? await sendShell(req, res) : await sendTextFile(req, res, file, 'public, max-age=0');
+      if (!sent) next();
     });
     app.use(express.static(config.distDir, { index: false }));
     // Client-side routes (/, /tech, /privacy, anything else) all load the app shell.
     app.use(async (req, res, next) => {
       if (req.method !== 'GET' && req.method !== 'HEAD') return next();
-      if (!(await sendTextFile(req, res, indexFile, 'no-cache'))) next();
+      if (!(await sendShell(req, res))) next();
     });
   }
 

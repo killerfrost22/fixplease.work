@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import { pilotTitle, siteHost } from '../shared/pilots';
 import { SiteFooter, SiteHeader } from './components/SiteChrome';
 import { ReportFlow } from './flow/ReportFlow';
 import type { Scene } from './flow/state';
@@ -7,10 +8,10 @@ import { PrivacyPage } from './pages/PrivacyPage';
 import { TechPage } from './pages/TechPage';
 import { Link, usePath } from './router';
 
-const ORIGIN = PILOT ? `https://${PILOT.id}.fixplease.work` : 'https://fixplease.work';
+const ORIGIN = `https://${siteHost(PILOT)}`;
 
 const ROUTES: Record<string, { title: string; canonical: string }> = {
-  '/': { title: PILOT ? `Fix Please · ${PILOT.area} pilot` : 'Fix Please · Find who fixes it', canonical: `${ORIGIN}/` },
+  '/': { title: PILOT ? pilotTitle(PILOT) : 'Fix Please · Find who fixes it', canonical: `${ORIGIN}/` },
   '/tech': { title: 'How it’s built · Fix Please', canonical: `${ORIGIN}/tech` },
   '/privacy': { title: 'Privacy · Fix Please', canonical: `${ORIGIN}/privacy` },
 };

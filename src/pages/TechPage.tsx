@@ -1,5 +1,6 @@
 import { ArrowRight, ArrowUpRight } from 'lucide-react';
 import { REPO_URL } from '../components/SiteChrome';
+import { PILOT } from '../lib/pilot';
 import { Link } from '../router';
 
 const FACTS = [
@@ -117,6 +118,13 @@ export function TechPage() {
             A phone-first React app and one small Node.js server. The server holds the Gemini key, gathers map facts for
             your pin, runs the research, and checks every source before you see it.
           </p>
+          {PILOT && (
+            <p className="page-pilot">
+              <strong>On this pilot, the research below is skipped.</strong> Every report inside {PILOT.area} goes to the{' '}
+              {PILOT.organization}: one Gemini call, without Google Search, describes the problem from your note and any
+              photo, and the server checks {PILOT.shortName}’s website for its email address.
+            </p>
+          )}
           <div className="page-actions">
             <Link to="/" className="btn btn--primary btn--lg">
               Report a problem <ArrowRight size={20} aria-hidden="true" />

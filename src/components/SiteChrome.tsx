@@ -1,4 +1,6 @@
 import { Siren } from 'lucide-react';
+import { siteHost } from '../../shared/pilots';
+import { PILOT } from '../lib/pilot';
 import { Link } from '../router';
 import { Wordmark } from './Mark';
 
@@ -42,7 +44,7 @@ export function SiteFooter() {
         <div className="footer-grid">
           <p className="footer-brand">
             <Wordmark className="footer-word" />{' '}
-            <span className="nowrap">fixplease.work</span>
+            <span className="nowrap">{siteHost(PILOT)}</span>
           </p>
           <ul role="list" className="footer-links">
             <li>
