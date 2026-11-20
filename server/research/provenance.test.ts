@@ -144,6 +144,16 @@ describe('scanning hostile page text', () => {
     assert.equal(page.title, 'Roads & Streets');
     assert.equal(page.text, 'Call 311\na < b');
   });
+
+  it('drops markup that a site puts inside its title', () => {
+    // The shape of roads.maryland.gov's titles on Nov 20, 2026.
+    const meta = '<meta property="og:url" content="https://roads.example.gov/pages/index.aspx?pageid=519">';
+    const page = htmlToPage(`<title>\n\t<span>Customer Service&nbsp;-&nbsp;MDOT SHA</span>\n\t<span>${meta}</span>\n</title>`);
+    assert.equal(page.title, 'Customer Service - MDOT SHA');
+    // Past the 1,000-character cap, the cut-off tag is dropped too.
+    const cut = htmlToPage(`<title>Customer Service<span>${meta.repeat(20)}</span></title>`);
+    assert.equal(cut.title, 'Customer Service');
+  });
 });
 
 describe('matching helpers', () => {

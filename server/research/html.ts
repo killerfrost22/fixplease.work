@@ -60,9 +60,10 @@ function extractTitle(html: string): string | null {
   const start = html.indexOf('>', open) + 1;
   const end = findClosingTag(html, 'title', start);
   if (end === -1) return null;
-  const title = decodeEntities(html.slice(start, Math.min(end, start + 1000)))
-    .replace(/\s+/g, ' ')
-    .trim();
+  // A title is plain text, but some sites put markup in it (MDOT SHA's pages wrap it in <span>s beside <meta> tags,
+  // so the raw tags reached the source list). Drop whole tags, then a tag the 1,000-character cap cut in half.
+  const raw = html.slice(start, Math.min(end, start + 1000)).replace(/<[^<>]*>/g, ' ').replace(/<[a-z!/][^<>]*$/i, ' ');
+  const title = decodeEntities(raw).replace(/\s+/g, ' ').trim();
   return title || null;
 }
 
