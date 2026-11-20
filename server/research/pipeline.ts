@@ -80,8 +80,6 @@ const REASON_UNIDENTIFIED =
 const REASON_CONFIRMED_NEUTRAL = 'An official page we loaded says this office covers this spot. See the sources below.';
 const REASON_BEST_MATCH_NEUTRAL = 'This is our best match for the office that covers this spot. Check the sources below.';
 const TITLE_NEUTRAL = 'Problem to report';
-const SUMMARY_NEUTRAL_PHOTO = 'See the photo for what needs fixing.';
-const SUMMARY_NEUTRAL_NOTE = 'See your note for what needs fixing.';
 
 async function waitForContext(
   getContext: InvestigateOptions['getContext'],
@@ -245,7 +243,7 @@ async function investigateWithin(
       {
         model,
         system_instruction: formatInstruction(hasPhoto),
-        input: formatInput(grounded.text, sourceIds, noQuote),
+        input: formatInput(grounded.text, sourceIds, request.details, noQuote),
         response_format: { type: 'text', mime_type: 'application/json', schema: draftJsonSchema(hasPhoto) },
         generation_config: { thinking_level: 'minimal' },
       },
@@ -396,7 +394,8 @@ async function investigateWithin(
     issue: {
       kind: draft.issue.kind,
       title: scrub(draft.issue.title) ?? TITLE_NEUTRAL,
-      summary: scrub(draft.issue.summary) ?? (hasPhoto ? SUMMARY_NEUTRAL_PHOTO : SUMMARY_NEUTRAL_NOTE),
+      summary: scrub(draft.issue.summary),
+      spot: scrub(known(draft.issue.spot)),
       observations,
     },
     responsibility: organization

@@ -148,7 +148,7 @@ export function ResultView({ report, place, details, photo, pinContext, onStartO
           {photo ? 'What’s in your photo' : 'The problem'}
         </h3>
         <p className="issue-title">{report.issue.title}</p>
-        <p>{report.issue.summary}</p>
+        <p>{report.issue.summary ?? (photo ? 'See the photo for what needs fixing.' : 'See your note for what needs fixing.')}</p>
       </section>
 
       {report.warnings.length > 0 && (

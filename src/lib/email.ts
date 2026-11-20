@@ -27,10 +27,17 @@ const KIND_TITLES: Record<IssueKind, string> = {
 const EMAIL_PATTERN = /^[^\s@<>()",;:]+@[^\s@<>()",;:]+\.[^\s@<>()",;:]+$/;
 const oneLine = (text: string) => text.replace(/[\r\n]+/g, ' ').replace(/\s{2,}/g, ' ').trim();
 
-/** The email the user sends themselves. Only facts from the report and the pin; nothing made up. */
+/**
+ * The email the user sends themselves. The problem and the exact spot are Gemini's reading of the photo and the note,
+ * so the note itself isn't pasted in; the location comes from the pin. Only facts from the report; nothing made up.
+ */
 export function createEmailDraft(input: {
   report: Investigation;
   place: Place;
+  /**
+   * The user's note. Used only when the report has no photo and Gemini's description was removed (`issue.summary` is
+   * `null`), because then it's the only description of the problem left.
+   */
   details: string;
   /** `null` when the report has no photo; the email then never mentions one. */
   photoFileName: string | null;
@@ -42,17 +49,19 @@ export function createEmailDraft(input: {
 
   const title = stripCoordinates(oneLine(issue.title)) || KIND_TITLES[issue.kind];
   const where = describePlace(place, report.context);
+  const spotText = issue.spot ? stripCoordinates(oneLine(issue.spot)).replace(/\.+$/, '') : '';
+  // Gemini often keeps the note's lowercase ("northbound lane"); after a label it reads as a fragment.
+  const spot = spotText.charAt(0).toUpperCase() + spotText.slice(1);
   const recipient = responsibility.department?.trim() || responsibility.organization?.trim();
-  const summary = stripCoordinates(issue.summary.trim());
-  const note = details.trim();
+  const summary = stripCoordinates((issue.summary ?? (photoFileName ? '' : details)).trim());
 
   const lines = [recipient ? `Hello ${oneLine(recipient)},` : 'Hello,', ''];
   lines.push(`I'm writing to report a problem that needs repair: ${title.replace(/[.!?]+$/, '')}.`);
   if (summary) lines.push('', summary);
   lines.push('');
   if (where) lines.push(`Location: ${where}`);
-  if (note) lines.push(`${where ? 'More detail' : 'Location and detail'}: ${note}`);
-  if (where || note) lines.push('');
+  if (spot) lines.push(`${where ? 'Exact spot' : 'Location'}: ${spot}`);
+  if (where || spot) lines.push('');
   if (photoFileName) lines.push(`I've attached a photo (${photoFileName}).`, '');
   lines.push('Could you please arrange a repair, or let me know if this should go to a different office?', '');
   lines.push('Thank you,');

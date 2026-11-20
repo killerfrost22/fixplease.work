@@ -17,7 +17,7 @@ const PLACE: Place = { latitude: 38.9869, longitude: -76.9426, label: 'Campus Dr
 const CONTEXT: LocationContext = { road: null, campus: null, streetLights: [], area: null, partial: false };
 
 const REPORT: Investigation = {
-  issue: { kind: 'pothole', title: 'Pothole', summary: 'A pothole.', observations: [] },
+  issue: { kind: 'pothole', title: 'Pothole', summary: 'A pothole.', spot: null, observations: [] },
   responsibility: {
     verdict: 'unidentified',
     organization: null,

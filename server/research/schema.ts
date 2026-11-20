@@ -32,13 +32,21 @@ const issueSchema = (hasPhoto: boolean) =>
       .describe('Short and plain, like "Deep pothole in the travel lane". Only the problem: never a street, place, or address.'),
     summary: z
       .string()
-      .describe('One or two sentences on what is wrong. Only the problem: never a street, place, or address (the app adds the location from the pin).'),
+      .describe(
+        'One or two sentences on what is wrong, including what the user note adds about the problem (size, how long, any hazard). Plain statements of fact, never "the note says" or "the user". Only the problem: never a street, place, landmark, pole, address, or who owns it (the app adds the location from the pin and spot).',
+      ),
+    spot: z
+      .string()
+      .nullable()
+      .describe(
+        'Where exactly at the pin, only as the user note says it: a lane, a side of the road, a landmark, a pole or sign number. One short phrase. Never who owns or manages it. Null if the note does not say.',
+      ),
     observations: z
       .array(z.string())
       .describe(
         hasPhoto
-          ? 'Up to 4 short facts about the problem seen in the photo or stated in the note. Never a street, place, or address.'
-          : 'Up to 4 short facts about the problem stated in the note. Never a street, place, or address.',
+          ? 'Up to 4 short facts about the problem seen in the photo or stated in the note. Never a street, place, address, or who owns it.'
+          : 'Up to 4 short facts about the problem stated in the note. Never a street, place, address, or who owns it.',
       ),
   });
 

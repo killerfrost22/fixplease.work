@@ -152,7 +152,17 @@ export interface Investigation {
     kind: IssueKind;
     /** Short, e.g. "Pothole in the eastbound lane". */
     title: string;
-    summary: string;
+    /**
+     * What is wrong, in Gemini's words, from the photo (if any) and what the user's note says about the problem.
+     * `null` when nothing usable was left after removing unverified contacts and links (and, without a photo, any
+     * mention of one).
+     */
+    summary: string | null;
+    /**
+     * Where exactly at the pin, as Gemini read it from the user's note: a lane, a side of the road, a landmark, a pole
+     * or sign number. Never who owns it. `null` when the note doesn't say.
+     */
+    spot: string | null;
     observations: string[];
   };
   responsibility: {

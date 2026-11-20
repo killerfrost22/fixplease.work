@@ -100,8 +100,9 @@ const BASE: Investigation = {
   issue: {
     kind: 'pothole',
     title: 'Pothole in the eastbound lane',
-    summary: 'A wide pothole, roughly a metre across, in the eastbound travel lane next to the lane line.',
-    observations: ['Broken edges', 'Standing water nearby'],
+    summary: 'A wide pothole, roughly a metre across, in the eastbound travel lane. It has been getting bigger for two weeks.',
+    spot: 'Eastbound lane, right next to the bus stop',
+    observations: ['Broken edges', 'Standing water nearby', 'Getting bigger for two weeks'],
   },
   responsibility: {
     verdict: 'confirmed',
@@ -163,6 +164,18 @@ export const REPORT_BEST_MATCH: Investigation = {
     'This road may be a state route. If the city says it isn’t theirs, ask which agency maintains it.',
     'No email is published for this office. Use their report form, or call.',
   ],
+};
+
+/** The same answer for a report without a photo, as Gemini reads the no-photo note in `scenes.ts`. */
+export const REPORT_BEST_MATCH_NO_PHOTO: Investigation = {
+  ...REPORT_BEST_MATCH,
+  issue: {
+    kind: 'pothole',
+    title: 'Deep pothole in the eastbound lane',
+    summary: 'A deep pothole in the eastbound travel lane. Cars swerve around it.',
+    spot: 'Eastbound lane, right next to the bus stop',
+    observations: ['Deep pothole', 'Cars swerve around it'],
+  },
 };
 
 export const REPORT_UNIDENTIFIED: Investigation = {

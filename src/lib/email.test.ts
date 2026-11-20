@@ -3,13 +3,19 @@ import { describe, test } from 'node:test';
 import type { Investigation, LocationContext, Place } from '../../shared/types';
 import { buildEmlFile, buildMailto, createEmailDraft } from './email';
 
-function makeReport(overrides: Partial<Investigation['responsibility']> = {}, context: LocationContext | null = null): Investigation {
+function makeReport(
+  overrides: Partial<Investigation['responsibility']> = {},
+  context: LocationContext | null = null,
+  issue: Partial<Investigation['issue']> = {},
+): Investigation {
   return {
     issue: {
       kind: 'pothole',
       title: 'Pothole in the eastbound lane',
       summary: 'A pothole about 40 cm wide sits in the right wheel path.',
+      spot: null,
       observations: [],
+      ...issue,
     },
     responsibility: {
       verdict: 'confirmed',
@@ -59,13 +65,14 @@ describe('createEmailDraft', () => {
     assert.match(draft.body, /Thank you,$/);
   });
 
-  test('never includes coordinates, even when the label is made of them', () => {
+  test('never includes coordinates, even when the label or the spot carries them', () => {
     const place: Place = { latitude: 38.98972, longitude: -76.93776, label: '38.98972, -76.93776', address: null };
-    const draft = createEmailDraft({ report: makeReport(), place, details: 'By the bus stop', photoFileName: 'p.jpg' });
+    const report = makeReport({}, null, { spot: 'By the bus stop (38.98972, -76.93776)' });
+    const draft = createEmailDraft({ report, place, details: '', photoFileName: 'p.jpg' });
     assert.doesNotMatch(draft.subject, coordinatePattern);
     assert.doesNotMatch(draft.body, coordinatePattern);
     assert.equal(draft.subject, 'Pothole in the eastbound lane');
-    assert.match(draft.body, /By the bus stop/);
+    assert.match(draft.body, /\nLocation: By the bus stop\n/);
   });
 
   test('keeps the street from a label that mixes in coordinates', () => {
@@ -150,11 +157,30 @@ describe('createEmailDraft', () => {
     assert.doesNotMatch(`${draft.subject}\n${draft.body}`, /\b(City|Town|Village|Borough|Township) of\b/);
   });
 
+  test("describes the problem and the spot from Gemini's reading, not by pasting the note", () => {
+    const details = 'HOA: Maple Ridge HOA\nPole number: 4521-B\nits been like this 2 weeks!!';
+    const report = makeReport({}, null, {
+      summary: 'A pothole about 40 cm wide sits in the right wheel path. It has been there for two weeks.',
+      spot: 'next to pole 4521-B.',
+    });
+    const draft = createEmailDraft({ report, place: campusPlace, details, photoFileName: 'p.jpg' });
+    assert.match(draft.body, /It has been there for two weeks\.\n\nLocation: 4306 Campus Drive, College Park\nExact spot: Next to pole 4521-B\n/);
+    assert.doesNotMatch(draft.body, /HOA|Maple Ridge|Pole number|its been/);
+  });
+
   test('a report without a photo never mentions a photo or attachment', () => {
     const draft = createEmailDraft({ report: makeReport(), place: campusPlace, details: 'Deep pothole in the right lane', photoFileName: null });
     assert.doesNotMatch(`${draft.subject}\n${draft.body}`, /photo|picture|image|attach/i);
-    assert.match(draft.body, /Deep pothole in the right lane/);
+    assert.match(draft.body, /A pothole about 40 cm wide/);
     assert.match(draft.body, /Thank you,$/);
+  });
+
+  test("without a photo, the note stands in only when Gemini's description was removed", () => {
+    const report = makeReport({}, null, { summary: null });
+    const noPhoto = createEmailDraft({ report, place: campusPlace, details: '  Deep pothole in the right lane  ', photoFileName: null });
+    assert.match(noPhoto.body, /needs repair: Pothole in the eastbound lane\.\n\nDeep pothole in the right lane\n\nLocation:/);
+    const withPhoto = createEmailDraft({ report, place: campusPlace, details: 'Deep pothole in the right lane', photoFileName: 'p.jpg' });
+    assert.doesNotMatch(withPhoto.body, /Deep pothole in the right lane/);
   });
 });
 

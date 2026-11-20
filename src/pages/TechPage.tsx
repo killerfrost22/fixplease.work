@@ -32,7 +32,7 @@ const PIPELINE = [
   },
   {
     title: 'Your email',
-    text: 'The app drafts the email, with the photo attached if you added one. You edit it and send it from your own account.',
+    text: 'Gemini reads your note for what’s broken and where exactly, and the app drafts the email from that, with the photo attached if you added one. You edit it and send it from your own account.',
     tags: ['Web Share API', '.eml', 'mailto'],
   },
 ];

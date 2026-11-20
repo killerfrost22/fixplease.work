@@ -67,7 +67,7 @@ Fix Please does not store reports or send anything on the user's behalf. There a
     - The description gives additional context about what and where the issue is.
     - Gemini uses Google Search grounding and URL context to find the responsible body and its published contact information.
 3. The app returns a result that names the responsible office, explains why, and shows how confident it is ("Confirmed on an official site", "Best match. Worth a quick check.", or "We couldn't identify the office", which shows only the map facts). Contacts link to their sources, and "Before you send" warnings flag anything the user should know.
-4. The app drafts an editable email (To, Subject, Message) with the photo attached. The user can send it with the phone's share sheet, download it as an `.eml` file, open it in their mail app, or copy it.
+4. The app drafts an editable email (To, Subject, Message) with the photo attached. Gemini reads the note for what's broken, where exactly it is, and who may own it, so the email describes the problem and the exact spot in its words and greets the office the research found (if it found one), instead of pasting the note in. Only when a report has no photo and Gemini's description had to be removed does the note itself stand in. The user can send it with the phone's share sheet, download it as an `.eml` file, open it in their mail app, or copy it.
 5. The system is resistant to bot attacks, so that as many requests as possible come from real people: a self-hosted ALTCHA proof-of-work check, rate limits, and a same-origin check.
 6. The system is built for privacy. There are no accounts and no database, nothing is stored, and the user sends the email themselves. The Privacy page (`/privacy`) explains what is sent to Gemini.
 
@@ -86,7 +86,7 @@ flowchart LR
 
 1. **Snap, or skip it.** The photo is shrunk on the device and its hidden metadata is stripped. If it has GPS, we use it to suggest the spot. Saw it while driving? Choose "Report without a photo" once you've parked; then the note in step 3 is required, because it's the only description of the problem.
 2. **Pin.** Photo location, "I'm standing here", address search, or tap the map. You confirm the pin.
-3. **Tell us more.** One free-text box: where exactly it is and what you noticed. This is often what separates "the city" from "the state highway department" or "the power company".
+3. **Tell us more.** One free-text box: where exactly it is and what you noticed. This is often what separates "the city" from "the state highway department" or "the power company". Gemini treats it as clues (what's broken, where exactly, who may own it), and the email uses that reading rather than your words pasted in.
 4. **Find who fixes it.** The server pulls map facts for the pin: the nearest road and its route number, whether you're inside a city, town, or township (U.S. Census), the campus you're on and its website, and mapped streetlights and who runs them (OpenStreetMap via Overpass, with Nominatim as the fallback when Overpass is overloaded). Gemini then reads the photo and searches official city, county, state, campus, and utility sites. With the default model (`gemini-3.6-flash`), a full test report took 22 seconds from tap to result; the server gives up after 45.
 5. **Send.** On phones, "Send with photo" opens the share sheet with the photo attached. On desktop, download the email with the photo already attached, or open your mail app. We never send anything for you.
 

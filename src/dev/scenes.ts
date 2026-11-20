@@ -9,6 +9,7 @@ import {
   CONTEXT_TOWN,
   PLACE,
   REPORT_BEST_MATCH,
+  REPORT_BEST_MATCH_NO_PHOTO,
   REPORT_CONFIRMED,
   REPORT_UNIDENTIFIED,
   SEARCH_RESULTS,
@@ -52,7 +53,7 @@ const SCENES: Record<string, { gps?: boolean; build: SceneBuilder }> = {
   'result-no-photo': {
     build: () => ({
       health: ONLINE,
-      flow: { withoutPhoto: true, pin: confirmed, details: NOTE_NO_PHOTO, phase: 'result', report: REPORT_BEST_MATCH },
+      flow: { withoutPhoto: true, pin: confirmed, details: NOTE_NO_PHOTO, phase: 'result', report: REPORT_BEST_MATCH_NO_PHOTO },
     }),
   },
   note: { build: (photo) => ({ health: ONLINE, flow: { photo, pin: confirmed, details: NOTE } }) },
