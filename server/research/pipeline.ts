@@ -488,14 +488,15 @@ async function investigatePilot(
     page && page.emails.includes(pilot.email) ? { value: pilot.email, sourceUrl: page.url } : null;
   if (page && !email) console.warn(`[pilot] ${pilot.id}: the contact page no longer prints the partner's inbox`);
 
+  // The partner's own website is its official site: the page `email` is published on.
   const sources: SourceLink[] = page
     ? [{ title: (page.title ?? pilot.organization).slice(0, 160), url: page.url, note: email ? 'Lists the email address.' : null, official: true }]
     : [];
   const warnings: string[] = [];
   if (!page) {
-    warnings.push(`The ${pilot.organization} website didn’t load just now, so we can’t show its email address. Try again in a minute.`);
+    warnings.push(`The ${pilot.organization} website didn’t load just now, so we can’t show its email address. Check its website for the address before you send.`);
   } else if (!email) {
-    warnings.push(`The ${pilot.organization} website no longer lists the email address this pilot uses, so the To line is empty.`);
+    warnings.push(`The ${pilot.organization} website no longer lists the email address this pilot uses, so the To line is empty. Check its website for the current address before you send.`);
   }
   if (lightLooksOn(draft, hasPhoto)) warnings.push(WARN_DAYTIME);
 

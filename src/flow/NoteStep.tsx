@@ -1,13 +1,33 @@
 import { useRef } from 'react';
 import { Plus } from 'lucide-react';
 import { DETAILS_MAX_LENGTH } from '../../shared/types';
+import { PILOT } from '../lib/pilot';
 
-const CLUES = [
-  { label: 'HOA', text: 'HOA: ' },
-  { label: 'Property manager', text: 'Property manager: ' },
+const SPOT_CLUES = [
   { label: 'Pole number', text: 'Pole number: ' },
   { label: 'Landmark', text: 'Near: ' },
 ];
+
+/** Owner guesses steer the research. A pilot addresses every report to its partner, so it asks only where. */
+const CLUES = PILOT
+  ? [{ label: 'Building number', text: 'Building number: ' }, ...SPOT_CLUES]
+  : [{ label: 'HOA', text: 'HOA: ' }, { label: 'Property manager', text: 'Property manager: ' }, ...SPOT_CLUES];
+
+const COPY = PILOT
+  ? {
+      required: `Without a photo, this is how ${PILOT.shortName} knows what to fix. Say what’s wrong, and add a street, a building number, or a landmark if you can.`,
+      optional: `A street, a building number, or a landmark helps ${PILOT.shortName} find it.`,
+      requiredExample: 'Example: Deep pothole in the alley behind the townhouses, by the storm drain.',
+      optionalExample: 'Example: Alley behind the townhouses, by the storm drain. It has been there for a week.',
+    }
+  : {
+      required:
+        'Without a photo, this is how the office knows what to fix. Say what’s wrong, and add a lane, a landmark, or a pole number if you can.',
+      optional:
+        'A lane, a landmark, a pole number, or who you think owns it. Clues like these often decide between the city, the state, and a utility.',
+      requiredExample: 'Example: Deep pothole in the northbound lane, next to the bus stop.',
+      optionalExample: 'Example: Northbound lane, next to the bus stop. The light has been out for a week.',
+    };
 
 const COUNTER_FROM = 200;
 
@@ -42,9 +62,7 @@ export function NoteStep({ value, onChange, required }: NoteStepProps) {
         )}
       </label>
       <p className="field-hint" id="note-hint">
-        {required
-          ? 'Without a photo, this is how the office knows what to fix. Say what’s wrong, and add a lane, a landmark, or a pole number if you can.'
-          : 'A lane, a landmark, a pole number, or who you think owns it. Clues like these often decide between the city, the state, and a utility.'}
+        {required ? COPY.required : COPY.optional}
       </p>
       <ul role="list" className="clue-chips" aria-label="Add a clue">
         {CLUES.map((clue) => (
@@ -65,11 +83,7 @@ export function NoteStep({ value, onChange, required }: NoteStepProps) {
         value={value}
         required={required}
         aria-describedby={left <= COUNTER_FROM ? 'note-hint note-count' : 'note-hint'}
-        placeholder={
-          required
-            ? 'Example: Deep pothole in the northbound lane, next to the bus stop.'
-            : 'Example: Northbound lane, next to the bus stop. The light has been out for a week.'
-        }
+        placeholder={required ? COPY.requiredExample : COPY.optionalExample}
         onChange={(event) => onChange(event.target.value)}
       />
       {left <= COUNTER_FROM && (

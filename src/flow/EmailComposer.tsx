@@ -2,6 +2,7 @@ import { useMemo, useState } from 'react';
 import { Copy, Download, ImageDown, LoaderCircle, Mail, Share2 } from 'lucide-react';
 import { buildEmlFile, buildMailto, type EmailDraft } from '../lib/email';
 import type { PreparedPhoto } from '../lib/photo';
+import { PILOT } from '../lib/pilot';
 
 function saveFile(file: File) {
   const url = URL.createObjectURL(file);
@@ -117,7 +118,7 @@ export function EmailComposer({ initial, photo, reportingUrl }: EmailComposerPro
           />
           {!draft.to && (
             <p className="field-hint" id="mail-to-hint">
-              We didn’t find a published email for this office.
+              We didn’t find a published email for {PILOT ? PILOT.shortName : 'this office'}.
               {reportingUrl ? ' Their report form is linked above.' : ''} Add an address only if you found it on their
               own site.
             </p>

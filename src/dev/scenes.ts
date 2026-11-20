@@ -14,6 +14,7 @@ import {
   REPORT_BEST_MATCH_NO_PHOTO,
   REPORT_CONFIRMED,
   REPORT_PILOT,
+  REPORT_PILOT_PAGE_DOWN,
   REPORT_UNIDENTIFIED,
   SEARCH_RESULTS,
   fixturePhoto,
@@ -53,6 +54,8 @@ const SCENES: Record<string, { gps?: boolean; build: SceneBuilder }> = {
   'photo-gps': { gps: true, build: (photo) => ({ health: ONLINE, flow: { photo } }) },
   pin: { build: (photo) => ({ health: ONLINE, flow: { photo, pin: pinAt } }) },
   'pin-pilot': { build: (photo) => ({ health: ONLINE, flow: { photo, pin: pinAtPilot } }) },
+  'note-pilot': { build: (photo) => ({ health: ONLINE, flow: { photo, pin: confirmedPilot, details: NOTE_PILOT } }) },
+  'note-pilot-no-photo': { build: () => ({ health: ONLINE, flow: { withoutPhoto: true, pin: confirmedPilot, details: '' } }) },
   'investigating-pilot': {
     build: (photo) => ({ health: ONLINE, flow: { photo, pin: confirmedPilot, details: NOTE_PILOT, phase: 'investigating' } }),
   },
@@ -60,6 +63,12 @@ const SCENES: Record<string, { gps?: boolean; build: SceneBuilder }> = {
     build: (photo) => ({
       health: ONLINE,
       flow: { photo, pin: confirmedPilot, details: NOTE_PILOT, phase: 'result', report: REPORT_PILOT },
+    }),
+  },
+  'result-pilot-page-down': {
+    build: (photo) => ({
+      health: ONLINE,
+      flow: { photo, pin: confirmedPilot, details: NOTE_PILOT, phase: 'result', report: REPORT_PILOT_PAGE_DOWN },
     }),
   },
   'pin-results': {

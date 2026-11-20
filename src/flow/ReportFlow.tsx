@@ -69,7 +69,7 @@ const TRUST = PILOT
       },
       {
         title: 'Real contacts only.',
-        text: 'Its email shows up only if its own website lists it when we check, during your report.',
+        text: `We show ${PILOT.shortName}’s email address only if its own website lists it when we check, during your report.`,
       },
       NOTHING_KEPT,
     ]
@@ -394,7 +394,8 @@ export function ReportFlow({ scene }: { scene?: Scene }) {
                   </button>
                   {noteMissing && !offline && (
                     <p className="send-needs-note" id="send-needs-note">
-                      Without a photo, write a few words above about what’s broken, so the office knows what to fix.
+                      Without a photo, write a few words above about what’s broken, so {PILOT ? PILOT.shortName : 'the office'}{' '}
+                      knows what to fix.
                     </p>
                   )}
                   {offline ? (
@@ -435,7 +436,7 @@ export function ReportFlow({ scene }: { scene?: Scene }) {
       </div>
       <aside className="trust on-dark" aria-labelledby="trust-title">
         <h2 id="trust-title" className="kicker">
-          Why you can trust the answer
+          {PILOT ? 'How this pilot works' : 'Why you can trust the answer'}
         </h2>
         <ul role="list">
           {TRUST.map((item) => (

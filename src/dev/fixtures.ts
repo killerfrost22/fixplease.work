@@ -255,3 +255,11 @@ export const REPORT_PILOT: Investigation = {
   searchSuggestionsHtml: null,
   context: CONTEXT_PILOT,
 };
+
+/** The pilot when the partner's page didn't load: no inbox, no source, and the server's warning. */
+export const REPORT_PILOT_PAGE_DOWN: Investigation = {
+  ...REPORT_PILOT,
+  responsibility: { ...REPORT_PILOT.responsibility, email: null },
+  sources: [],
+  warnings: [`The ${GBS.organization} website didn’t load just now, so we can’t show its email address. Check its website for the address before you send.`],
+};
