@@ -8,6 +8,7 @@ export const errorMessages: Record<ApiErrorCode | 'NETWORK_ERROR', string> = {
   INVALID_REQUEST: "Something in the report didn't look right. Check the photo, pin, and note, then try again.",
   INVALID_PHOTO: "We couldn't read that photo. Try another one, or take a new photo.",
   INVALID_LOCATION: "That pin isn't a spot we can look up. Move it and try again.",
+  OUTSIDE_PILOT_AREA: 'That pin is outside the pilot area. Move it inside the dashed circle and try again.',
   PAYLOAD_TOO_LARGE: 'That photo is too large to send. Try a smaller one.',
   FORBIDDEN_ORIGIN: "That request didn't come from the Fix Please page. Reload the page and try again.",
   CAPTCHA_REQUIRED: "The bot check didn't run. Reload the page and try again.",

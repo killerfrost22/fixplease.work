@@ -1,9 +1,11 @@
 import { lazy, Suspense, useEffect, useRef, useState, type FormEvent } from 'react';
 import { Check, LoaderCircle, LocateFixed, Search, TriangleAlert } from 'lucide-react';
+import { insideCircle } from '../../shared/pilots';
 import type { Coordinates, Place } from '../../shared/types';
 import { reversePlace, searchPlaces } from '../lib/api';
 import { locateDevice } from '../lib/geolocate';
 import { messageFor } from '../lib/messages';
+import { PILOT } from '../lib/pilot';
 import type { PinSource, PinState, PinUi } from './state';
 
 const PinMap = lazy(() => import('./PinMap'));
@@ -172,6 +174,8 @@ export function PinStep({ pin, photoGps, onPin, onPlaceResolved, onConfirm, init
 
   const resolving = pin.point !== null && !pin.placeResolved;
   const label = pin.place?.label ?? (pin.placeResolved ? UNNAMED_PLACE_LABEL : null);
+  // A pilot site takes reports only inside its circle; the server refuses the rest too.
+  const outsideOf = PILOT && pin.point && !insideCircle(PILOT, pin.point) ? PILOT : null;
 
   return (
     <div className="pin-step">
@@ -226,7 +230,9 @@ export function PinStep({ pin, photoGps, onPin, onPlaceResolved, onConfirm, init
         <div className="pin-results" role="region" aria-label="Search results">
           <p className="pin-results-count" role="status">
             {results.length === 0
-              ? 'No matches. Try a street and town, or tap the map instead.'
+              ? PILOT
+                ? `No matches in ${PILOT.area}. Try a street name, or tap the map instead.`
+                : 'No matches. Try a street and town, or tap the map instead.'
               : `${results.length} ${results.length === 1 ? 'place' : 'places'} found. They’re numbered on the map.`}
           </p>
           {results.length > 0 && (
@@ -348,13 +354,22 @@ export function PinStep({ pin, photoGps, onPin, onPlaceResolved, onConfirm, init
               )}
               {pin.source === 'photo' && <p className="pin-accuracy">Check it’s right before you confirm.</p>}
               {reverseError && <p className="pin-accuracy">{reverseError} You can still use this spot.</p>}
+              {outsideOf && (
+                <div className="notice notice--warn pin-outside">
+                  <TriangleAlert size={20} aria-hidden="true" />
+                  <p>
+                    <strong>This spot is outside {outsideOf.area}.</strong> The pilot covers the dashed circle on the map.
+                    Move the pin inside it, or report this spot on <a href="https://fixplease.work/">fixplease.work</a>.
+                  </p>
+                </div>
+              )}
             </div>
             <button
               ref={confirmButton}
               type="button"
               className="btn btn--primary btn--lg"
               onClick={onConfirm}
-              disabled={resolving}
+              disabled={resolving || outsideOf !== null}
             >
               <Check size={22} aria-hidden="true" />
               Yes, it’s here

@@ -184,4 +184,22 @@ describe('Nominatim requests', () => {
     await geo.reversePlace({ latitude: 38.989712, longitude: -76.937818 });
     assert.equal(fake.calls.length, 3, 'search expires after 5 min, reverse still cached');
   });
+
+  test('a search inside a circle is bounded to its box and cached apart from the open search', async () => {
+    const { fake, geo } = fakeNominatim(() => json([campusDrive]));
+    const circle = { center: { latitude: 39.00144, longitude: -76.91652 }, radiusMeters: 400 };
+    await geo.searchPlaces('Campus Drive');
+    await geo.searchPlaces('Campus Drive', undefined, circle);
+    await geo.searchPlaces('  campus   DRIVE ', undefined, circle);
+    assert.equal(fake.calls.length, 2);
+    const [open, bounded] = fake.calls;
+    assert.equal(open.url.searchParams.get('viewbox'), null);
+    assert.equal(open.url.searchParams.get('bounded'), null);
+    assert.equal(bounded.url.searchParams.get('bounded'), '1');
+    const [west, south, east, north] = (bounded.url.searchParams.get('viewbox') ?? '').split(',').map(Number);
+    assert.ok(west < circle.center.longitude && circle.center.longitude < east, 'box spans the centre east to west');
+    assert.ok(south < circle.center.latitude && circle.center.latitude < north, 'box spans the centre north to south');
+    // 800 m tall, the circle's diameter.
+    assert.ok(Math.abs((north - south) * 111_320 - 800) < 5, `box is ${(north - south) * 111_320} m tall`);
+  });
 });

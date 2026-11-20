@@ -1,5 +1,6 @@
 import { ArrowRight, ArrowUpRight, Siren } from 'lucide-react';
 import type { ReactNode } from 'react';
+import { PILOT } from '../lib/pilot';
 import { Link } from '../router';
 
 function Ext({ href, children }: { href: string; children: ReactNode }) {
@@ -13,17 +14,29 @@ function Ext({ href, children }: { href: string; children: ReactNode }) {
 }
 
 const FLOWS: { who: string; what: string; detail: ReactNode }[] = [
-  {
-    who: 'Google Gemini',
-    what: 'The pin you confirmed and its address, the map facts for it, your note, and your resized photo if you added one.',
-    detail: (
-      <>
-        Only when you press “Find who fixes it”. We send requests with <code>store: false</code>, but Google keeps
-        search-grounded requests for up to 30 days under its{' '}
-        <Ext href="https://ai.google.dev/gemini-api/terms">Gemini API terms</Ext>.
-      </>
-    ),
-  },
+  PILOT
+    ? {
+        who: 'Google Gemini',
+        what: 'Your note, and your resized photo if you added one. On this pilot, the pin and its map facts aren’t sent to Gemini.',
+        detail: (
+          <>
+            Only when you press “Write the email”, and without Google Search. We send requests with{' '}
+            <code>store: false</code>. Google’s handling of them is set out in its{' '}
+            <Ext href="https://ai.google.dev/gemini-api/terms">Gemini API terms</Ext>.
+          </>
+        ),
+      }
+    : {
+        who: 'Google Gemini',
+        what: 'The pin you confirmed and its address, the map facts for it, your note, and your resized photo if you added one.',
+        detail: (
+          <>
+            Only when you press “Find who fixes it”. We send requests with <code>store: false</code>, but Google keeps
+            search-grounded requests for up to 30 days under its{' '}
+            <Ext href="https://ai.google.dev/gemini-api/terms">Gemini API terms</Ext>.
+          </>
+        ),
+      },
   {
     who: 'OpenStreetMap',
     what: 'Map tiles, address searches, and the pin’s location.',

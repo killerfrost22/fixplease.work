@@ -102,6 +102,18 @@
   cursor: grabbing;
 }
 
+/* ---------------------------------------------------------------- a pilot's area */
+
+/* A dashed survey-paint boundary. These rules beat the stroke and fill attributes Leaflet writes on the path. */
+.pilot-area {
+  stroke: var(--paint-ink);
+  stroke-width: 3;
+  stroke-dasharray: 2 9;
+  stroke-linecap: round;
+  fill: var(--paint);
+  fill-opacity: 0.08;
+}
+
 /* ---------------------------------------------------------------- search-result markers */
 
 .cand-icon {

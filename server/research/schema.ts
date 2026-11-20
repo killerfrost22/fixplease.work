@@ -50,6 +50,9 @@ const issueSchema = (hasPhoto: boolean) =>
       ),
   });
 
+const noteSaysLightIsOut = z.boolean().nullable().describe('Streetlights only: does the user note say the light is out? Else null.');
+const photoLooksDaytime = z.boolean().nullable().describe('Streetlights only: does the photo look like daytime? Else null.');
+
 const sharedFields = {
   organization: z.string().nullable().describe('The office that maintains this spot, exactly as the brief names it; null if unknown.'),
   department: z.string().nullable().describe('The division or department inside that office, name only; null if unknown.'),
@@ -68,30 +71,46 @@ const sharedFields = {
   phone: z.string().nullable().describe('Phone number from the brief, or null.'),
   phoneSource: ref('Page the phone number is published on'),
   sources: z.array(z.string()).describe('Source IDs or exact URLs of pages that support the answer, most useful first.'),
-  noteSaysLightIsOut: z.boolean().nullable().describe('Streetlights only: does the user note say the light is out? Else null.'),
+  noteSaysLightIsOut,
 };
 
 /** What the format call returns for a report with a photo. Every claim in it is re-checked before anything reaches the user. */
-export const draftSchema = z.object({
-  issue: issueSchema(true),
-  ...sharedFields,
-  photoLooksDaytime: z.boolean().nullable().describe('Streetlights only: does the photo look like daytime? Else null.'),
-});
+export const draftSchema = z.object({ issue: issueSchema(true), ...sharedFields, photoLooksDaytime });
 
 /** The same draft for a report without a photo: no field or description mentions a photo. */
 const noPhotoDraftSchema = z.object({ issue: issueSchema(false), ...sharedFields });
 
 export type Draft = z.infer<typeof draftSchema>;
 
+/** What a pilot site asks for: only the problem, never who maintains it, because the pilot's partner gets every report. */
+const pilotDraftSchema = z.object({ issue: issueSchema(true), photoLooksDaytime, noteSaysLightIsOut });
+const noPhotoPilotDraftSchema = z.object({ issue: issueSchema(false), noteSaysLightIsOut });
+
+export type PilotDraft = z.infer<typeof pilotDraftSchema>;
+
 /** JSON Schema for Gemini structured output. `$schema` isn't in Gemini's documented schema subset, so it's dropped. */
+function geminiSchema(schema: z.ZodType): Record<string, unknown> {
+  const { $schema: _dialect, ...rest } = z.toJSONSchema(schema) as Record<string, unknown>;
+  return rest;
+}
+
 export function draftJsonSchema(hasPhoto: boolean): Record<string, unknown> {
-  const { $schema: _dialect, ...schema } = z.toJSONSchema(hasPhoto ? draftSchema : noPhotoDraftSchema) as Record<string, unknown>;
-  return schema;
+  return geminiSchema(hasPhoto ? draftSchema : noPhotoDraftSchema);
+}
+
+export function pilotDraftJsonSchema(hasPhoto: boolean): Record<string, unknown> {
+  return geminiSchema(hasPhoto ? pilotDraftSchema : noPhotoPilotDraftSchema);
 }
 
 /** Validates the format call's JSON. Without a photo there is nothing to judge daylight from, so that answer is null. */
 export function parseDraftValue(value: unknown, hasPhoto: boolean): Draft | null {
   if (hasPhoto) return draftSchema.safeParse(value).data ?? null;
   const parsed = noPhotoDraftSchema.safeParse(value);
+  return parsed.success ? { ...parsed.data, photoLooksDaytime: null } : null;
+}
+
+export function parsePilotDraftValue(value: unknown, hasPhoto: boolean): PilotDraft | null {
+  if (hasPhoto) return pilotDraftSchema.safeParse(value).data ?? null;
+  const parsed = noPhotoPilotDraftSchema.safeParse(value);
   return parsed.success ? { ...parsed.data, photoLooksDaytime: null } : null;
 }

@@ -65,6 +65,11 @@
   --stamp-ink: var(--ok);
 }
 
+/* A pilot names its partner without checking who maintains the spot: plain ink, neither proof nor caution. */
+.stamp[data-verdict='pilot'] {
+  --stamp-ink: var(--ink);
+}
+
 @keyframes stamp {
   from {
     opacity: 0;

@@ -6,6 +6,7 @@ import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { after, test } from 'node:test';
 import { brotliDecompressSync, gunzipSync } from 'node:zlib';
+import { PILOTS, type Circle, type Pilot } from '../shared/pilots.js';
 import type { Investigation, InvestigationRequest, LocationContext, Place } from '../shared/types.js';
 import { createApp, type AppDeps } from './app.js';
 import { ApiError } from './errors.js';
@@ -305,8 +306,8 @@ interface RawResponse {
   body: Buffer;
 }
 
-/** fetch decompresses on its own, so these tests read the bytes on the wire with node:http. */
-function raw(url: string, headers: Record<string, string> = {}, method = 'GET'): Promise<RawResponse> {
+/** fetch decompresses on its own and can't set Host, so these tests read the bytes on the wire with node:http. */
+function raw(url: string, headers: Record<string, string> = {}, method = 'GET', body?: string): Promise<RawResponse> {
   return new Promise((resolve, reject) => {
     const req = httpRequest(url, { method, headers }, (res) => {
       const chunks: Buffer[] = [];
@@ -315,7 +316,7 @@ function raw(url: string, headers: Record<string, string> = {}, method = 'GET'):
       res.on('error', reject);
     });
     req.on('error', reject);
-    req.end();
+    req.end(body);
   });
 }
 
@@ -390,4 +391,55 @@ test('API responses are not compressed by the static file path', async () => {
   const response = await raw(`${base}/api/health`, { 'Accept-Encoding': 'br, gzip' });
   assert.equal(response.headers['content-encoding'], undefined);
   assert.deepEqual(JSON.parse(response.body.toString()), { researchConfigured: true });
+});
+
+/** Inside the Greenbelt Station pilot's circle. `PLACE` (College Park) is outside it. */
+const PILOT_PLACE: Place = { latitude: 39.0011, longitude: -76.91561, label: 'Davis Point Lane, Greenbelt', address: null };
+
+/** Headers for a same-origin request to the pilot host, the way a browser on gbs.localhost sends them. */
+function pilotHeaders(base: string): Record<string, string> {
+  const host = `gbs.localhost:${new URL(base).port}`;
+  return { Host: host, Origin: `http://${host}`, 'Content-Type': 'application/json', 'X-Captcha-Token': 'good' };
+}
+
+test('a pilot host takes reports only inside its circle and hands research the pilot', async () => {
+  const deps = fakeDeps();
+  const pilots: Array<Pilot | null | undefined> = [];
+  deps.research.investigate = async (_request, options) => {
+    pilots.push(options?.pilot);
+    return REPORT;
+  };
+  const base = await start(deps);
+  const inside = await raw(`${base}/api/investigate`, pilotHeaders(base), 'POST', JSON.stringify({ ...REQUEST, location: PILOT_PLACE }));
+  assert.equal(inside.status, 200);
+  const outside = await raw(`${base}/api/investigate`, pilotHeaders(base), 'POST', JSON.stringify(REQUEST));
+  assert.equal(outside.status, 400);
+  assert.deepEqual(JSON.parse(outside.body.toString()), {
+    error: 'This pilot covers Greenbelt Station only. Move the pin inside it, or report this on fixplease.work.',
+    code: 'OUTSIDE_PILOT_AREA',
+  });
+  // The main site takes the same College Park pin and runs normal research.
+  assert.equal((await investigate(base)).status, 200);
+  assert.deepEqual(
+    pilots.map((pilot) => pilot?.id ?? null),
+    ['gbs', null],
+  );
+});
+
+test('on a pilot host, address search is bounded to the circle and drops results outside it', async () => {
+  const deps = fakeDeps();
+  const circles: Array<Circle | undefined> = [];
+  deps.geo.searchPlaces = async (_query, _signal, within) => {
+    circles.push(within);
+    return [PLACE, PILOT_PLACE];
+  };
+  const base = await start(deps);
+  const pilot = await raw(`${base}/api/locations/search?q=Davis%20Point`, pilotHeaders(base));
+  assert.deepEqual(JSON.parse(pilot.body.toString()), [PILOT_PLACE]);
+  const main = await fetch(`${base}/api/locations/search?q=Davis%20Point`);
+  assert.deepEqual(await main.json(), [PLACE, PILOT_PLACE]);
+  assert.deepEqual(
+    circles.map((circle) => circle && { center: circle.center, radiusMeters: circle.radiusMeters }),
+    [{ center: PILOTS[0].center, radiusMeters: PILOTS[0].radiusMeters }, undefined],
+  );
 });

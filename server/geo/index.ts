@@ -1,4 +1,5 @@
 import type { Coordinates, LocationContext, Place } from '../../shared/types.js';
+import type { Circle } from '../../shared/pilots.js';
 import { ApiError } from '../errors.js';
 import { CensusClient } from './census.js';
 import { ContextService } from './context.js';
@@ -11,7 +12,7 @@ const GEOCODER_DEADLINE_MS = 10_000;
 const GEOCODER_DOWN = 'The address lookup is not responding right now. Try again in a minute.';
 
 export interface GeoService {
-  searchPlaces(query: string, signal?: AbortSignal): Promise<Place[]>;
+  searchPlaces(query: string, signal?: AbortSignal, within?: Circle): Promise<Place[]>;
   reversePlace(point: Coordinates, signal?: AbortSignal): Promise<Place | null>;
   getLocationContext(point: Coordinates, signal?: AbortSignal): Promise<LocationContext>;
 }
@@ -37,7 +38,7 @@ export function createGeoService({ clock = realClock, env = process.env }: GeoOp
   }
 
   return {
-    searchPlaces: (query, signal) => geocode((deadline) => nominatim.search(query, deadline), signal),
+    searchPlaces: (query, signal, within) => geocode((deadline) => nominatim.search(query, deadline, within), signal),
     reversePlace: (point, signal) =>
       geocode(async (deadline) => {
         const details = await nominatim.reverse(point, deadline);
@@ -50,9 +51,9 @@ export function createGeoService({ clock = realClock, env = process.env }: GeoOp
 
 const service = createGeoService();
 
-/** Up to 5 places for a free-text query. Throws `ApiError` `GEOCODER_UNAVAILABLE` when Nominatim fails. */
-export function searchPlaces(query: string, signal?: AbortSignal): Promise<Place[]> {
-  return service.searchPlaces(query, signal);
+/** Up to 5 places for a free-text query, inside `within` if given. Throws `ApiError` `GEOCODER_UNAVAILABLE` when Nominatim fails. */
+export function searchPlaces(query: string, signal?: AbortSignal, within?: Circle): Promise<Place[]> {
+  return service.searchPlaces(query, signal, within);
 }
 
 /** Address for a pin, or `null` when the geocoder has none. Throws `ApiError` `GEOCODER_UNAVAILABLE`. */

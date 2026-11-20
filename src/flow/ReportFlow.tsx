@@ -4,6 +4,7 @@ import { DETAILS_MIN_LENGTH_WITHOUT_PHOTO, type Health, type Place } from '../..
 import { ApiRequestError, fetchHealth, fetchLocationContext, requestInvestigation } from '../lib/api';
 import { errorMessages, messageFor } from '../lib/messages';
 import type { PreparedPhoto } from '../lib/photo';
+import { PILOT } from '../lib/pilot';
 import { PaintRing, RING_PATH } from '../components/Mark';
 import { Link } from '../router';
 import { ContextChips } from './ContextChips';
@@ -54,24 +55,39 @@ function Step({ n, title, status, lockedText, headingRef, children }: StepProps)
   );
 }
 
-const TRUST = [
-  {
-    title: 'A link counts only if it loads.',
-    text: 'We open every page the answer cites, during your report. Pages that don’t load are dropped.',
-  },
-  {
-    title: '“Confirmed” means word for word.',
-    text: 'The sentence that shows who covers the spot has to be on that official page.',
-  },
-  {
-    title: 'Real contacts only.',
-    text: 'An email or phone number shows up only if an official page we read publishes it.',
-  },
-  {
-    title: 'Nothing is kept.',
-    text: 'No accounts, no database. Close the tab and the report is gone.',
-  },
-];
+const NOTHING_KEPT = {
+  title: 'Nothing is kept.',
+  text: 'No accounts, no database. Close the tab and the report is gone.',
+};
+
+const TRUST = PILOT
+  ? // A pilot addresses every report to its partner, so its promises are about that inbox, not about research.
+    [
+      {
+        title: 'One address for the pilot.',
+        text: `Every report inside ${PILOT.area} is addressed to the ${PILOT.organization}. We don’t look up other offices.`,
+      },
+      {
+        title: 'Real contacts only.',
+        text: 'Its email shows up only if its own website lists it when we check, during your report.',
+      },
+      NOTHING_KEPT,
+    ]
+  : [
+      {
+        title: 'A link counts only if it loads.',
+        text: 'We open every page the answer cites, during your report. Pages that don’t load are dropped.',
+      },
+      {
+        title: '“Confirmed” means word for word.',
+        text: 'The sentence that shows who covers the spot has to be on that official page.',
+      },
+      {
+        title: 'Real contacts only.',
+        text: 'An email or phone number shows up only if an official page we read publishes it.',
+      },
+      NOTHING_KEPT,
+    ];
 
 export function ReportFlow({ scene }: { scene?: Scene }) {
   const [state, setState] = useState<FlowState>(() => ({ ...EMPTY_FLOW, ...scene?.flow }));
@@ -207,7 +223,7 @@ export function ReportFlow({ scene }: { scene?: Scene }) {
       <div className="street on-dark">
         {phase === 'compose' ? (
           <header className="hero">
-            <p className="kicker hero-kicker">Potholes · streetlights · sidewalks</p>
+            <p className="kicker hero-kicker">{PILOT ? `${PILOT.area} pilot` : 'Potholes · streetlights · sidewalks'}</p>
             <h1 className="display hero-title" tabIndex={-1} data-route-heading>
               Something{' '}
               <span className="nowrap">
@@ -217,11 +233,12 @@ export function ReportFlow({ scene }: { scene?: Scene }) {
                 </span>
                 ?
               </span>{' '}
-              Find who fixes it.
+              {PILOT ? `Tell ${PILOT.shortName}.` : 'Find who fixes it.'}
             </h1>
             <p className="hero-lede">
-              Pin the spot and say what’s wrong; a photo is optional. We look up which office covers it, show our
-              sources, and write the email. You send it.
+              {PILOT
+                ? `Pin the spot in ${PILOT.area} and say what’s wrong; a photo is optional. We write the email to the ${PILOT.organization}. You send it.`
+                : 'Pin the spot and say what’s wrong; a photo is optional. We look up which office covers it, show our sources, and write the email. You send it.'}
             </p>
           </header>
         ) : (
@@ -372,7 +389,7 @@ export function ReportFlow({ scene }: { scene?: Scene }) {
                     aria-disabled={noteMissing || undefined}
                     aria-describedby={noteMissing ? 'send-needs-note send-emergency' : 'send-emergency'}
                   >
-                    Find who fixes it
+                    {PILOT ? 'Write the email' : 'Find who fixes it'}
                     <ArrowRight size={22} aria-hidden="true" />
                   </button>
                   {noteMissing && !offline && (
@@ -384,7 +401,9 @@ export function ReportFlow({ scene }: { scene?: Scene }) {
                     <p className="send-fine">{OFFLINE_MESSAGE} Try again later.</p>
                   ) : (
                     <p className="send-fine">
-                      Your {photo ? 'photo, pin, and note go' : 'pin and note go'} to Google Gemini to look this up.{' '}
+                      {PILOT
+                        ? `Your ${photo ? 'photo and note go' : 'note goes'} to Google Gemini to describe the problem.`
+                        : `Your ${photo ? 'photo, pin, and note go' : 'pin and note go'} to Google Gemini to look this up.`}{' '}
                       <Link to="/privacy">What we share and why</Link>
                     </p>
                   )}
@@ -401,9 +420,7 @@ export function ReportFlow({ scene }: { scene?: Scene }) {
           </ol>
         )}
 
-        {phase === 'investigating' && (
-          <Investigating onCancel={cancel} />
-        )}
+        {phase === 'investigating' && <Investigating hasPhoto={photo !== null} onCancel={cancel} />}
 
         {phase === 'result' && report && pin.place && (
           <ResultView

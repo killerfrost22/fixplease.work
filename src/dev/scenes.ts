@@ -6,11 +6,14 @@ import { PhotoError, type PreparedPhoto } from '../lib/photo';
 import { EMPTY_PIN, type PinState, type Scene } from '../flow/state';
 import {
   CONTEXT,
+  CONTEXT_PILOT,
   CONTEXT_TOWN,
   PLACE,
+  PLACE_PILOT,
   REPORT_BEST_MATCH,
   REPORT_BEST_MATCH_NO_PHOTO,
   REPORT_CONFIRMED,
+  REPORT_PILOT,
   REPORT_UNIDENTIFIED,
   SEARCH_RESULTS,
   fixturePhoto,
@@ -28,6 +31,17 @@ const pinAt: PinState = {
 
 const confirmed: PinState = { ...pinAt, confirmed: true, context: CONTEXT };
 
+// Pilot scenes: open them on gbs.localhost. Plain `pin` there shows a pin outside the pilot's circle.
+const pinAtPilot: PinState = {
+  ...EMPTY_PIN,
+  point: { latitude: PLACE_PILOT.latitude, longitude: PLACE_PILOT.longitude },
+  source: 'search',
+  place: PLACE_PILOT,
+  placeResolved: true,
+};
+const confirmedPilot: PinState = { ...pinAtPilot, confirmed: true, context: CONTEXT_PILOT };
+const NOTE_PILOT = 'Alley behind the townhouses, by the storm drain. It has been getting bigger for two weeks.';
+
 const NOTE = 'Eastbound lane, right next to the bus stop. It has been getting bigger for two weeks.';
 const NOTE_NO_PHOTO = 'Deep pothole in the eastbound lane, right next to the bus stop. Cars swerve around it.';
 
@@ -38,6 +52,16 @@ const SCENES: Record<string, { gps?: boolean; build: SceneBuilder }> = {
   photo: { build: (photo) => ({ health: ONLINE, flow: { photo } }) },
   'photo-gps': { gps: true, build: (photo) => ({ health: ONLINE, flow: { photo } }) },
   pin: { build: (photo) => ({ health: ONLINE, flow: { photo, pin: pinAt } }) },
+  'pin-pilot': { build: (photo) => ({ health: ONLINE, flow: { photo, pin: pinAtPilot } }) },
+  'investigating-pilot': {
+    build: (photo) => ({ health: ONLINE, flow: { photo, pin: confirmedPilot, details: NOTE_PILOT, phase: 'investigating' } }),
+  },
+  'result-pilot': {
+    build: (photo) => ({
+      health: ONLINE,
+      flow: { photo, pin: confirmedPilot, details: NOTE_PILOT, phase: 'result', report: REPORT_PILOT },
+    }),
+  },
   'pin-results': {
     build: (photo) => ({ health: ONLINE, flow: { photo }, pinUi: { query: 'Campus Drive', results: SEARCH_RESULTS } }),
   },

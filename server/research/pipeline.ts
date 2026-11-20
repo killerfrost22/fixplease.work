@@ -6,6 +6,7 @@ import type {
   PublishedContact,
   SourceLink,
 } from '../../shared/types.js';
+import type { Pilot } from '../../shared/pilots.js';
 import { ApiError } from '../errors.js';
 import type { PageTransport, Resolver } from './fetch-page.js';
 import {
@@ -19,9 +20,9 @@ import {
   type CallOptions,
   type GroundedOutput,
 } from './gemini.js';
-import { formatInput, formatInstruction, researchInput, researchInstruction } from './prompt.js';
+import { formatInput, formatInstruction, pilotInput, pilotInstruction, researchInput, researchInstruction } from './prompt.js';
 import { hostOf, isSearchRedirect, modelNamedHostAllowed, trustedCampusHost, type UrlRuleContext } from './provenance.js';
-import { draftJsonSchema, parseDraftValue, type Draft } from './schema.js';
+import { draftJsonSchema, parseDraftValue, parsePilotDraftValue, pilotDraftJsonSchema, type Draft, type PilotDraft } from './schema.js';
 import { scrubFreeText, type VerifiedValues } from './scrub.js';
 import {
   cleanQuote,
@@ -41,6 +42,8 @@ export interface InvestigateOptions {
   signal?: AbortSignal;
   /** Map facts for the pin. The pipeline waits at most ~4 s for it, then continues without (context: null). */
   getContext?: (point: Coordinates, signal?: AbortSignal) => Promise<LocationContext>;
+  /** The pilot the report came from. Its partner gets the report, and no office research runs. */
+  pilot?: Pilot | null;
 }
 
 /** Everything the pipeline touches outside itself, so tests can run it offline. */
@@ -106,7 +109,7 @@ function urlsInText(text: string): string[] {
   return [...new Set([...text.matchAll(/https?:\/\/[^\s<>"'`)\]|]+/g)].map((match) => match[0].replace(/[.,;:!?]+$/, '')))];
 }
 
-function parseDraft(text: string, hasPhoto: boolean): Draft {
+function parseJson<T>(text: string, parse: (value: unknown) => T | null): T {
   const json = text.trim().replace(/^```(?:json)?\s*|\s*```$/g, '');
   let value: unknown;
   try {
@@ -114,9 +117,25 @@ function parseDraft(text: string, hasPhoto: boolean): Draft {
   } catch {
     throw researchFailed();
   }
-  const draft = parseDraftValue(value, hasPhoto);
+  const draft = parse(value);
   if (!draft) throw researchFailed();
   return draft;
+}
+
+/** The issue as the user sees it: model-written text with unverified contacts and links removed. */
+function scrubbedIssue(issue: Draft['issue'], scrub: (text: string | null) => string | null): Investigation['issue'] {
+  return {
+    kind: issue.kind,
+    title: scrub(issue.title) ?? TITLE_NEUTRAL,
+    summary: scrub(issue.summary),
+    spot: scrub(known(issue.spot)),
+    observations: issue.observations.flatMap((item) => scrub(item) ?? []).slice(0, 4),
+  };
+}
+
+/** A streetlight photo that looks like daytime, with a note that doesn't say the light is out. */
+function lightLooksOn(draft: Pick<PilotDraft, 'issue' | 'photoLooksDaytime' | 'noteSaysLightIsOut'>, hasPhoto: boolean): boolean {
+  return draft.issue.kind === 'streetlight' && hasPhoto && draft.photoLooksDaytime === true && draft.noteSaysLightIsOut !== true;
 }
 
 export async function runInvestigation(
@@ -135,7 +154,11 @@ export async function runInvestigation(
     signal.addEventListener('abort', () => reject(signal.reason), { once: true });
   });
   try {
-    return await Promise.race([investigateWithin(request, options, deps, { apiKey, fetch: deps.fetch, signal }, model), stopped]);
+    const call = { apiKey, fetch: deps.fetch, signal };
+    const work = options.pilot
+      ? investigatePilot(request, options.pilot, options, deps, call, model)
+      : investigateWithin(request, options, deps, call, model);
+    return await Promise.race([work, stopped]);
   } catch (error) {
     if (options.signal?.aborted) throw options.signal.reason;
     if (error instanceof ApiError) throw error;
@@ -250,7 +273,7 @@ async function investigateWithin(
       },
       call,
     );
-    return parseDraft(readInteraction(interaction).text, hasPhoto);
+    return parseJson(readInteraction(interaction).text, (value) => parseDraftValue(value, hasPhoto));
   };
   const formatted = (async () => {
     try {
@@ -372,10 +395,7 @@ async function investigateWithin(
   // ---- warnings
   const warnings: string[] = [];
   if (organization && !evidence) warnings.push(WARN_BEST_MATCH);
-  const looksDaytime = hasPhoto && draft.photoLooksDaytime === true;
-  if (draft.issue.kind === 'streetlight' && looksDaytime && draft.noteSaysLightIsOut !== true) {
-    warnings.push(WARN_DAYTIME);
-  }
+  if (lightLooksOn(draft, hasPhoto)) warnings.push(WARN_DAYTIME);
   if (!context) warnings.push(hasPhoto ? WARN_NO_CONTEXT_PHOTO : WARN_NO_CONTEXT_NOTE);
   else if (context.partial) warnings.push(WARN_PARTIAL_CONTEXT);
 
@@ -386,19 +406,10 @@ async function investigateWithin(
     urls: [...sources.map((source) => source.url), ...(evidence ? [evidence.url] : []), ...(reportingPage ? [reportingPage.url] : [])],
   };
   const scrub = (text: string | null) => (text ? scrubFreeText(text, verified, { allowPhotoMentions: hasPhoto }) : null);
-  const observations = draft.issue.observations
-    .flatMap((item) => scrub(item) ?? [])
-    .slice(0, 4);
   const reason =
     scrub(draft.reason) ?? (evidence ? REASON_CONFIRMED_NEUTRAL : REASON_BEST_MATCH_NEUTRAL);
   return {
-    issue: {
-      kind: draft.issue.kind,
-      title: scrub(draft.issue.title) ?? TITLE_NEUTRAL,
-      summary: scrub(draft.issue.summary),
-      spot: scrub(known(draft.issue.spot)),
-      observations,
-    },
+    issue: scrubbedIssue(draft.issue, scrub),
     responsibility: organization
       ? {
           verdict: evidence ? 'confirmed' : 'best_match',
@@ -423,6 +434,88 @@ async function investigateWithin(
     sources,
     warnings,
     searchSuggestionsHtml: grounded.searchSuggestionsHtml,
+    context,
+    generatedAt: deps.now().toISOString(),
+  };
+}
+
+/**
+ * A pilot report: the partner gets it, so no search and no office research. One Gemini call reads the problem from
+ * the photo and note while the partner's contact page loads; its inbox shows only if that page prints it right now.
+ */
+async function investigatePilot(
+  request: InvestigationRequest,
+  pilot: Pilot,
+  options: InvestigateOptions,
+  deps: ResearchDeps,
+  call: CallOptions,
+  model: string,
+): Promise<Investigation> {
+  const { signal } = call;
+  const point = { latitude: request.location.latitude, longitude: request.location.longitude };
+  const hasPhoto = request.photoDataUrl !== null;
+  const describe = async (): Promise<PilotDraft> => {
+    const interaction = await createInteraction(
+      {
+        model,
+        system_instruction: pilotInstruction(hasPhoto),
+        input: pilotInput(request),
+        response_format: { type: 'text', mime_type: 'application/json', schema: pilotDraftJsonSchema(hasPhoto) },
+        // Reading the problem is the whole job of this call, so it thinks more than the format call does.
+        generation_config: { thinking_level: 'low' },
+      },
+      call,
+    );
+    return parseJson(readInteraction(interaction).text, (value) => parsePilotDraftValue(value, hasPhoto));
+  };
+  // Map facts only fill in the result's chips and the email's location line. Neither of the other two rejects.
+  const [context, draft, pages] = await Promise.all([
+    waitForContext(options.getContext, point, signal, deps.contextWaitMs),
+    describe(),
+    loadPages([{ url: pilot.contactPage, searchReturned: false }], {
+      resolve: deps.resolve,
+      transport: deps.pageTransport,
+      signal,
+      campusHost: null,
+      timeoutMs: deps.pageTimeoutMs,
+    }),
+  ]);
+  signal.throwIfAborted();
+
+  // A redirect off the partner's own site doesn't count as the partner publishing anything.
+  const page = pages.find((loaded) => loaded.host === hostOf(pilot.contactPage));
+  const email: PublishedContact | null =
+    page && page.emails.includes(pilot.email) ? { value: pilot.email, sourceUrl: page.url } : null;
+  if (page && !email) console.warn(`[pilot] ${pilot.id}: the contact page no longer prints the partner's inbox`);
+
+  const sources: SourceLink[] = page
+    ? [{ title: (page.title ?? pilot.organization).slice(0, 160), url: page.url, note: email ? 'Lists the email address.' : null, official: true }]
+    : [];
+  const warnings: string[] = [];
+  if (!page) {
+    warnings.push(`The ${pilot.organization} website didn’t load just now, so we can’t show its email address. Try again in a minute.`);
+  } else if (!email) {
+    warnings.push(`The ${pilot.organization} website no longer lists the email address this pilot uses, so the To line is empty.`);
+  }
+  if (lightLooksOn(draft, hasPhoto)) warnings.push(WARN_DAYTIME);
+
+  const verified: VerifiedValues = { email: email?.value ?? null, phone: null, urls: sources.map((source) => source.url) };
+  const scrub = (text: string | null) => (text ? scrubFreeText(text, verified, { allowPhotoMentions: hasPhoto }) : null);
+  return {
+    issue: scrubbedIssue(draft.issue, scrub),
+    responsibility: {
+      verdict: 'pilot',
+      organization: pilot.organization,
+      department: null,
+      reason: `During this pilot, every report inside ${pilot.area} goes here. We didn’t look up which office maintains this exact spot.`,
+      evidence: null,
+      reportingUrl: null,
+      email,
+      phone: null,
+    },
+    sources,
+    warnings,
+    searchSuggestionsHtml: null,
     context,
     generatedAt: deps.now().toISOString(),
   };

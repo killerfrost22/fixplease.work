@@ -1,8 +1,9 @@
 import { useEffect, useMemo, useRef, type ReactNode } from 'react';
 import { ArrowUpRight, Mail, Phone, RotateCcw, ShieldCheck, TriangleAlert } from 'lucide-react';
-import type { Investigation, LocationContext, Place, SourceLink } from '../../shared/types';
+import type { Investigation, LocationContext, Place, SourceLink, Verdict } from '../../shared/types';
 import { createEmailDraft } from '../lib/email';
 import type { PreparedPhoto } from '../lib/photo';
+import { PILOT } from '../lib/pilot';
 import { ContextChips } from './ContextChips';
 import { EmailComposer } from './EmailComposer';
 import { SearchSuggestions } from './SearchSuggestions';
@@ -15,9 +16,10 @@ function hostOf(url: string): string {
   }
 }
 
-const STAMP: Record<'confirmed' | 'best_match', string> = {
+const STAMP: Record<Exclude<Verdict, 'unidentified'>, string> = {
   confirmed: 'Confirmed on an official site',
   best_match: 'Best match. Worth a quick check.',
+  pilot: PILOT ? `${PILOT.area} pilot` : 'Pilot contact',
 };
 
 function ExternalLink({ href, children, className }: { href: string; children: ReactNode; className?: string }) {
@@ -57,7 +59,7 @@ export function ResultView({ report, place, details, photo, pinContext, onStartO
   return (
     <section className="result" aria-labelledby="result-title">
       <div className="result-verdict" data-verdict={r.verdict}>
-        <p className="kicker">Who fixes it</p>
+        <p className="kicker">{r.verdict === 'pilot' ? 'Your report goes to' : 'Who fixes it'}</p>
         {r.verdict === 'unidentified' || r.organization === null ? (
           <>
             <h2 id="result-title" className="display result-org" tabIndex={-1} ref={headingRef}>

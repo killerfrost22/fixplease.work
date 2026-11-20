@@ -1,6 +1,7 @@
 // Dev-only fixtures for the `?scene=` harness. Organizations, addresses, and URLs are made up for
 // layout review (example.org hosts), except the Google search-suggestions markup, which is a real
 // capture from a live report so its layout quirks show up here. None of it ships in production.
+import { PILOTS } from '../../shared/pilots';
 import type { Investigation, LocationContext, Place } from '../../shared/types';
 import type { PreparedPhoto } from '../lib/photo';
 import LIVE_SUGGESTIONS_HTML from './search-suggestions-live.html?raw';
@@ -193,4 +194,64 @@ export const REPORT_UNIDENTIFIED: Investigation = {
   sources: [],
   warnings: ['Ask the city or county which office maintains this road before you send.'],
   searchSuggestionsHtml: null,
+};
+
+const [GBS] = PILOTS;
+
+/** A real street inside the Greenbelt Station pilot; open the pilot scenes on gbs.localhost. */
+export const PLACE_PILOT: Place = {
+  latitude: 39.0011,
+  longitude: -76.91561,
+  label: 'Davis Point Lane, Greenbelt, Maryland',
+  address: {
+    houseNumber: null,
+    road: 'Davis Point Lane',
+    locality: 'Greenbelt',
+    county: 'Prince George’s County',
+    state: 'Maryland',
+    postcode: '20740',
+    country: 'United States',
+    countryCode: 'us',
+  },
+};
+
+export const CONTEXT_PILOT: LocationContext = {
+  road: { name: 'Davis Point Lane', ref: null, kind: 'residential', operator: null, distanceMeters: 5 },
+  campus: null,
+  streetLights: [],
+  area: {
+    municipality: 'Greenbelt',
+    municipalityKind: 'city',
+    incorporation: 'incorporated',
+    county: 'Prince George’s County',
+    state: 'Maryland',
+    country: 'United States',
+    countryCode: 'us',
+  },
+  partial: false,
+};
+
+/** What the server answers on the pilot when the partner's page prints its inbox. */
+export const REPORT_PILOT: Investigation = {
+  ...BASE,
+  issue: {
+    ...BASE.issue,
+    title: 'Pothole in the alley',
+    summary: 'A wide pothole, roughly a metre across, with broken edges. It has been getting bigger for two weeks.',
+    spot: 'Alley behind the townhouses, by the storm drain',
+  },
+  responsibility: {
+    verdict: 'pilot',
+    organization: GBS.organization,
+    department: null,
+    reason: `During this pilot, every report inside ${GBS.area} goes here. We didn’t look up which office maintains this exact spot.`,
+    evidence: null,
+    reportingUrl: null,
+    email: { value: GBS.email, sourceUrl: GBS.contactPage },
+    phone: null,
+  },
+  sources: [{ title: 'Community Information | Greenbelt Station', url: GBS.contactPage, note: 'Lists the email address.', official: true }],
+  warnings: [],
+  searchSuggestionsHtml: null,
+  context: CONTEXT_PILOT,
 };

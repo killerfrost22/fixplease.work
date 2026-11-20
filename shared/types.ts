@@ -131,8 +131,10 @@ export type IssueKind =
  * `confirmed`: the coverage quote was found word for word on an official page the server loaded during this report.
  * `best_match`: an organization is named, but not proven by a loaded page.
  * `unidentified`: no organization could be named. The app shows only the map facts; it never makes up an office.
+ * `pilot`: a pilot site (`shared/pilots.ts`) addressed the report to its partner without looking up who maintains the
+ *   spot. `email` is the partner's inbox, present only when the partner's own page, loaded during this report, prints it.
  */
-export type Verdict = 'confirmed' | 'best_match' | 'unidentified';
+export type Verdict = 'confirmed' | 'best_match' | 'unidentified' | 'pilot';
 
 /** A contact detail that appears on `sourceUrl`, a loaded official page. */
 export interface PublishedContact {
@@ -211,6 +213,7 @@ export const API_ERROR_CODES = [
   'INVALID_PHOTO',
   'DETAILS_REQUIRED',
   'INVALID_LOCATION',
+  'OUTSIDE_PILOT_AREA',
   'PAYLOAD_TOO_LARGE',
   'FORBIDDEN_ORIGIN',
   'CAPTCHA_REQUIRED',

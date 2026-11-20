@@ -16,13 +16,15 @@ import {
   type LocationContext,
   type Place,
 } from '../shared/types.js';
+import { insideCircle, pilotForHost, type Circle, type Pilot } from '../shared/pilots.js';
 import type { Captcha } from './captcha.js';
 import type { ServerConfig } from './config.js';
 import { ApiError } from './errors.js';
 import { parseCoordinatesQuery, parseInvestigationRequest, parseSearchQuery } from './validation.js';
 
 export interface GeoDeps {
-  searchPlaces(query: string, signal?: AbortSignal): Promise<Place[]>;
+  /** `within`: only places inside this circle (a pilot's area). */
+  searchPlaces(query: string, signal?: AbortSignal, within?: Circle): Promise<Place[]>;
   reversePlace(point: Coordinates, signal?: AbortSignal): Promise<Place | null>;
   getLocationContext(point: Coordinates, signal?: AbortSignal): Promise<LocationContext>;
 }
@@ -34,6 +36,7 @@ export interface ResearchDeps {
     options?: {
       signal?: AbortSignal;
       getContext?: (point: Coordinates, signal?: AbortSignal) => Promise<LocationContext>;
+      pilot?: Pilot | null;
     },
   ): Promise<Investigation>;
 }
@@ -233,8 +236,17 @@ export function createApp(deps: AppDeps): Express {
     express.json({ limit: INVESTIGATION_BODY_LIMIT_BYTES }),
     async (req, res) => {
       const request = parseInvestigationRequest(req.body);
+      // The same Host header the same-origin check trusts: gbs.fixplease.work serves the Greenbelt Station pilot.
+      const pilot = pilotForHost(req.get('host'));
+      if (pilot && !insideCircle(pilot, request.location)) {
+        throw new ApiError(
+          400,
+          `This pilot covers ${pilot.area} only. Move the pin inside it, or report this on fixplease.work.`,
+          'OUTSIDE_PILOT_AREA',
+        );
+      }
       await sendWhileConnected(res, (signal) =>
-        research.investigate(request, { signal, getContext: geo.getLocationContext }),
+        research.investigate(request, { signal, getContext: geo.getLocationContext, pilot }),
       );
     },
   );
@@ -252,7 +264,12 @@ export function createApp(deps: AppDeps): Express {
 
   app.get('/api/locations/search', limiter(MINUTE, 30, rateLimited), async (req, res) => {
     const query = parseSearchQuery(req.query);
-    await sendWhileConnected(res, async (signal) => (await geo.searchPlaces(query, signal)).slice(0, 5));
+    const pilot = pilotForHost(req.get('host'));
+    await sendWhileConnected(res, async (signal) => {
+      const places = await geo.searchPlaces(query, signal, pilot ?? undefined);
+      // The geocoder searches the circle's bounding box; its corners are outside the circle.
+      return (pilot ? places.filter((place) => insideCircle(pilot, place)) : places).slice(0, 5);
+    });
   });
 
   app.get('/api/locations/reverse', limiter(MINUTE, 30, rateLimited), async (req, res) => {

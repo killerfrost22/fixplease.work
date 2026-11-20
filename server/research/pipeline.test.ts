@@ -7,7 +7,8 @@ import { GEMINI_ENDPOINT } from './gemini.js';
 import { investigate, researchConfigured } from './index.js';
 import { runInvestigation, type ResearchDeps } from './pipeline.js';
 import { NO_QUOTE_RETRY } from './prompt.js';
-import type { Draft } from './schema.js';
+import type { Draft, PilotDraft } from './schema.js';
+import { PILOTS } from '../../shared/pilots.js';
 
 // ---------------------------------------------------------------- fixtures
 
@@ -646,6 +647,105 @@ describe('reports without a photo', () => {
     assert.deepEqual(result.issue.observations, []);
     assert.ok(result.warnings.includes("Map facts for this spot didn't load in time, so this answer is based on the address and your note."));
     assert.doesNotMatch(JSON.stringify(result), PHOTO_WORDS);
+  });
+});
+
+describe('pilot sites', () => {
+  const [GBS] = PILOTS;
+  const inside: InvestigationRequest = {
+    ...request,
+    location: { ...request.location, label: 'Davis Point Lane, Greenbelt', latitude: 39.0011, longitude: -76.91561 },
+    details: 'Alley behind the townhouses. Getting bigger.',
+  };
+  const pilotOptions = { ...withContext, pilot: GBS };
+  const pilotDraft: PilotDraft = {
+    issue: { kind: 'pothole', title: 'Pothole in the alley', summary: 'A deep pothole that is getting bigger.', spot: 'Alley behind the townhouses', observations: ['Deep hole'] },
+    photoLooksDaytime: null,
+    noteSaysLightIsOut: null,
+  };
+  const describeInteraction = (value: PilotDraft) => ({
+    id: 'int_pilot',
+    status: 'completed',
+    steps: [{ type: 'model_output', content: [{ type: 'text', text: JSON.stringify(value) }] }],
+  });
+  const contactHtml = (body: string) =>
+    `<html><head><title>Community Information | Greenbelt Station</title></head><body><main>${body}</main></body></html>`;
+  const LISTS_INBOX = contactHtml('<p>Property Manager: <a href="mailto:GREENHOA@CiraMail.com">GREENHOA@CiraMail.com</a></p>');
+  const pilotHarness = (contactPage: () => Response, extraPages: Record<string, () => Response> = {}) =>
+    harness({ format: [() => json(describeInteraction(pilotDraft))], pages: { [GBS.contactPage]: contactPage, ...extraPages } });
+
+  it('addresses the report to the partner, takes its inbox from its own page, and runs no search', async () => {
+    const h = pilotHarness(() => htmlResponse(LISTS_INBOX));
+    const result = await runInvestigation(inside, pilotOptions, h.deps);
+
+    assert.equal(result.responsibility.verdict, 'pilot');
+    assert.equal(result.responsibility.organization, 'Greenbelt Station Master Association');
+    assert.deepEqual(result.responsibility.email, { value: 'greenhoa@ciramail.com', sourceUrl: GBS.contactPage });
+    assert.equal(result.responsibility.evidence, null);
+    assert.equal(result.responsibility.phone, null);
+    assert.deepEqual(result.sources, [
+      { title: 'Community Information | Greenbelt Station', url: GBS.contactPage, note: 'Lists the email address.', official: true },
+    ]);
+    assert.deepEqual(result.warnings, []);
+    assert.equal(result.searchSuggestionsHtml, null);
+    assert.deepEqual(result.context, context);
+    assert.equal(result.issue.spot, 'Alley behind the townhouses');
+
+    // One Gemini call, without Google Search, carrying the photo and the note but not the pin.
+    assert.equal(h.geminiBodies.length, 1);
+    const [body] = h.geminiBodies;
+    assert.equal(body.store, false);
+    assert.equal(body.tools, undefined);
+    const input = body.input as Array<Record<string, string>>;
+    assert.deepEqual(
+      input.map((part) => part.type),
+      ['text', 'image'],
+    );
+    assert.match(input[0].text, /"Alley behind the townhouses\. Getting bigger\."/);
+    assert.doesNotMatch(input[0].text, /Davis Point|39\.00/);
+    assert.deepEqual(h.pageCalls, [GBS.contactPage]);
+  });
+
+  it('withholds the inbox when the partner page fails, stops printing it, or redirects off its site', async (t) => {
+    t.mock.method(console, 'warn', () => undefined);
+    const OFF_SITE = 'https://parked-domains.example.com/';
+    const cases: Array<{ name: string; contactPage: () => Response; warning: RegExp; sources: number }> = [
+      { name: 'fails', contactPage: () => new Response('down', { status: 503 }), warning: /website didn’t load just now/, sources: 0 },
+      {
+        name: 'no longer prints it',
+        contactPage: () => htmlResponse(contactHtml('<p>Reach the Community Manager through the owner portal.</p>')),
+        warning: /no longer lists the email address this pilot uses/,
+        sources: 1,
+      },
+      {
+        name: 'redirects off its site',
+        contactPage: () => new Response(null, { status: 301, headers: { location: OFF_SITE } }),
+        warning: /website didn’t load just now/,
+        sources: 0,
+      },
+    ];
+    for (const { name, contactPage, warning, sources } of cases) {
+      const h = pilotHarness(contactPage, { [OFF_SITE]: () => htmlResponse(LISTS_INBOX) });
+      const result = await runInvestigation(inside, pilotOptions, h.deps);
+      assert.equal(result.responsibility.verdict, 'pilot', name);
+      assert.equal(result.responsibility.email, null, name);
+      assert.equal(result.sources.length, sources, name);
+      assert.ok(result.warnings.some((text) => warning.test(text)), `${name}: ${result.warnings.join(' | ')}`);
+      assert.doesNotMatch(JSON.stringify(result), /ciramail/i, name);
+    }
+  });
+
+  it('without a photo, sends Gemini only the note and never mentions a photo', async () => {
+    const h = pilotHarness(() => htmlResponse(LISTS_INBOX));
+    const result = await runInvestigation({ ...inside, photoDataUrl: null }, pilotOptions, h.deps);
+    const [body] = h.geminiBodies;
+    const input = body.input as Array<{ type: string }>;
+    assert.deepEqual(
+      input.map((part) => part.type),
+      ['text'],
+    );
+    assert.doesNotMatch(JSON.stringify(body), /photo|picture|image/i);
+    assert.doesNotMatch(JSON.stringify(result), /photo|picture|image/i);
   });
 });
 

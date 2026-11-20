@@ -10,7 +10,7 @@
     "dev": "concurrently -k -n api,web \"tsx watch server/index.ts\" \"vite\"",
     "build": "tsc --noEmit && vite build",
     "start": "tsx server/index.ts",
-    "test": "node --import tsx --test \"server/**/*.test.ts\" \"src/**/*.test.ts\""
+    "test": "node --import tsx --test \"server/**/*.test.ts\" \"shared/**/*.test.ts\" \"src/**/*.test.ts\""
   },
   "dependencies": {
     "@fontsource-variable/big-shoulders": "^5.3.0",

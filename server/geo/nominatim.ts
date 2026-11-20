@@ -1,5 +1,6 @@
 import { z } from 'zod';
 import type { CampusFact, Coordinates, Place, PlaceAddress } from '../../shared/types.js';
+import type { Circle } from '../../shared/pilots.js';
 import {
   type Clock,
   ProviderError,
@@ -149,6 +150,17 @@ export function normalizeQuery(query: string): string {
   return query.trim().replace(/\s+/g, ' ').toLowerCase();
 }
 
+const METERS_PER_DEGREE_LATITUDE = 111_320;
+
+/** Nominatim `viewbox` for the box around a circle: `west,south,east,north`. */
+function viewboxAround({ center, radiusMeters }: Circle): string {
+  const dLat = radiusMeters / METERS_PER_DEGREE_LATITUDE;
+  const dLon = radiusMeters / (METERS_PER_DEGREE_LATITUDE * Math.cos((center.latitude * Math.PI) / 180));
+  return [center.longitude - dLon, center.latitude - dLat, center.longitude + dLon, center.latitude + dLat]
+    .map((value) => value.toFixed(5))
+    .join(',');
+}
+
 export class NominatimClient {
   readonly #limiter: RateLimiter;
   readonly #searchCache: TtlCache<Place[]>;
@@ -163,12 +175,20 @@ export class NominatimClient {
     this.#reverseCache = new TtlCache(REVERSE_TTL_MS, clock);
   }
 
-  /** Throws `ProviderError` on provider failure, or the signal's reason when aborted. */
-  async search(query: string, signal?: AbortSignal): Promise<Place[]> {
-    const key = normalizeQuery(query);
+  /**
+   * `within` keeps results inside the circle's bounding box (Nominatim's `viewbox` with `bounded=1`).
+   * Throws `ProviderError` on provider failure, or the signal's reason when aborted.
+   */
+  async search(query: string, signal?: AbortSignal, within?: Circle): Promise<Place[]> {
+    const viewbox = within ? viewboxAround(within) : null;
+    const key = viewbox ? `${normalizeQuery(query)}\n${viewbox}` : normalizeQuery(query);
     const cached = this.#searchCache.get(key);
     if (cached) return cached.value;
     const params = new URLSearchParams({ q: query.trim(), format: 'jsonv2', addressdetails: '1', limit: String(SEARCH_LIMIT) });
+    if (viewbox) {
+      params.set('viewbox', viewbox);
+      params.set('bounded', '1');
+    }
     const places = toPlaces(await this.#request('search', params, signal));
     this.#searchCache.set(key, places);
     return places;

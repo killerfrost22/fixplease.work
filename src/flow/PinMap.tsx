@@ -3,8 +3,10 @@ import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import './pin-map.css';
 import { Crosshair } from 'lucide-react';
+import { insideCircle } from '../../shared/pilots';
 import type { Coordinates, Place } from '../../shared/types';
 import { RING_PATH } from '../components/Mark';
+import { PILOT } from '../lib/pilot';
 import type { PinSource } from './state';
 
 interface PinMapProps {
@@ -21,6 +23,8 @@ interface PinMapProps {
 const OVERVIEW: L.LatLngTuple = [39.5, -98.35];
 const OVERVIEW_ZOOM = 4;
 const SPOT_ZOOM = 18;
+/** The pilot's circle as map bounds; `null` off a pilot site. */
+const PILOT_BOUNDS = PILOT ? L.latLng(PILOT.center.latitude, PILOT.center.longitude).toBounds(PILOT.radiusMeters * 2) : null;
 
 const pinIcon = L.divIcon({
   className: 'pin-icon',
@@ -67,11 +71,20 @@ export default function PinMap({
     const container = containerRef.current;
     if (!container) return;
     const map = L.map(container, {
-      center: OVERVIEW,
-      zoom: OVERVIEW_ZOOM,
       // The map sits inside a long page; wheel zoom would hijack page scrolling. Buttons and double-click still zoom.
       scrollWheelZoom: false,
     });
+    // A pilot opens on its own area, marked out the way a surveyor paints a boundary. Clicks go through to the map.
+    if (PILOT && PILOT_BOUNDS) {
+      map.fitBounds(PILOT_BOUNDS, { padding: [12, 12], animate: false });
+      L.circle([PILOT.center.latitude, PILOT.center.longitude], {
+        radius: PILOT.radiusMeters,
+        interactive: false,
+        className: 'pilot-area',
+      }).addTo(map);
+    } else {
+      map.setView(OVERVIEW, OVERVIEW_ZOOM);
+    }
     map.attributionControl.setPrefix('<a href="https://leafletjs.com" rel="noopener noreferrer" target="_blank">Leaflet</a>');
     let loaded = 0;
     let failed = 0;
@@ -128,7 +141,13 @@ export default function PinMap({
       marker.setLatLng(latLng);
     }
     if (source !== 'map') {
-      map.setView(latLng, Math.max(map.getZoom(), SPOT_ZOOM - 1), { animate: false });
+      if (PILOT && PILOT_BOUNDS && !insideCircle(PILOT, point)) {
+        // Outside the pilot: frame the pin and the circle together, so why it can't be confirmed is on screen.
+        const both = L.latLngBounds(PILOT_BOUNDS.getSouthWest(), PILOT_BOUNDS.getNorthEast()).extend(latLng);
+        map.fitBounds(both, { padding: [28, 28], maxZoom: SPOT_ZOOM - 1, animate: false });
+      } else {
+        map.setView(latLng, Math.max(map.getZoom(), SPOT_ZOOM - 1), { animate: false });
+      }
     }
     stampIn(marker);
   }, [point, source]);
@@ -192,7 +211,9 @@ export default function PinMap({
         )}
       </div>
       <div className="pin-map-tools">
-        <p className="pin-map-hint">{point ? 'Drag the pin, or tap the map to move it.' : 'Tap the map to drop the pin.'}</p>
+        <p className="pin-map-hint">
+          {point ? 'Drag the pin, or tap the map to move it.' : PILOT ? 'Tap inside the dashed circle to drop the pin.' : 'Tap the map to drop the pin.'}
+        </p>
         <button type="button" className="btn btn--sm" onClick={pinAtCentre}>
           <Crosshair size={18} aria-hidden="true" />
           Pin the map’s centre

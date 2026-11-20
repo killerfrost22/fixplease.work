@@ -2,14 +2,17 @@ import { useEffect, useRef, useState } from 'react';
 import { SiteFooter, SiteHeader } from './components/SiteChrome';
 import { ReportFlow } from './flow/ReportFlow';
 import type { Scene } from './flow/state';
+import { PILOT } from './lib/pilot';
 import { PrivacyPage } from './pages/PrivacyPage';
 import { TechPage } from './pages/TechPage';
 import { Link, usePath } from './router';
 
+const ORIGIN = PILOT ? `https://${PILOT.id}.fixplease.work` : 'https://fixplease.work';
+
 const ROUTES: Record<string, { title: string; canonical: string }> = {
-  '/': { title: 'Fix Please · Find who fixes it', canonical: 'https://fixplease.work/' },
-  '/tech': { title: 'How it’s built · Fix Please', canonical: 'https://fixplease.work/tech' },
-  '/privacy': { title: 'Privacy · Fix Please', canonical: 'https://fixplease.work/privacy' },
+  '/': { title: PILOT ? `Fix Please · ${PILOT.area} pilot` : 'Fix Please · Find who fixes it', canonical: `${ORIGIN}/` },
+  '/tech': { title: 'How it’s built · Fix Please', canonical: `${ORIGIN}/tech` },
+  '/privacy': { title: 'Privacy · Fix Please', canonical: `${ORIGIN}/privacy` },
 };
 
 // Dev-only `?scene=<name>` harness. `import.meta.env.DEV` is `false` in production builds,
@@ -61,7 +64,7 @@ export function App() {
 
   useEffect(() => {
     document.title = route?.title ?? 'Page not found · Fix Please';
-    document.querySelector('link[rel="canonical"]')?.setAttribute('href', route?.canonical ?? 'https://fixplease.work/');
+    document.querySelector('link[rel="canonical"]')?.setAttribute('href', route?.canonical ?? `${ORIGIN}/`);
     if (shownPath.current === path) return;
     shownPath.current = path;
     // A route change is a new page to a screen reader: announce its heading. The report keeps its place.
