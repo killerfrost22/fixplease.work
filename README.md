@@ -238,8 +238,7 @@ Any host that runs one long-lived Node process works (Render, Railway, Fly.io, a
 - Map tiles and address lookups come from OpenStreetMap.
 - The bot check is a self-hosted proof of work (ALTCHA) that runs quietly in the browser.
 
-> [!CAUTION]
-> Not for emergencies. Downed wires or someone hurt: call your local emergency number.
+**Not for emergencies.** If someone is hurt, or wires are down, call your local emergency number.
 
 ## API
 
