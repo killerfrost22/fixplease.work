@@ -5,7 +5,7 @@ import { CensusClient } from './census.js';
 import { ContextService } from './context.js';
 import { NominatimClient } from './nominatim.js';
 import { OverpassClient } from './overpass.js';
-import { type Clock, realClock, withTimeout } from './support.js';
+import { type Clock, failureReason, realClock, withTimeout } from './support.js';
 
 /** Search and reverse lookups give up after this, counting time spent in the one-per-second queue. */
 const GEOCODER_DEADLINE_MS = 10_000;
@@ -31,8 +31,9 @@ export function createGeoService({ clock = realClock, env = process.env }: GeoOp
   async function geocode<T>(work: (signal: AbortSignal) => Promise<T>, signal?: AbortSignal): Promise<T> {
     try {
       return await work(withTimeout(signal, GEOCODER_DEADLINE_MS));
-    } catch {
+    } catch (error) {
       if (signal?.aborted) throw signal.reason;
+      console.warn(`[geo] address lookup failed: ${failureReason(error)}`);
       throw new ApiError(502, GEOCODER_DOWN, 'GEOCODER_UNAVAILABLE');
     }
   }

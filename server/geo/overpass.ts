@@ -5,6 +5,7 @@ import {
   ProviderError,
   TtlCache,
   baseUrlFrom,
+  failureReason,
   fetchJson,
   makeProjector,
   normalizeWebsite,
@@ -175,7 +176,10 @@ export class OverpassClient {
     } catch (error) {
       // Only Overpass's own failures count: HTTP errors, a bad or cut-short answer, or our 8 s deadline above.
       // Any abort of the signal passed in (a user leaving, a report's 4 s wait) is the caller's choice, not Overpass failing.
-      if (!signal?.aborted) this.#skipUntil = this.clock.now() + BACKOFF_MS;
+      if (!signal?.aborted) {
+        this.#skipUntil = this.clock.now() + BACKOFF_MS;
+        console.warn(`[geo] Overpass failed, skipping it for ${BACKOFF_MS / 1000} s: ${failureReason(error)}`);
+      }
       throw error;
     }
   }

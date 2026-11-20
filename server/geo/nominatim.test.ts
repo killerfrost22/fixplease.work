@@ -103,7 +103,7 @@ describe('Nominatim requests', () => {
     await geo.searchPlaces('  Campus   Drive ');
     await geo.reversePlace(PIN);
     const [search, reverse] = fake.calls;
-    assert.equal(new Headers(search.init.headers).get('User-Agent'), 'FixPlease/2.0 (local development)');
+    assert.equal(new Headers(search.init.headers).get('User-Agent'), 'FixPlease/2.0 (+https://fixplease.work)');
     assert.equal(search.url.searchParams.get('format'), 'jsonv2');
     assert.equal(search.url.searchParams.get('addressdetails'), '1');
     assert.equal(search.url.searchParams.get('limit'), '5');
@@ -111,7 +111,8 @@ describe('Nominatim requests', () => {
     assert.equal(reverse.url.searchParams.get('addressdetails'), '1');
   });
 
-  test('one queue spaces search, reverse, and context lookups at least 1 s apart', async () => {
+  test('one queue spaces search, reverse, and context lookups at least 1 s apart', async (t) => {
+    t.mock.method(console, 'warn', () => undefined);
     const { fake, geo } = fakeNominatim((url) => {
       if (url.hostname !== NOMINATIM_HOST) return json({}, 503);
       return url.pathname === '/search' ? json([campusDrive]) : json(campusDrive);
@@ -141,9 +142,10 @@ describe('Nominatim requests', () => {
     assert.equal((fake.calls[1].at ?? 0) - (fake.calls[0].at ?? 0), 1000);
   });
 
-  test('provider failures become GEOCODER_UNAVAILABLE without provider text', async () => {
+  test('provider failures become GEOCODER_UNAVAILABLE without provider text; the log says why, never what was asked', async (t) => {
+    const warn = t.mock.method(console, 'warn', () => undefined);
     const { geo } = fakeNominatim(() => new Response('upstream stack trace: secret', { status: 500 }));
-    await assert.rejects(geo.searchPlaces('campus'), (error: unknown) => {
+    await assert.rejects(geo.searchPlaces('4306 Campus Drive'), (error: unknown) => {
       assert.ok(error instanceof ApiError);
       assert.equal(error.status, 502);
       assert.equal(error.code, 'GEOCODER_UNAVAILABLE');
@@ -151,6 +153,13 @@ describe('Nominatim requests', () => {
       return true;
     });
     await assert.rejects(geo.reversePlace(PIN), { code: 'GEOCODER_UNAVAILABLE' });
+    const logged = warn.mock.calls.map((call) => String(call.arguments[0]));
+    assert.equal(logged.length, 2);
+    for (const line of logged) {
+      assert.match(line, /answered HTTP 500/);
+      assert.doesNotMatch(line, /Campus Drive|secret/);
+      assert.doesNotMatch(line, COORDINATE_PATTERN);
+    }
   });
 
   test('a cancelled request rejects as an abort, not a geocoder failure', async () => {

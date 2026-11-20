@@ -101,7 +101,8 @@ describe('getLocationContext', () => {
     });
   });
 
-  test('when Overpass fails, the campus comes from Nominatim and the context is partial', async () => {
+  test('when Overpass fails, the campus comes from Nominatim and the context is partial', async (t) => {
+    t.mock.method(console, 'warn', () => undefined);
     const { geo } = setup({ overpass: () => json({ remark: 'busy' }, 504) });
     const context = await geo.getLocationContext(UMD);
     assert.equal(context.partial, true);
@@ -111,7 +112,8 @@ describe('getLocationContext', () => {
     assert.equal(context.area?.incorporation, 'incorporated');
   });
 
-  test('skips Overpass for 60 s after a failure, then tries again', async () => {
+  test('skips Overpass for 60 s after a failure, then tries again', async (t) => {
+    t.mock.method(console, 'warn', () => undefined);
     let overpassUp = false;
     const { fake, clock, geo } = setup({ overpass: () => (overpassUp ? json(overpassAnswer) : json({}, 429)) });
     await geo.getLocationContext(UMD);
@@ -130,7 +132,8 @@ describe('getLocationContext', () => {
     assert.equal(after.road?.name, 'Campus Drive');
   });
 
-  test('when Census fails, the area comes from Nominatim and is marked unknown', async () => {
+  test('when Census fails, the area comes from Nominatim and is marked unknown', async (t) => {
+    t.mock.method(console, 'warn', () => undefined);
     const { geo } = setup({ census: () => new Response('Service Unavailable', { status: 503 }) });
     const context = await geo.getLocationContext(UMD);
     assert.equal(context.partial, true);
@@ -165,7 +168,8 @@ describe('getLocationContext', () => {
     });
   });
 
-  test('every provider failing gives an empty partial context instead of an error', async () => {
+  test('every provider failing gives an empty partial context instead of an error', async (t) => {
+    t.mock.method(console, 'warn', () => undefined);
     const { geo } = setup({
       nominatim: () => {
         throw new TypeError('fetch failed');

@@ -238,7 +238,7 @@ Any host that runs one long-lived Node process works (Render, Railway, Fly.io, a
 | `PORT`, `HOST` | Where the server listens (defaults `8787`, `127.0.0.1`). Use `HOST=0.0.0.0` on most hosts. |
 | `TRUST_PROXY` | Set to the number of proxies in front of the app (usually `1`) so rate limits see real visitor IPs instead of the proxy's. |
 | `RESEARCH_RATE_LIMIT` | Reports per visitor IP per 15 minutes (default 5). Raise it for a demo on shared Wi-Fi. |
-| `GEOCODER_USER_AGENT` | Contact info sent to OpenStreetMap services. Required by their usage policy. |
+| `GEOCODER_USER_AGENT` | Contact info sent to OpenStreetMap services, which their usage policy requires. Defaults to `FixPlease/2.0 (+https://fixplease.work)`; a fork should set its own. |
 | `NOMINATIM_BASE_URL` | Point at your own geocoder for real traffic. Also used for the campus lookup when Overpass fails. |
 | `OVERPASS_URL` | Overpass instance for road, campus, and streetlight facts. The public one is often overloaded; the server backs off for 60 s after a failure. |
 | `CAPTCHA_SECRET` | Optional stable signing secret for the bot check. |

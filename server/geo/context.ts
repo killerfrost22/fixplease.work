@@ -2,20 +2,20 @@ import type { AreaFact, Coordinates, LocationContext, PlaceAddress } from '../..
 import type { CensusArea, CensusClient } from './census.js';
 import type { NominatimClient } from './nominatim.js';
 import type { OverpassClient } from './overpass.js';
-import { withTimeout } from './support.js';
+import { failureReason, withTimeout } from './support.js';
 
 /** Upper bound for the whole lookup. Overpass (8 s) and Census (7 s) carry their own, shorter deadlines. */
 const OVERALL_TIMEOUT_MS = 9_000;
 /** Includes time spent waiting in the shared one-per-second Nominatim queue. */
 const REVERSE_TIMEOUT_MS = 7_000;
 
-type Outcome<T> = { ok: true; value: T } | { ok: false };
+type Outcome<T> = { ok: true; value: T } | { ok: false; error: unknown };
 
 async function settle<T>(work: Promise<T>): Promise<Outcome<T>> {
   try {
     return { ok: true, value: await work };
-  } catch {
-    return { ok: false };
+  } catch (error) {
+    return { ok: false, error };
   }
 }
 
@@ -56,6 +56,9 @@ export class ContextService {
       settle(this.census.lookup(point, overall)),
     ]);
     signal?.throwIfAborted();
+    // Overpass logs its own failures when it starts backing off, so it isn't repeated here for every pin.
+    if (!reverse.ok) console.warn(`[geo] map facts: address lookup failed: ${failureReason(reverse.error)}`);
+    if (!census.ok) console.warn(`[geo] map facts: Census lookup failed: ${failureReason(census.error)}`);
 
     const details = reverse.ok ? reverse.value : null;
     const address = details?.address ?? null;

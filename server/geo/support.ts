@@ -1,6 +1,7 @@
 import type { Coordinates } from '../../shared/types.js';
 
-export const DEFAULT_USER_AGENT = 'FixPlease/2.0 (local development)';
+/** Sent to OpenStreetMap services when GEOCODER_USER_AGENT isn't set. Their policy asks for a string that identifies the app. */
+export const DEFAULT_USER_AGENT = 'FixPlease/2.0 (+https://fixplease.work)';
 
 /** Time source for queues, caches, and backoff. Tests swap in a virtual clock so spacing is checked without waiting. */
 export interface Clock {
@@ -179,6 +180,18 @@ export async function fetchJson(url: string, request: JsonRequest): Promise<unkn
 
 export function userAgentFrom(env: NodeJS.ProcessEnv): string {
   return env.GEOCODER_USER_AGENT?.trim() || DEFAULT_USER_AGENT;
+}
+
+/** Why a provider call failed, for the server log: the host and HTTP status, or the network error code. Never the query or the pin. */
+export function failureReason(error: unknown): string {
+  if (!(error instanceof Error)) return 'unknown error';
+  let detail: string | null = null;
+  for (let cause = error.cause, depth = 0; cause instanceof Error && depth < 3; cause = cause.cause, depth++) {
+    const code = 'code' in cause ? cause.code : undefined;
+    detail = typeof code === 'string' ? code : cause.name;
+    if (typeof code === 'string') break;
+  }
+  return detail ? `${error.message} (${detail})` : error.message;
 }
 
 export function baseUrlFrom(value: string | undefined, fallback: string): string {
