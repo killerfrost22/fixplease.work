@@ -220,7 +220,6 @@ main:focus {
   display: flex;
   gap: var(--space-4);
   align-items: flex-start;
-  max-width: 52ch;
   font-size: var(--step-1);
   line-height: 1.4;
 }
