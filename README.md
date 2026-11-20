@@ -12,15 +12,6 @@ Fix Please is a phone-first web app (it works on desktop too) for reporting brok
 - **Winner, Public Systems & Infrastructure**, GullHacks 2026
 - **Winner, [MLH] Build Your Hackathon A-Team with SpaceXSI**, GullHacks 2026
 
-## Team
-
-| Name | Role | Profile |
-|---|---|---|
-| Nyles Burton | Documentation | [@NBurtonII](https://github.com/NBurtonII) |
-| Gabby Ao | Business Analyst | [@gabbyao](https://github.com/gabbyao) |
-| Yizhan Ao | Programmer | [@killerfrost22](https://github.com/killerfrost22) |
-| Padma Waiba | Testing | Devpost [@ybajames23](https://devpost.com/ybajames23) |
-
 ## Why we built it
 
 Public infrastructure is a huge cause of frustration and distrust between the members of a community and its governing bodies. Residents live with these problems daily and watch them go unresolved for months. Some of these issues are small, some are large, but all build upon one another and cause people to feel as though the local government does not care about their needs or the community. To this end we created Fix Please, a phone-first web app that helps residents figure out who is responsible for a problem and gives them the words to say something about it.
