@@ -75,6 +75,25 @@ Orange boxes are your steps. Everything between them happens on the server, whic
 - An email address or phone number only shows up if it's published on an official page we read, and an email must be a repair or service inbox on the office's own domain (e.g. `streetmaintenance@city.gov`). Personal, press, HR, and webmaster addresses are never picked. Contact details and links the model writes into its own text are removed unless they're the checked ones. Many cities only take reports through a web form, so the result often links to that form and leaves the email's To line for you.
 - If Gemini refuses an answer for repeating web text too closely, the server retries once without quotes. That result can be at most "best match".
 
+## Pilot: Greenbelt Station
+
+[gbs.fixplease.work](https://gbs.fixplease.work) is a pilot of the same app for Greenbelt Station, a neighborhood in Greenbelt, Maryland. It's the same server and the same build: the server picks the pilot from the request's `Host` header (`pilotForHost` in `shared/pilots.ts`), so the pilot needs no separate deploy and no environment variable.
+
+| | fixplease.work | gbs.fixplease.work |
+|---|---|---|
+| Where you can pin | Anywhere | Inside a 400 m circle around Greenbelt Station (39.00144, −76.91652). A pin outside it can't be confirmed, and the server refuses it (`OUTSIDE_PILOT_AREA`). Address search returns only places inside the circle. |
+| Who the email goes to | The office the research finds | The Greenbelt Station Master Association, for every report |
+| Gemini | Two calls, with Google Search | One call, without Google Search, that reads the problem from the photo and note. The pin and map facts aren't sent to Gemini. |
+| Contact | Published on an official page the server loaded | `greenhoa@ciramail.com`, shown only if the association's [community information page](https://www.greenbeltstation.net/community-information/) lists it when the server loads that page during the report. Otherwise the To line stays empty and a warning says why. |
+| Result | "Confirmed", "Best match", or "We couldn't identify the office" | A "Greenbelt Station pilot" stamp, and the reason says we didn't look up which office maintains the exact spot. |
+| Link previews | The main title and share image | Its own title, description, canonical URL, and `public/og-gbs.png` (`server/pilot-shell.ts`) |
+
+The same page lists five roads in the area as public roads designated by the City of Greenbelt (Rock Quarry, Greenbelt Station Parkway, North Center Drive, South Center Drive, and Stream Bank Lane) and says to report road conditions there to the city's Public Works Department. Reports on those roads still go to the association during the pilot; the email asks it to say if a report should go to a different office.
+
+To try it locally, run `npm run dev` and open <http://gbs.localhost:5180> (Chrome, Edge, and Firefox send `*.localhost` to your own machine). The pilot's scenes are `pin-pilot`, `note-pilot`, `note-pilot-no-photo`, `investigating-pilot`, `result-pilot`, and `result-pilot-page-down`; on `gbs.localhost`, the plain `pin` scene shows a pin outside the circle.
+
+To add a pilot, add an entry to `PILOTS` in `shared/pilots.ts` (the subdomain label, the area's circle, the partner, its inbox, and the page that publishes it), add `public/og-<id>.png`, and point the subdomain at the service as in [Deploy](#pilot-subdomain).
+
 ## Run it locally
 
 You need [Node.js 24](https://nodejs.org) (check with `node --version`) and [Git](https://git-scm.com/downloads), plus a Gemini API key from [Google AI Studio](https://aistudio.google.com/apikey). Search grounding needs a billed Google AI project. Without a key the site still runs; see step 4.
@@ -142,6 +161,7 @@ Demoing on shared venue Wi-Fi? Everyone shows up as one address, so raise `RESEA
 server/                    Express API (run with tsx)
   index.ts                 Entry: loads .env, wires the real services, listens on HOST:PORT
   app.ts                   Routes, rate limits, same-origin check, captcha check, serves dist/ in production
+  pilot-shell.ts           A pilot host's app shell: its own title, description, and share image
   config.ts                Reads PORT, HOST, TRUST_PROXY, RESEARCH_RATE_LIMIT
   captcha.ts               Self-hosted ALTCHA proof-of-work challenges, single-use
   validation.ts, errors.ts Request parsing and the { error, code } error type
@@ -169,6 +189,7 @@ src/                       React app
   styles/                  tokens.css (colors, type, spacing), then base, layout, flow, result, pages
   dev/                     Scene harness for design review: ?scene=<name> in dev only, absent from builds
 shared/types.ts            Types shared by the server and the app
+shared/pilots.ts           Pilot sites: subdomain, area circle, partner and the page that publishes its inbox
 public/                    Favicon, app icons, web app manifest, share image
 docs/                      Model benchmark write-up, README screenshot, and other docs
 benchmarks/gemini-models/  Model benchmark script, test photos, and raw results
@@ -181,12 +202,12 @@ TODO.md                    Feature roadmap
 Run these before pushing:
 
 ```sh
-npm test          # server and client unit tests (node:test via tsx)
+npm test          # server, shared, and client unit tests (node:test via tsx)
 npx tsc --noEmit  # type check
 npm run build     # type check + production build into dist/
 ```
 
-Tests sit next to the code they test as `*.test.ts`: server tests under `server/`, client tests in `src/lib/`.
+Tests sit next to the code they test as `*.test.ts`: server tests under `server/`, shared ones under `shared/`, client tests in `src/lib/`.
 
 ### Design review
 
@@ -222,6 +243,17 @@ Any host that runs one long-lived Node process works (Render, Railway, Fly.io, a
 | `OVERPASS_URL` | Overpass instance for road, campus, and streetlight facts. The public one is often overloaded; the server backs off for 60 s after a failure. |
 | `CAPTCHA_SECRET` | Optional stable signing secret for the bot check. |
 
+### Pilot subdomain
+
+`gbs.fixplease.work` runs on the same Render service as `fixplease.work`. To point it there ([Render's custom domain guide](https://render.com/docs/custom-domains)):
+
+1. In the Render Dashboard, open the service's **Settings**, then **Custom Domains** → **Add Custom Domain**, and enter `gbs.fixplease.work`.
+2. At Porkbun, in the DNS records for `fixplease.work`, add a `CNAME` record with host `gbs` pointing at the service's `onrender.com` address (shown in the Render Dashboard). Don't add an `AAAA` record.
+3. Back in Render, click **Verify**. Render then issues the HTTPS certificate.
+4. Check <https://gbs.fixplease.work/api/health>, then run one report inside the circle and confirm the To line shows the association's inbox. That proves the server can load greenbeltstation.net from Render.
+
+Render's Hobby plan includes 2 custom domains; each one past that costs $0.25 a month.
+
 ## Privacy
 
 - No accounts, no database, no analytics. Reports live in the page and are gone when you close it.
@@ -237,10 +269,10 @@ Any host that runs one long-lived Node process works (Render, Railway, Fly.io, a
 |---|---|
 | `GET /api/health` | Whether the Gemini key is configured. |
 | `GET /api/captcha/challenge` | Single-use proof-of-work challenge. |
-| `GET /api/locations/search?q=` | Address search. |
+| `GET /api/locations/search?q=` | Address search. On a pilot host, only places inside the pilot's circle. |
 | `GET /api/locations/reverse?lat=&lon=` | Address for a pin. |
 | `GET /api/locations/context?lat=&lon=` | Map facts for a pin (road, route number, campus, city limits, streetlights). |
-| `POST /api/investigate` | `{ photoDataUrl, location, details }` plus the `X-Captcha-Token` header returns who fixes it, the evidence, and contacts. `photoDataUrl` may be `null` (no photo); then `details` must be at least 5 characters, or the error is `DETAILS_REQUIRED`. |
+| `POST /api/investigate` | `{ photoDataUrl, location, details }` plus the `X-Captcha-Token` header returns who fixes it, the evidence, and contacts. `photoDataUrl` may be `null` (no photo); then `details` must be at least 5 characters, or the error is `DETAILS_REQUIRED`. On a pilot host, a pin outside the pilot's circle is `OUTSIDE_PILOT_AREA`. |
 
 Errors are always `{ error, code }`. Shared types live in `shared/types.ts`.
 
@@ -250,7 +282,8 @@ These terms mean the same thing in the code, the UI, and this README.
 
 | Term | Definition |
 |---|---|
-| _verdict_ | How sure a result is: `confirmed` ("Confirmed on an official site"), `best_match` ("Best match. Worth a quick check."), or `unidentified` ("We couldn't identify the office"). `Verdict` in `shared/types.ts`. |
+| _verdict_ | How sure a result is: `confirmed` ("Confirmed on an official site"), `best_match` ("Best match. Worth a quick check."), or `unidentified` ("We couldn't identify the office"). On a pilot host it is `pilot` (the pilot's stamp): the report goes to the pilot's partner, and no office research runs. `Verdict` in `shared/types.ts`. |
+| _pilot_ | A subdomain of fixplease.work for one area, such as `gbs.fixplease.work` for Greenbelt Station. Inside its circle every report is addressed to its partner; a pin outside the circle can't be confirmed. `PILOTS` in `shared/pilots.ts`. |
 | _evidence_ | The coverage quote and the page it was found on. It exists only for `confirmed` results, and the quote appears word for word on that page. Shown as "The proof". |
 | _map facts_ | What OpenStreetMap and the Census say about the pin: nearest road and route number, campus and its website, mapped streetlights and their operator, and the city, town, township, or county. `LocationContext` in `shared/types.ts`, built by `server/geo/context.ts`. |
 | _official page_ | A loaded page on a public-sector host (`.gov`, `.mil`, `.edu`, U.S. state and locality domains such as `state.md.us`, and national equivalents such as `gov.uk`) or on the campus's own website. `isOfficialPageHost` in `server/research/provenance.ts`. |

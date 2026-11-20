@@ -13,6 +13,13 @@ The original plan (a public report database with tracking codes, a browse map, a
 - Domain: `fixplease.work`, registered at Porkbun on 2026-11-07 (renews 2027-11-07).
 - Only `main` is left. The merged feature branches were deleted locally and on GitHub on Nov 9.
 - No CI (no `.github/`).
+- **Greenbelt Station pilot** (`gbs.fixplease.work`) is on `main` since Nov 20 but not reachable yet: `gbs.fixplease.work` has no DNS record (NXDOMAIN on Nov 20) and isn't a custom domain on Render. Steps are in the README under [Deploy → Pilot subdomain](README.md#pilot-subdomain).
+
+Last measured on Nov 20, on the pilot host (`gbs.localhost`) with a local production build:
+- 198/198 tests pass; `tsc --noEmit` and `vite build` are clean. First-load JS is 98.9 kB gzip.
+- Lighthouse mobile on `/`, `/tech`, `/privacy`: Performance 97, Accessibility 100, Best Practices 100; LCP 2.3 s, CLS ≤ 0.042.
+- axe: no violations in the ten pilot states (hero, pin inside and outside the circle, note with and without a photo, investigating, result, result with the HOA page down, `/tech`, `/privacy`) at 375 and 1440 px.
+- Live end-to-end on `gemini-3.6-flash`: sidewalk photo → Davis Point Lane search → note → result in 4.0 s. The server loaded the association's community-information page during the report and found `greenhoa@ciramail.com` on it; no warnings, no console errors.
 
 Last measured on Nov 7, on the rebuild after the no-photo and HEIC merges:
 - 176/176 tests pass (`npm test`); `tsc --noEmit` and `vite build` are clean.
@@ -31,6 +38,9 @@ The P0 list (needed for judging and the demo) is finished or no longer needed; s
 
 ## Open — P1
 
+- [ ] **Point `gbs.fixplease.work` at Render.** Add it as a custom domain on the Render service and add a `CNAME` for `gbs` at Porkbun (README, Deploy → Pilot subdomain). Needs the Render and Porkbun accounts.
+- [ ] **Smoke test the pilot on the live site.** After the DNS change, run one report inside the circle on https://gbs.fixplease.work. The To line must show `greenhoa@ciramail.com`, which proves the server can load greenbeltstation.net from Render (princegeorgescountymd.gov answers the same loader with 403). Also share the link once to check the preview shows `og-gbs.png` and the pilot title.
+- [ ] **Confirm the pilot with the association.** Every report inside the circle is addressed to `greenhoa@ciramail.com`, including the five roads its own page lists as City of Greenbelt public roads (Rock Quarry, Greenbelt Station Parkway, North and South Center Drive, Stream Bank Lane), which it says go to the city's Public Works Department. If the association wants those sent to the city instead, the pilot needs a road-by-road split, and the city's inbox would have to come from a page the server loads.
 - [ ] **Smoke test a full report on the live site.** Run one report end to end on https://fixplease.work and check the console for errors. This also proves the proxy keeps the `Host` header: `/api/investigate` rejects any request whose `Origin` host doesn't match `Host` (`isSameOrigin` in `server/app.ts`), so a rewrite would break reports while everything else looks fine.
 - [ ] **Spending cap on the live key.** Anyone who loads the public site can spend from the Gemini key, within the rate limits. Confirm the billed project has a budget alert or spending cap.
 - [ ] **Deploy notes.** Add the Render setup (build and start commands, environment variables, custom domain) to the README's Deploy section.
@@ -62,15 +72,24 @@ The P0 list (needed for judging and the demo) is finished or no longer needed; s
 
 ## Open — P2
 
+- [ ] **Wide screens (1920 px):** the note textarea runs about 120 characters per line, past the 75-character limit in `AGENTS.md`, and "Send with photo" wraps onto two lines in its fixed-width button column. Seen during the pilot review on Nov 20; the main site has the same layout.
 - [ ] **Real progress while a report runs.** The request is a single call with no progress events, so the screen lists what happens without claiming which step is running. Stream stage events from the server (e.g. SSE) to show real progress.
 - [ ] Google's search-suggestion chips are 32 px tall at 768 px and up (under our 44 px target) and follow the device's dark mode on our light page. Google's terms require showing them unchanged, so this can only change if Google's markup does.
 - [ ] For sustained public traffic, move off the public OSM tile server, Nominatim, and Overpass (usage policies), or self-host them. `NOMINATIM_BASE_URL` and `OVERPASS_URL` already make that a config change; tiles are hard-coded in `src/flow/PinMap.tsx`.
 - [ ] More than one photo per report (currently exactly one).
 - [ ] Service worker for the app shell (the manifest and icons already exist).
-- [ ] Component / end-to-end tests. Current tests cover `server/` and `src/lib/` only.
+- [ ] Component / end-to-end tests. Current tests cover `server/`, `shared/`, and `src/lib/` only.
 - [ ] Shared store for rate limits and captcha replay state, so more than one instance can run. Both are in memory now.
 
 ---
+
+## Done (Greenbelt Station pilot, Nov 20)
+
+- [x] `shared/pilots.ts`: the `gbs` pilot, a 400 m circle around Greenbelt Station, addressed to the Greenbelt Station Master Association.
+- [x] Server: the host picks the pilot; pins outside the circle are refused (`OUTSIDE_PILOT_AREA`); address search is bounded to the circle; one Gemini call without Google Search describes the problem; the inbox shows only if the association's page, loaded during the report, lists it.
+- [x] The pilot host gets its own app shell (title, description, canonical, share image `og-gbs.png`), footer host, and a `/tech` note on what it skips.
+- [x] Client: the map opens on the dashed circle; copy throughout names the HOA; spot clues replace owner guesses; the result shows a "Greenbelt Station pilot" stamp.
+- [x] Two browser review passes at 375, 768, 1440, and 1920 px; tests for the host routing, the circle, bounded search, the pilot pipeline, and the shell.
 
 ## Done (hackathon)
 
